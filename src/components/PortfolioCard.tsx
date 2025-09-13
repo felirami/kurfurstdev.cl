@@ -5,6 +5,7 @@ import { ProyectoData } from "@/types";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { PortableTextBlock } from "sanity";
 
 type Props = {
   proyecto: ProyectoData;
@@ -14,11 +15,11 @@ export default function PortfolioCard({ proyecto }: Props) {
   const imageUrl = urlFor(proyecto.imagenPrincipal).width(800).height(600).url();
   
   // Extract first paragraph from description for preview
-  const getDescriptionPreview = (description: any[]) => {
+  const getDescriptionPreview = (description: PortableTextBlock[]) => {
     if (!description || description.length === 0) return "";
-    const firstBlock = description.find(block => block._type === 'block');
-    if (!firstBlock || !firstBlock.children) return "";
-    return firstBlock.children.map((child: any) => child.text).join('').substring(0, 120) + "...";
+    const firstBlock = description.find((block) => block._type === 'block');
+    if (!firstBlock || !('children' in firstBlock) || !Array.isArray(firstBlock.children)) return "";
+    return (firstBlock.children as any[]).map((child: any) => child.text || '').join('').substring(0, 120) + "...";
   };
 
   return (

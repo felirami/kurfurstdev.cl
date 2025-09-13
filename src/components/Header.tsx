@@ -4,14 +4,29 @@ import { urlFor } from "@/lib/sanity.client";
 import Image from "next/image";
 import Link from "next/link";
 import StyledButton from "./StyledButton";
-import ThemeSwitcher from "./ThemeSwitcher";
 import { HeaderCarouselData } from "@/types";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
+import { SanityImageSource } from "@sanity/image-url/lib/types/types";
+
+interface MenuItem {
+  _key: string;
+  texto: string;
+  url: string;
+}
+
+interface BusinessProfile {
+  nombreDelNegocio?: string;
+  logo?: SanityImageSource;
+}
+
+interface Navigation {
+  items?: MenuItem[];
+}
 
 type Props = {
-  businessProfile: any;
-  navigation: any;
+  businessProfile: BusinessProfile;
+  navigation: Navigation;
   headerCarousel?: HeaderCarouselData;
 }
 
@@ -95,8 +110,8 @@ export default function Header({ businessProfile, navigation, headerCarousel }: 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-6">
             {navItems
-              .filter((item: any) => item.texto?.toLowerCase() !== 'contacto')
-              .map((item: any) => (
+              .filter((item: MenuItem) => item.texto?.toLowerCase() !== 'contacto')
+              .map((item: MenuItem) => (
                 <StyledButton
                   key={item._key || item.url}
                   href={item.url || '/'}
@@ -107,7 +122,6 @@ export default function Header({ businessProfile, navigation, headerCarousel }: 
               ))}
             
             {/* Theme Switcher (desactivado temporalmente) */}
-            {/* <ThemeSwitcher /> */}
             
             {/* CTA Button */}
             <StyledButton href="/contacto" variant="secondary">

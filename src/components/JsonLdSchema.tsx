@@ -1,13 +1,14 @@
 // src/components/JsonLdSchema.tsx
 import React from 'react';
 import { urlFor } from '@/lib/sanity.client';
+import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
 interface PerfilDeNegocioData {
   nombreDelNegocio?: string;
   nombreLegal?: string;
   tipoDeNegocio?: 'ProfessionalService' | 'LocalBusiness' | 'Organization' | 'TechCompany';
   urlDelSitio?: string;
-  logo?: any;
+  logo?: SanityImageSource;
   telefonoPrincipal?: string;
   emailDeContacto?: string;
   direccion?: string;
@@ -22,7 +23,7 @@ export default function JsonLdSchema({ perfilDeNegocio }: JsonLdSchemaProps) {
   const generateBusinessSchema = () => {
     const businessType = perfilDeNegocio.tipoDeNegocio || 'ProfessionalService';
     
-    const baseSchema: any = {
+    const baseSchema: Record<string, any> = {
       '@context': 'https://schema.org',
       '@type': businessType,
       name: perfilDeNegocio.nombreLegal || perfilDeNegocio.nombreDelNegocio || 'KurfurstDev',

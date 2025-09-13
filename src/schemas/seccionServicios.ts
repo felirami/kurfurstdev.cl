@@ -1,5 +1,7 @@
 // src/schemas/seccionServicios.ts
-export default {
+import { Rule } from 'sanity';
+
+const seccionServiciosSchema = {
   name: 'seccionServicios',
   title: 'Sección de Servicios',
   type: 'object',
@@ -8,7 +10,7 @@ export default {
       name: 'titulo',
       title: 'Título de la Sección',
       type: 'string',
-      validation: (Rule: any) => Rule.required().max(100)
+      validation: (Rule: Rule) => Rule.required().max(100)
     },
     {
       name: 'listaDeServicios',
@@ -22,13 +24,13 @@ export default {
               name: 'nombre',
               title: 'Nombre del Servicio',
               type: 'string',
-              validation: (Rule: any) => Rule.required().max(80)
+              validation: (Rule: Rule) => Rule.required().max(80)
             },
             {
               name: 'descripcionCorta',
               title: 'Descripción Corta',
               type: 'text',
-              validation: (Rule: any) => Rule.required().max(200)
+              validation: (Rule: Rule) => Rule.required().max(200)
             },
             {
               name: 'imagenDestacada',
@@ -37,7 +39,7 @@ export default {
               options: {
                 hotspot: true
               },
-              validation: (Rule: any) => Rule.required()
+              validation: (Rule: Rule) => Rule.required()
             },
             {
               name: 'imagenFondo',
@@ -46,19 +48,19 @@ export default {
               options: {
                 hotspot: true
               },
-              validation: (Rule: any) => Rule.required()
+              validation: (Rule: Rule) => Rule.required()
             },
             {
               name: 'textoCTA',
               title: 'Texto del Botón CTA',
               type: 'string',
-              validation: (Rule: any) => Rule.max(30)
+              validation: (Rule: Rule) => Rule.max(30)
             },
             {
               name: 'urlCTA',
               title: 'URL del Botón CTA',
               type: 'url',
-              validation: (Rule: any) => Rule.uri({
+              validation: (Rule: Rule) => Rule.uri({
                 scheme: ['http', 'https', 'mailto', 'tel']
               })
             }
@@ -72,7 +74,7 @@ export default {
           }
         }
       ],
-      validation: (Rule: any) => Rule.required().min(1).max(6)
+      validation: (Rule: Rule) => Rule.required().min(1).max(6)
     }
   ],
   preview: {
@@ -80,4 +82,6 @@ export default {
       title: 'titulo'
     }
   }
-}
+};
+
+export default seccionServiciosSchema;

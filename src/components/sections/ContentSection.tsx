@@ -1,6 +1,6 @@
 // src/components/sections/ContentSection.tsx
 import { ContentSectionData } from "@/types";
-import { PortableText, PortableTextBlock } from "@portabletext/react";
+import { PortableText } from "@portabletext/react";
 import ScrollAnimatedSection from "@/components/ScrollAnimatedSection";
 import Link from "next/link";
 import { urlFor } from "@/lib/sanity.client";
@@ -13,50 +13,50 @@ type Props = {
 // Custom components for PortableText
 const customComponents = {
   block: {
-    normal: ({ children }: any) => (
+    normal: ({ children }: { children?: React.ReactNode }) => (
       <p className="text-[#EAEAEA]/90 leading-relaxed mb-6 text-lg">{children}</p>
     ),
-    h3: ({ children }: any) => (
+    h3: ({ children }: { children?: React.ReactNode }) => (
       <h3 className="font-['Oswald'] text-2xl font-bold text-[#EAEAEA] uppercase tracking-wide mb-4 mt-8">{children}</h3>
     ),
-    h4: ({ children }: any) => (
+    h4: ({ children }: { children?: React.ReactNode }) => (
       <h4 className="font-['Oswald'] text-xl font-semibold text-[#8A2BE2] uppercase tracking-wide mb-3 mt-6">{children}</h4>
     ),
   },
   list: {
-    bullet: ({ children }: any) => (
+    bullet: ({ children }: { children?: React.ReactNode }) => (
       <ul className="space-y-3 mb-6 ml-6">{children}</ul>
     ),
-    number: ({ children }: any) => (
+    number: ({ children }: { children?: React.ReactNode }) => (
       <ol className="space-y-3 mb-6 ml-6 list-decimal">{children}</ol>
     ),
   },
   listItem: {
-    bullet: ({ children }: any) => (
+    bullet: ({ children }: { children?: React.ReactNode }) => (
       <li className="flex items-start">
         <div className="w-2 h-2 bg-[#8A2BE2] rounded-full mt-3 mr-4 flex-shrink-0"></div>
         <div className="text-[#EAEAEA]/90 leading-relaxed">{children}</div>
       </li>
     ),
-    number: ({ children }: any) => (
+    number: ({ children }: { children?: React.ReactNode }) => (
       <li className="text-[#EAEAEA]/90 leading-relaxed">{children}</li>
     ),
   },
   marks: {
-    link: ({ children, value }: any) => (
+    link: ({ children, value }: { children?: React.ReactNode; value?: { href: string } }) => (
       <Link 
-        href={value.href} 
+        href={value?.href || '#'} 
         className="text-[#8A2BE2] hover:text-[#8A2BE2]/80 underline transition-colors duration-300"
       >
         {children}
       </Link>
     ),
-    strong: ({ children }: any) => (
+    strong: ({ children }: { children?: React.ReactNode }) => (
       <strong className="text-[#8A2BE2] font-semibold">{children}</strong>
     ),
   },
   types: {
-    cta: ({ value }: any) => {
+    cta: ({ value }: { value: { textoBoton: string; urlBoton: string } }) => {
       const { textoBoton, urlBoton } = value;
       return (
         <div className="my-8">

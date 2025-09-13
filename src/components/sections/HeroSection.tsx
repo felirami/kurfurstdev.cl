@@ -2,8 +2,6 @@
 "use client";
 import { urlFor } from "@/lib/sanity.client";
 import { HeroSectionData } from "@/types";
-import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
 
 type Props = {
   section: HeroSectionData;

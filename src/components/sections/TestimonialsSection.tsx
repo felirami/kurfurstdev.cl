@@ -56,7 +56,7 @@ export default function TestimonialsSection({ section }: Props) {
 
               {/* Testimonial text */}
               <blockquote className="text-[#EAEAEA]/90 text-lg leading-relaxed mb-8 italic">
-                "{testimonio.texto}"
+                &quot;{testimonio.texto}&quot;
               </blockquote>
 
               {/* Author section */}

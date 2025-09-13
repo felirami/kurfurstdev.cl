@@ -19,7 +19,7 @@ interface FormData {
 }
 
 export default function ContactSection({ section }: Props) {
-  const { titulo, subtitulo, formspreeUrl } = section;
+  const { formspreeUrl } = section;
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const {

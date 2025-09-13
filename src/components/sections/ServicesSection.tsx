@@ -5,7 +5,7 @@ import { ServicesSectionData } from "@/types";
 import ScrollAnimatedSection from "../ScrollAnimatedSection";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useState } from "react";
 
 type Props = {
@@ -44,7 +44,7 @@ export default function ServicesSection({ section }: Props) {
 
           {/* Services Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {listaDeServicios?.map((servicio: any, index: number) => (
+            {listaDeServicios?.map((servicio, index: number) => (
               <motion.div 
                 key={servicio._key} 
                 className="group relative bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden h-[500px]"
