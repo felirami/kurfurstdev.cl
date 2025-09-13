@@ -19,7 +19,7 @@ export default function PortfolioCard({ proyecto }: Props) {
     if (!description || description.length === 0) return "";
     const firstBlock = description.find((block) => block._type === 'block');
     if (!firstBlock || !('children' in firstBlock) || !Array.isArray(firstBlock.children)) return "";
-    return (firstBlock.children as any[]).map((child: any) => child.text || '').join('').substring(0, 120) + "...";
+    return (firstBlock.children as { text?: string }[]).map((child) => child.text || '').join('').substring(0, 120) + "...";
   };
 
   return (

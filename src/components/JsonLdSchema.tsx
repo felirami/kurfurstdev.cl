@@ -19,11 +19,28 @@ interface JsonLdSchemaProps {
   perfilDeNegocio: PerfilDeNegocioData;
 }
 
+interface JsonLdSchema {
+  '@context': string;
+  '@type': string;
+  name: string;
+  legalName?: string;
+  url: string;
+  description: string;
+  logo?: unknown;
+  telephone?: string;
+  email?: string;
+  contactPoint?: unknown;
+  address?: unknown;
+  areaServed?: unknown;
+  serviceType?: unknown;
+  [key: string]: unknown;
+}
+
 export default function JsonLdSchema({ perfilDeNegocio }: JsonLdSchemaProps) {
   const generateBusinessSchema = () => {
     const businessType = perfilDeNegocio.tipoDeNegocio || 'ProfessionalService';
     
-    const baseSchema: Record<string, any> = {
+    const baseSchema = {
       '@context': 'https://schema.org',
       '@type': businessType,
       name: perfilDeNegocio.nombreLegal || perfilDeNegocio.nombreDelNegocio || 'KurfurstDev',
@@ -34,7 +51,7 @@ export default function JsonLdSchema({ perfilDeNegocio }: JsonLdSchemaProps) {
 
     // Add logo if available
     if (perfilDeNegocio.logo) {
-      baseSchema.logo = {
+      (baseSchema as JsonLdSchema).logo = {
         '@type': 'ImageObject',
         url: urlFor(perfilDeNegocio.logo).width(512).height(512).url(),
         width: 512,
@@ -42,36 +59,31 @@ export default function JsonLdSchema({ perfilDeNegocio }: JsonLdSchemaProps) {
       };
     }
 
-    // Add contact information if available
+    // Add contact point if phone or email available
     if (perfilDeNegocio.telefonoPrincipal || perfilDeNegocio.emailDeContacto) {
-      baseSchema.contactPoint = {
+      (baseSchema as JsonLdSchema).contactPoint = {
         '@type': 'ContactPoint',
         contactType: 'customer service',
-        availableLanguage: ['Spanish', 'English']
+        availableLanguage: 'Spanish',
+        ...(perfilDeNegocio.telefonoPrincipal && { telephone: perfilDeNegocio.telefonoPrincipal }),
+        ...(perfilDeNegocio.emailDeContacto && { email: perfilDeNegocio.emailDeContacto })
       };
-
-      if (perfilDeNegocio.telefonoPrincipal) {
-        baseSchema.contactPoint.telephone = perfilDeNegocio.telefonoPrincipal;
-      }
-
-      if (perfilDeNegocio.emailDeContacto) {
-        baseSchema.contactPoint.email = perfilDeNegocio.emailDeContacto;
-      }
     }
 
     // Add address if available
     if (perfilDeNegocio.direccion) {
-      baseSchema.address = {
+      (baseSchema as JsonLdSchema).address = {
         '@type': 'PostalAddress',
         streetAddress: perfilDeNegocio.direccion,
+        addressLocality: 'Chile',
         addressCountry: 'CL'
       };
     }
 
     // Add specific fields for ProfessionalService
     if (businessType === 'ProfessionalService') {
-      baseSchema.serviceType = 'Web Development & CMS Solutions';
-      baseSchema.areaServed = {
+      (baseSchema as JsonLdSchema).serviceType = 'Desarrollo Web y CMS';
+      (baseSchema as JsonLdSchema).areaServed = {
         '@type': 'Country',
         name: 'Chile'
       };

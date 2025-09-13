@@ -1,7 +1,6 @@
 // src/components/sections/ContactSection.tsx
 "use client";
 import { ContactSectionData } from "@/types";
-import StyledButton from "../StyledButton";
 import ScrollAnimatedSection from "../ScrollAnimatedSection";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
@@ -56,7 +55,7 @@ export default function ContactSection({ section }: Props) {
       } else {
         throw new Error("Error en el envío");
       }
-    } catch (error) {
+    } catch {
       toast.error("❌ Hubo un problema al enviar tu mensaje. Por favor, intenta de nuevo.");
     } finally {
       setIsSubmitting(false);

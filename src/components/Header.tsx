@@ -110,8 +110,8 @@ export default function Header({ businessProfile, navigation, headerCarousel }: 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-6">
             {navItems
-              .filter((item: MenuItem) => item.texto?.toLowerCase() !== 'contacto')
-              .map((item: MenuItem) => (
+              .filter((item) => item.texto?.toLowerCase() !== 'contacto')
+              .map((item) => (
                 <StyledButton
                   key={item._key || item.url}
                   href={item.url || '/'}

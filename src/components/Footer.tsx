@@ -1,18 +1,7 @@
 // src/components/Footer.tsx
 import Link from 'next/link';
-import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
-interface BusinessProfile {
-  nombreDelNegocio?: string;
-  nombreLegal?: string;
-  logo?: SanityImageSource;
-  telefonoPrincipal?: string;
-  emailDeContacto?: string;
-  direccion?: string;
-  textoFooter?: string;
-}
-
-export default function Footer({ businessProfile }: { businessProfile: BusinessProfile }) {
+export default function Footer() {
     return (
       <footer className="relative bg-[#0F0F0F]/95 backdrop-blur-sm border-t border-[#8A2BE2]/20">
         {/* Top accent line */}

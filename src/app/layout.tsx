@@ -46,7 +46,7 @@ export default async function RootLayout({
 
         <main>{children}</main>
 
-        {businessProfile && <Footer businessProfile={businessProfile} />}
+        <Footer />
         
         {/* Toaster para las notificaciones */}
         <Toaster 
