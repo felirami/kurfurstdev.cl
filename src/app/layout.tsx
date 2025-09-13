@@ -5,15 +5,27 @@ import "./globals.css";
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import JsonLdSchema from "@/components/JsonLdSchema";
 import { client } from "@/lib/sanity.client";
 import { groq } from "next-sanity";
 import React from "react"; // Importamos React
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
 
 const query = groq`{
   "businessProfile": *[_type == "perfilDeNegocio"][0],
-  "navigation": *[_type == "navegacion"][0]
+  "navigation": *[_type == "navegacion"][0],
+  "headerCarousel": *[_type == "headerCarousel"][0]{
+    slides[]{
+      _key,
+      titulo,
+      subtitulo,
+      imagenPortada{
+        asset->
+      }
+    }
+  }
 }`;
 
 export default async function RootLayout({
@@ -21,17 +33,45 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode; // Corregido a React.ReactNode
 }) {
-  const { businessProfile, navigation } = await client.fetch(query);
+  const { businessProfile, navigation, headerCarousel } = await client.fetch(query);
 
   return (
     <html lang="es">
-      <body className={inter.className}>
+      <head>
+        {businessProfile && <JsonLdSchema perfilDeNegocio={businessProfile} />}
+      </head>
+        <body className={`${inter.className}`}>
         {/* ESTA ES LA LÍNEA CRÍTICA CORREGIDA */}
-        {businessProfile && <Header businessProfile={businessProfile} navigation={navigation} />}
+        {businessProfile && <Header businessProfile={businessProfile} navigation={navigation} headerCarousel={headerCarousel} />}
 
         <main>{children}</main>
 
         {businessProfile && <Footer businessProfile={businessProfile} />}
+        
+        {/* Toaster para las notificaciones */}
+        <Toaster 
+          position="top-right"
+          toastOptions={{
+            duration: 4000,
+            style: {
+              background: '#1A1A1A',
+              color: '#EAEAEA',
+              border: '1px solid #8A2BE2',
+            },
+            success: {
+              iconTheme: {
+                primary: '#8A2BE2',
+                secondary: '#EAEAEA',
+              },
+            },
+            error: {
+              iconTheme: {
+                primary: '#ef4444',
+                secondary: '#EAEAEA',
+              },
+            },
+          }}
+        />
       </body>
     </html>
   );
