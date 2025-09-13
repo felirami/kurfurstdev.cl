@@ -36,6 +36,7 @@ export default function Header({ businessProfile, navigation, headerCarousel }: 
   const slides = headerCarousel?.slides || [];
   
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Auto-rotation every 5 seconds
   useEffect(() => {
@@ -130,13 +131,46 @@ export default function Header({ businessProfile, navigation, headerCarousel }: 
           </nav>
 
           {/* Mobile Menu Button */}
-          <button className="md:hidden flex flex-col space-y-1 p-2 group">
-            <div className="w-6 h-px bg-[#EAEAEA] group-hover:bg-[#8A2BE2] transition-colors duration-300"></div>
-            <div className="w-6 h-px bg-[#EAEAEA] group-hover:bg-[#8A2BE2] transition-colors duration-300"></div>
-            <div className="w-6 h-px bg-[#EAEAEA] group-hover:bg-[#8A2BE2] transition-colors duration-300"></div>
+          <button 
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden flex flex-col space-y-1 p-2 group"
+            aria-label="Toggle mobile menu"
+          >
+            <div className={`w-6 h-px bg-[#EAEAEA] group-hover:bg-[#8A2BE2] transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></div>
+            <div className={`w-6 h-px bg-[#EAEAEA] group-hover:bg-[#8A2BE2] transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`}></div>
+            <div className={`w-6 h-px bg-[#EAEAEA] group-hover:bg-[#8A2BE2] transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></div>
           </button>
         </div>
       </div>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden absolute top-full left-0 right-0 bg-[#0F0F0F]/95 backdrop-blur-sm border-t border-[#8A2BE2]/20 z-50">
+          <nav className="px-6 py-4">
+            {navItems
+              .filter((item) => item.texto?.toLowerCase() !== 'contacto')
+              .map((item) => (
+                <Link
+                  key={item._key || item.url}
+                  href={item.url || '/'}
+                  className="block py-3 text-[#EAEAEA] hover:text-[#8A2BE2] transition-colors duration-300 border-b border-[#8A2BE2]/10 last:border-b-0"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {item.texto}
+                </Link>
+              ))}
+            
+            {/* Mobile CTA Button */}
+            <Link
+              href="/contacto"
+              className="block mt-4 bg-[#8A2BE2] text-white font-['Oswald'] font-bold text-sm px-6 py-3 uppercase tracking-wider transition-all duration-300 hover:bg-[#9A3BF2] text-center"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              CONTACTO
+            </Link>
+          </nav>
+        </div>
+      )}
 
       {/* Header Content Area with Carousel Text */}
       {slides.length > 0 && (
@@ -151,10 +185,10 @@ export default function Header({ businessProfile, navigation, headerCarousel }: 
                 transition={{ duration: 0.6, ease: "easeOut" }}
                 className="text-center"
               >
-                <h1 className="font-['Oswald'] text-4xl md:text-5xl lg:text-6xl font-bold text-[#EAEAEA] uppercase tracking-wider mb-4 [text-shadow:_0_4px_12px_rgb(0_0_0_/_90%)]">
+                <h1 className="font-['Oswald'] text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-[#EAEAEA] uppercase tracking-wider mb-4 [text-shadow:_0_4px_12px_rgb(0_0_0_/_90%)]">
                   {currentSlideData?.titulo}
                 </h1>
-                <p className="text-lg md:text-xl text-[#EAEAEA]/90 max-w-3xl mx-auto [text-shadow:_0_2px_8px_rgb(0_0_0_/_80%)]">
+                <p className="text-base sm:text-lg md:text-xl text-[#EAEAEA]/90 max-w-3xl mx-auto [text-shadow:_0_2px_8px_rgb(0_0_0_/_80%)]">
                   {currentSlideData?.subtitulo}
                 </p>
               </motion.div>

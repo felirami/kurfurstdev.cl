@@ -32,7 +32,7 @@ export default function TestimonialsSection({ section }: Props) {
             <div className="w-16 h-px bg-[#8A2BE2]"></div>
           </div>
           
-          <h2 className="font-['Oswald'] text-4xl md:text-5xl lg:text-6xl font-bold text-[#EAEAEA] uppercase tracking-tight">
+          <h2 className="font-['Oswald'] text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#EAEAEA] uppercase tracking-tight">
             {titulo}
           </h2>
         </div>

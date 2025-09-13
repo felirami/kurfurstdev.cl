@@ -91,13 +91,13 @@ export default function ContactSection({ section }: Props) {
             {/* Left Column - Text Content (40% width) */}
             <div className="md:col-span-2 space-y-8">
               <div>
-                <h2 className="font-['Oswald'] text-4xl md:text-5xl lg:text-6xl font-bold text-[#EAEAEA] uppercase tracking-tight leading-tight mb-8">
+                <h2 className="font-['Oswald'] text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#EAEAEA] uppercase tracking-tight leading-tight mb-8">
                   Cuéntame tu Idea
                 </h2>
                 
                 <div className="w-20 h-px bg-[#8A2BE2] mb-8"></div>
                 
-                <p className="text-[#EAEAEA]/80 text-lg leading-relaxed mb-12">
+                <p className="text-[#EAEAEA]/80 text-base sm:text-lg leading-relaxed mb-8 md:mb-12">
                   Sea un proyecto nuevo desde cero, una mejora a tu web actual o una consulta, estoy aquí para ayudarte a construir la solución digital que tu negocio necesita.
                 </p>
 
@@ -152,7 +152,7 @@ export default function ContactSection({ section }: Props) {
 
             {/* Right Column - Contact Form (60% width) */}
             <div className="md:col-span-3">
-              <div className="relative border border-[#8A2BE2]/20 p-8 lg:p-12 bg-[#8A2BE2]/5">
+              <div className="relative border border-[#8A2BE2]/20 p-8 lg:p-12 bg-[#8A2BE2]/20">
                 {/* Form accent lines */}
                 <div className="absolute top-0 left-0 w-20 h-px bg-[#8A2BE2]"></div>
                 <div className="absolute bottom-0 right-0 w-20 h-px bg-[#8A2BE2]"></div>

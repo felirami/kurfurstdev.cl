@@ -39,11 +39,17 @@ html::before {
 
   /* Propiedades para que la imagen cubra toda la pantalla */
   background-size: cover;
-  background-position: center center;
+  background-position: center;
   background-repeat: no-repeat;
-
-  /* Efecto de desenfoque */
-  filter: blur(5px);
+  background-attachment: fixed;
+  filter: blur(0.8px);
+  
+  /* Fix mobile background position */
+  @media (max-width: 768px) {
+    background-attachment: scroll;
+    background-position: center center;
+    background-size: cover;
+  }
   /* Asegura que el blur no se corte en los bordes */
   transform: scale(1.05);
 }

@@ -37,7 +37,7 @@ export default function ServicesSection({ section }: Props) {
               <div className="w-16 h-px bg-[#8A2BE2]"></div>
             </div>
             
-            <h2 className="font-['Oswald'] text-4xl md:text-5xl lg:text-6xl font-bold text-[#EAEAEA] uppercase tracking-tight">
+            <h2 className="font-['Oswald'] text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#EAEAEA] uppercase tracking-tight">
               {titulo}
             </h2>
           </div>
@@ -47,7 +47,7 @@ export default function ServicesSection({ section }: Props) {
             {listaDeServicios?.map((servicio, index) => (
               <motion.div 
                 key={servicio._key} 
-                className="group relative bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden h-[500px]"
+                className="group relative bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden h-[400px] md:h-[450px] lg:h-[500px]"
                 onHoverStart={() => setHoveredCard(servicio._key)}
                 onHoverEnd={() => setHoveredCard(null)}
                 whileHover={{ y: -5 }}
