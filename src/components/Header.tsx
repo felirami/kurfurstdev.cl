@@ -174,7 +174,7 @@ export default function Header({ businessProfile, navigation, headerCarousel }: 
 
       {/* Header Content Area with Carousel Text */}
       {slides.length > 0 && (
-        <div className="relative z-10 py-8 md:py-12 lg:py-16 px-6">
+        <div className="relative z-10 py-6 md:py-8 lg:py-10 px-6">
           <div className="max-w-7xl mx-auto">
             <AnimatePresence mode="wait">
               <motion.div
@@ -185,10 +185,10 @@ export default function Header({ businessProfile, navigation, headerCarousel }: 
                 transition={{ duration: 0.6, ease: "easeOut" }}
                 className="text-center"
               >
-                <h1 className="font-['Oswald'] text-2xl sm:text-3xl md:text-4xl lg:text-4xl xl:text-5xl font-bold text-[#EAEAEA] uppercase tracking-wider mb-4 [text-shadow:_0_4px_12px_rgb(0_0_0_/_90%)]">
+                <h1 className="font-['Oswald'] text-xl sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl font-bold text-[#EAEAEA] uppercase tracking-wider mb-3 [text-shadow:_0_4px_12px_rgb(0_0_0_/_90%)]">
                   {currentSlideData?.titulo}
                 </h1>
-                <p className="text-base sm:text-lg md:text-lg lg:text-xl text-[#EAEAEA]/90 max-w-2xl mx-auto [text-shadow:_0_2px_8px_rgb(0_0_0_/_80%)]">
+                <p className="text-sm sm:text-base md:text-base lg:text-lg text-[#EAEAEA]/90 max-w-xl mx-auto [text-shadow:_0_2px_8px_rgb(0_0_0_/_80%)]">
                   {currentSlideData?.subtitulo}
                 </p>
               </motion.div>
