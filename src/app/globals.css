@@ -422,9 +422,9 @@ body {
 
 .grid-pattern {
   background-image: 
-    linear-gradient(rgba(138, 43, 226, 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(138, 43, 226, 0.1) 1px, transparent 1px);
-  background-size: 50px 50px;
+    linear-gradient(rgba(138, 43, 226, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(138, 43, 226, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
   animation: grid-shift 15s ease-in-out infinite;
 }
 
