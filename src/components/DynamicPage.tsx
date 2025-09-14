@@ -1,4 +1,5 @@
-// src/components/DynamicPage.tsx
+// src/components/DynamicPage.tsx 
+// comentario.
 
 // BORRA LAS VERSIONES ANTIGUAS Y ESCRIBE ESTAS:
 import HeroSection from "@/components/Sections/HeroSection";
