@@ -16,7 +16,7 @@ const WhatsAppButton = () => {
   }, [message, whatsappNumber]);
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50">
       <AnimatePresence>
         {isExpanded && (
           <motion.div
@@ -29,7 +29,7 @@ const WhatsAppButton = () => {
             {/* Mensaje flotante */}
             <div className="relative">
               {/* Glass container con efecto premium */}
-              <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 shadow-2xl max-w-xs">
+              <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-3 sm:p-4 shadow-2xl max-w-xs sm:max-w-sm">
                 {/* Gradiente sutil en el borde */}
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#8A2BE2]/20 to-transparent opacity-50"></div>
                 
@@ -80,7 +80,7 @@ const WhatsAppButton = () => {
         <div className="absolute inset-0 bg-green-500/30 rounded-full blur-xl group-hover:bg-green-400/40 transition-all duration-300"></div>
         
         {/* Glass container principal */}
-        <div className="relative w-16 h-16 bg-white/10 backdrop-blur-md border border-white/20 rounded-full shadow-2xl overflow-hidden group-hover:bg-white/15 transition-all duration-300">
+        <div className="relative w-14 h-14 sm:w-16 sm:h-16 bg-white/10 backdrop-blur-md border border-white/20 rounded-full shadow-2xl overflow-hidden group-hover:bg-white/15 transition-all duration-300">
           {/* Gradiente animado */}
           <div className="absolute inset-0 bg-gradient-to-br from-green-400/20 via-green-500/30 to-green-600/20 group-hover:from-green-300/30 group-hover:via-green-400/40 group-hover:to-green-500/30 transition-all duration-500"></div>
           

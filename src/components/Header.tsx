@@ -134,11 +134,12 @@ export default function Header({ businessProfile, navigation, headerCarousel }: 
           {/* Mobile Menu Button */}
           <button 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden flex flex-col space-y-1 p-2 group"
+            className="md:hidden flex flex-col justify-center items-center w-10 h-10 p-2 group relative z-20"
+            aria-label="Toggle mobile menu"
           >
-            <div className={`w-6 h-px bg-[#EAEAEA] group-hover:bg-[#8A2BE2] transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></div>
-            <div className={`w-6 h-px bg-[#EAEAEA] group-hover:bg-[#8A2BE2] transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`}></div>
-            <div className={`w-6 h-px bg-[#EAEAEA] group-hover:bg-[#8A2BE2] transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></div>
+            <div className={`w-6 h-0.5 bg-[#EAEAEA] group-hover:bg-[#8A2BE2] transition-all duration-300 transform origin-center ${isMobileMenuOpen ? 'rotate-45 translate-y-0' : 'translate-y-[-4px]'}`}></div>
+            <div className={`w-6 h-0.5 bg-[#EAEAEA] group-hover:bg-[#8A2BE2] transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0 scale-0' : 'opacity-100 scale-100'}`}></div>
+            <div className={`w-6 h-0.5 bg-[#EAEAEA] group-hover:bg-[#8A2BE2] transition-all duration-300 transform origin-center ${isMobileMenuOpen ? '-rotate-45 translate-y-0' : 'translate-y-[4px]'}`}></div>
           </button>
         </div>
       </div>
@@ -150,29 +151,35 @@ export default function Header({ businessProfile, navigation, headerCarousel }: 
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden bg-[#0F0F0F]/95 backdrop-blur-lg border-t border-[#8A2BE2]/20"
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="md:hidden absolute top-full left-0 right-0 bg-[#0F0F0F]/98 backdrop-blur-lg border-t border-[#8A2BE2]/20 shadow-2xl z-40"
           >
-            <div className="px-6 py-4 space-y-4">
+            <div className="px-6 py-6 space-y-4 max-h-[70vh] overflow-y-auto">
               {navItems
                 .filter((item) => item.texto?.toLowerCase() !== 'contacto')
-                .map((item) => (
-                  <a
+                .map((item, index) => (
+                  <motion.a
                     key={item._key || item.url}
                     href={item.url || '/'}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="block text-[#EAEAEA] hover:text-[#8A2BE2] transition-colors duration-300 py-2 border-b border-white/10 last:border-b-0"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    className="block text-[#EAEAEA] hover:text-[#8A2BE2] transition-colors duration-300 py-3 px-4 rounded-lg hover:bg-white/5 border-b border-white/10 last:border-b-0 font-medium"
                   >
                     {item.texto}
-                  </a>
+                  </motion.a>
                 ))}
-              <a
+              <motion.a
                 href="/contacto"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block bg-[#8A2BE2] text-[#1A1A1A] px-4 py-3 text-center font-bold uppercase tracking-wider hover:bg-transparent hover:text-[#8A2BE2] border-2 border-[#8A2BE2] transition-all duration-300"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: navItems.length * 0.1 }}
+                className="block bg-gradient-to-r from-[#8A2BE2] to-[#9A3BF2] text-white px-6 py-4 text-center font-bold uppercase tracking-wider hover:from-[#9A3BF2] hover:to-[#8A2BE2] border-2 border-[#8A2BE2] transition-all duration-300 rounded-lg shadow-lg hover:shadow-[#8A2BE2]/25 transform hover:scale-105"
               >
                 CONTACTO
-              </a>
+              </motion.a>
             </div>
           </motion.div>
         )}
