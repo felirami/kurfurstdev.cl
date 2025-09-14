@@ -3,7 +3,6 @@
 import { CTASectionData } from "@/types";
 import Link from "next/link";
 import ScrollAnimatedSection from "../ScrollAnimatedSection";
-import GlassContainer from "../GlassContainer";
 import { motion } from "framer-motion";
 
 type Props = {

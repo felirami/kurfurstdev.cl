@@ -1,7 +1,6 @@
-// src/components/DynamicPage.tsx 
-// comentario.
+// src/components/DynamicPage.tsx
+"use client";
 
-// BORRA LAS VERSIONES ANTIGUAS Y ESCRIBE ESTAS:
 import HeroSection from "@/components/Sections/HeroSection";
 import HeroCarouselSection from "@/components/Sections/HeroCarouselSection";
 import ServicesSection from "@/components/Sections/ServicesSection";
@@ -11,10 +10,8 @@ import TestimonialsSection from "@/components/Sections/TestimonialsSection";
 import ContactSection from "@/components/Sections/ContactSection";
 import FeaturedPortfolioSection from "@/components/Sections/FeaturedPortfolioSection";
 import CTASection from "@/components/Sections/CTASection";
-import TechnologiesSection from '@/components/Sections/TechnologiesSection';
-import PricingPlansSection from '@/components/Sections/PricingPlansSection';
-
-// ... el resto de tus importaciones ...
+import TechnologiesSection from "@/components/Sections/TechnologiesSection";
+import PricingPlansSection from "@/components/Sections/PricingPlansSection";
 import { PageSection } from "@/types";
 
 // ... (código de tipos y props no cambia)

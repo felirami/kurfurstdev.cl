@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import Link from 'next/link';
 import { FaCode, FaLaptopCode, FaRocket, FaGraduationCap, FaAward, FaBriefcase } from 'react-icons/fa';
 import ScrollAnimatedSection from '@/components/ScrollAnimatedSection';
 import GlassContainer from '@/components/GlassContainer';
@@ -9,7 +9,15 @@ import { client } from '@/lib/sanity.client';
 import { urlFor } from '@/lib/sanity.client';
 
 const AboutPage = () => {
-  const [perfilData, setPerfilData] = useState<any>(null);
+  const [perfilData, setPerfilData] = useState<{
+    nombre?: string;
+    titulo?: string;
+    fotoPerfil?: { asset: { _ref: string } };
+    ubicacion?: string;
+    biografia?: string;
+    habilidades?: { icon: React.ReactNode; name: string; level: string }[];
+    experiencia?: { year: string; role: string; company: string; description: string }[];
+  } | null>(null);
   
   useEffect(() => {
     const fetchPerfil = async () => {
@@ -97,11 +105,14 @@ const AboutPage = () => {
                 <GlassContainer className="p-8">
                   <div className="aspect-square relative overflow-hidden rounded-lg">
                     {perfilData?.fotoPerfil ? (
-                      <img 
-                        src={urlFor(perfilData.fotoPerfil).url()} 
-                        alt={`${perfilData.nombre || 'Andrés'} - ${perfilData.titulo || 'Desarrollador Full Stack'}`}
-                        className="w-full h-full object-cover"
-                      />
+                      <>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img 
+                          src={urlFor(perfilData.fotoPerfil).url()} 
+                          alt={`${perfilData.nombre || 'Andrés'} - ${perfilData.titulo || 'Desarrollador Full Stack'}`}
+                          className="w-full h-full object-cover"
+                        />
+                      </>
                     ) : (
                       <div className="w-full h-full bg-gradient-to-br from-[#8A2BE2]/20 to-[#8A2BE2]/40 flex items-center justify-center">
                         <FaCode className="w-24 h-24 text-[#8A2BE2]" />
@@ -163,7 +174,7 @@ const AboutPage = () => {
                   </div>
                   
                   <div className="grid gap-4">
-                    {skills.map((skill: any, index: number) => (
+                    {skills.map((skill: { icon: React.ReactNode; name: string; level: string }, index: number) => (
                       <div key={index} className="flex items-center justify-between p-4 bg-white/5 rounded-lg border border-white/10">
                         <div className="flex items-center">
                           <div className="p-2 bg-[#8A2BE2]/10 rounded-full mr-4">
@@ -190,7 +201,7 @@ const AboutPage = () => {
               </div>
               
               <div className="space-y-6">
-                {experience.map((exp: any, index: number) => (
+                {experience.map((exp: { year: string; role: string; company: string; description: string }, index: number) => (
                   <div key={index} className="flex flex-col md:flex-row md:items-center p-6 bg-white/5 rounded-lg border border-white/10 hover:bg-white/10 transition-all duration-300">
                     <div className="md:w-32 flex-shrink-0 mb-4 md:mb-0">
                       <span className="text-[#8A2BE2] font-bold text-sm">{exp.year}</span>
@@ -226,20 +237,20 @@ const AboutPage = () => {
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a
+                <Link
                   href="/contacto"
                   className="group relative bg-[#8A2BE2] text-white font-['Oswald'] font-bold text-lg px-8 py-4 uppercase tracking-wider transition-all duration-300 hover:bg-[#9A3BF2] hover:shadow-lg hover:shadow-[#8A2BE2]/25 focus:outline-none focus:ring-2 focus:ring-[#8A2BE2] focus:ring-offset-2 focus:ring-offset-[#1A1A1A]"
                 >
                   <span className="relative z-10">Iniciar Proyecto</span>
                   <div className="absolute inset-0 bg-gradient-to-r from-[#8A2BE2] to-[#9A3BF2] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </a>
-                <a
+                </Link>
+                <Link
                   href="/portafolio"
                   className="group relative bg-transparent border-2 border-[#8A2BE2] text-[#8A2BE2] font-['Oswald'] font-bold text-lg px-8 py-4 uppercase tracking-wider transition-all duration-300 hover:bg-[#8A2BE2] hover:text-white focus:outline-none focus:ring-2 focus:ring-[#8A2BE2] focus:ring-offset-2 focus:ring-offset-[#1A1A1A]"
                 >
                   <span className="relative z-10">Ver Portafolio</span>
                   <div className="absolute inset-0 bg-[#8A2BE2] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-                </a>
+                </Link>
               </div>
             </GlassContainer>
           </ScrollAnimatedSection>

@@ -156,7 +156,7 @@ export default function ContactSection({ section }: Props) {
             {/* Right Column - Contact Form */}
             <ScrollAnimatedSection delay={0.2} duration={0.6}>
               <div>
-                <GlassContainer className="relative p-8 lg:p-12">
+                <GlassContainer className="relative p-8 lg:p-12 bg-[#8A2BE2]/20 backdrop-blur-xl border border-[#8A2BE2]/30">
                   {/* Form accent lines */}
                   <div className="absolute top-0 left-0 w-20 h-px bg-[#8A2BE2]"></div>
                   <div className="absolute bottom-0 right-0 w-20 h-px bg-[#8A2BE2]"></div>

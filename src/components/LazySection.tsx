@@ -1,6 +1,6 @@
 'use client';
 
-import React, { lazy, Suspense } from 'react';
+import React, { Suspense } from 'react';
 
 interface LazySectionProps {
   children: React.ReactNode;
