@@ -1,18 +1,18 @@
 // src/components/DynamicPage.tsx 
 // comentario.
 
-// BORRA LAS VERSIONES ANTIGUAS Y ESCRIBE ESTAS:
-import HeroSection from "@/components/Sections/HeroSection";
-import HeroCarouselSection from "@/components/Sections/HeroCarouselSection";
-import ServicesSection from "@/components/Sections/ServicesSection";
-import ContentSection from "@/components/Sections/ContentSection";
-import GallerySection from "@/components/Sections/GallerySection";
-import TestimonialsSection from "@/components/Sections/TestimonialsSection";
-import ContactSection from "@/components/Sections/ContactSection";
-import FeaturedPortfolioSection from "@/components/Sections/FeaturedPortfolioSection";
-import CTASection from "@/components/Sections/CTASection";
-import TechnologiesSection from '@/components/Sections/TechnologiesSection';
-import PricingPlansSection from '@/components/Sections/PricingPlansSection';
+// Fixed imports with correct case-sensitive paths
+import HeroSection from "@/components/sections/HeroSection";
+import HeroCarouselSection from "@/components/sections/HeroCarouselSection";
+import ServicesSection from "@/components/sections/ServicesSection";
+import ContentSection from "@/components/sections/ContentSection";
+import GallerySection from "@/components/sections/GallerySection";
+import TestimonialsSection from "@/components/sections/TestimonialsSection";
+import ContactSection from "@/components/sections/ContactSection";
+import FeaturedPortfolioSection from "@/components/sections/FeaturedPortfolioSection";
+import CTASection from "@/components/sections/CTASection";
+import TechnologiesSection from '@/components/sections/TechnologiesSection';
+import PricingPlansSection from '@/components/sections/PricingPlansSection';
 
 // ... el resto de tus importaciones ...
 import { PageSection } from "@/types";

@@ -4,6 +4,15 @@ const nextConfig = {
   experimental: {
     optimizeCss: true,
     optimizePackageImports: ['framer-motion', 'react-icons'],
+    // Turbopack optimizations
+    turbo: {
+      rules: {
+        '*.svg': {
+          loaders: ['@svgr/webpack'],
+          as: '*.js',
+        },
+      },
+    },
   },
   
   // Compresión y optimización
@@ -25,9 +34,10 @@ const nextConfig = {
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   
-  // Webpack optimizations
+  // Webpack optimizations (fallback for non-Turbopack builds)
   webpack: (config: any, { dev, isServer }: { dev: boolean; isServer: boolean }) => {
-    if (!dev && !isServer) {
+    // Only apply webpack optimizations if not using Turbopack
+    if (!process.env.TURBOPACK && !dev && !isServer) {
       config.optimization.splitChunks = {
         chunks: 'all',
         cacheGroups: {
