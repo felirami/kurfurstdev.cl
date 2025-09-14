@@ -1,16 +1,16 @@
 // src/components/DynamicPage.tsx
 
-import HeroSection from "./Sections/HeroSection";
-import HeroCarouselSection from "./Sections/HeroCarouselSection";
-import ServicesSection from "./Sections/ServicesSection";
-import ContentSection from "./Sections/ContentSection";
-import GallerySection from "./Sections/GallerySection";
-import TestimonialsSection from "./Sections/TestimonialsSection";
-import ContactSection from "./Sections/ContactSection";
-import FeaturedPortfolioSection from "./Sections/FeaturedPortfolioSection";
-import CTASection from "./Sections/CTASection";
-import TechnologiesSection from './Sections/TechnologiesSection';
-import PricingPlansSection from './Sections/PricingPlansSection';
+import HeroSection from "@/components/Sections/HeroSection";
+import HeroCarouselSection from "@/components/Sections/HeroCarouselSection";
+import ServicesSection from "@/components/Sections/ServicesSection";
+import ContentSection from "@/components/Sections/ContentSection";
+import GallerySection from "@/components/Sections/GallerySection";
+import TestimonialsSection from "@/components/Sections/TestimonialsSection";
+import ContactSection from "@/components/Sections/ContactSection";
+import FeaturedPortfolioSection from "@/components/Sections/FeaturedPortfolioSection";
+import CTASection from "@/components/Sections/CTASection";
+import TechnologiesSection from "@/components/Sections/TechnologiesSection";
+import PricingPlansSection from "@/components/Sections/PricingPlansSection";
 import { PageSection } from "@/types";
 
 // ... (código de tipos y props no cambia)
