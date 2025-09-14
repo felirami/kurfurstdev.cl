@@ -133,13 +133,19 @@ export default function Header({ businessProfile, navigation, headerCarousel }: 
 
           {/* Mobile Menu Button */}
           <button 
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden flex flex-col justify-center items-center w-10 h-10 p-2 group relative z-20"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              console.log('Mobile menu button clicked, current state:', isMobileMenuOpen);
+              setIsMobileMenuOpen(!isMobileMenuOpen);
+            }}
+            className="md:hidden flex flex-col justify-center items-center w-10 h-10 p-2 group relative z-20 cursor-pointer"
             aria-label="Toggle mobile menu"
+            type="button"
           >
-            <div className={`w-6 h-0.5 bg-[#EAEAEA] group-hover:bg-[#8A2BE2] transition-all duration-300 transform origin-center ${isMobileMenuOpen ? 'rotate-45 translate-y-0' : 'translate-y-[-4px]'}`}></div>
-            <div className={`w-6 h-0.5 bg-[#EAEAEA] group-hover:bg-[#8A2BE2] transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0 scale-0' : 'opacity-100 scale-100'}`}></div>
-            <div className={`w-6 h-0.5 bg-[#EAEAEA] group-hover:bg-[#8A2BE2] transition-all duration-300 transform origin-center ${isMobileMenuOpen ? '-rotate-45 translate-y-0' : 'translate-y-[4px]'}`}></div>
+            <span className={`block w-6 h-0.5 bg-[#EAEAEA] group-hover:bg-[#8A2BE2] transition-all duration-300 transform origin-center ${isMobileMenuOpen ? 'rotate-45 translate-y-1' : '-translate-y-1'}`}></span>
+            <span className={`block w-6 h-0.5 bg-[#EAEAEA] group-hover:bg-[#8A2BE2] transition-all duration-300 my-1 ${isMobileMenuOpen ? 'opacity-0 scale-0' : 'opacity-100 scale-100'}`}></span>
+            <span className={`block w-6 h-0.5 bg-[#EAEAEA] group-hover:bg-[#8A2BE2] transition-all duration-300 transform origin-center ${isMobileMenuOpen ? '-rotate-45 -translate-y-1' : 'translate-y-1'}`}></span>
           </button>
         </div>
       </div>
@@ -152,7 +158,7 @@ export default function Header({ businessProfile, navigation, headerCarousel }: 
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="md:hidden absolute top-full left-0 right-0 bg-[#0F0F0F]/98 backdrop-blur-lg border-t border-[#8A2BE2]/20 shadow-2xl z-40"
+            className="md:hidden absolute top-full left-0 right-0 bg-[#0F0F0F]/98 backdrop-blur-lg border-t border-[#8A2BE2]/20 shadow-2xl z-[9999]"
           >
             <div className="px-6 py-6 space-y-4 max-h-[70vh] overflow-y-auto">
               {navItems
