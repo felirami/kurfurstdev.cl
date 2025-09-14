@@ -180,29 +180,17 @@ export default function Header({ businessProfile, navigation, headerCarousel }: 
         </div>
       </div>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <>
-            {/* Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="md:hidden fixed inset-0 bg-black/50 z-40"
-              onClick={() => setIsMobileMenuOpen(false)}
-            />
-            
-            {/* Mobile Menu */}
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
-              className="md:hidden fixed top-[72px] left-0 right-0 bg-[#0F0F0F]/98 backdrop-blur-lg border-t border-[#8A2BE2]/20 shadow-2xl z-50 mobile-menu-container"
-            >
-              <div className="px-4 py-6 space-y-2 max-h-[calc(100vh-72px)] overflow-y-auto">
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="md:hidden absolute top-full left-0 right-0 bg-[#0F0F0F]/98 backdrop-blur-lg border-t border-[#8A2BE2]/20 shadow-2xl z-50 mobile-menu-container overflow-hidden"
+          >
+              <div className="px-4 py-6 space-y-2 max-h-[70vh] overflow-y-auto">
                 {navItems
                   .filter((item) => item.texto?.toLowerCase() !== 'contacto')
                   .map((item, index) => (
@@ -238,7 +226,6 @@ export default function Header({ businessProfile, navigation, headerCarousel }: 
                 </motion.div>
               </div>
             </motion.div>
-          </>
         )}
       </AnimatePresence>
 
