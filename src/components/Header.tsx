@@ -68,16 +68,17 @@ export default function Header({ businessProfile, navigation, headerCarousel }: 
             >
               {bgImageUrl && (
                 <div 
-                  className="absolute inset-0 bg-[#1A1A1A]"
+                  className="absolute inset-0 bg-[#1A1A1A] md:bg-fixed bg-local"
                   style={{
                     backgroundImage: `url(${bgImageUrl})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
+                    backgroundAttachment: 'fixed',
                   }}
                 />
               )}
-              {/* Dark overlay for navigation visibility */}
-              <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/90"></div>
+              {/* Dark overlay for navigation visibility - reduced blur effect */}
+              <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80"></div>
             </motion.div>
           </AnimatePresence>
         </div>
@@ -134,7 +135,6 @@ export default function Header({ businessProfile, navigation, headerCarousel }: 
           <button 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="md:hidden flex flex-col space-y-1 p-2 group"
-            aria-label="Toggle mobile menu"
           >
             <div className={`w-6 h-px bg-[#EAEAEA] group-hover:bg-[#8A2BE2] transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></div>
             <div className={`w-6 h-px bg-[#EAEAEA] group-hover:bg-[#8A2BE2] transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`}></div>
@@ -144,37 +144,43 @@ export default function Header({ businessProfile, navigation, headerCarousel }: 
       </div>
 
       {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-[#0F0F0F]/95 backdrop-blur-sm border-t border-[#8A2BE2]/20 z-50">
-          <nav className="px-6 py-4">
-            {navItems
-              .filter((item) => item.texto?.toLowerCase() !== 'contacto')
-              .map((item) => (
-                <Link
-                  key={item._key || item.url}
-                  href={item.url || '/'}
-                  className="block py-3 text-[#EAEAEA] hover:text-[#8A2BE2] transition-colors duration-300 border-b border-[#8A2BE2]/10 last:border-b-0"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {item.texto}
-                </Link>
-              ))}
-            
-            {/* Mobile CTA Button */}
-            <Link
-              href="/contacto"
-              className="block mt-4 bg-[#8A2BE2] text-white font-['Oswald'] font-bold text-sm px-6 py-3 uppercase tracking-wider transition-all duration-300 hover:bg-[#9A3BF2] text-center"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              CONTACTO
-            </Link>
-          </nav>
-        </div>
-      )}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="md:hidden bg-[#0F0F0F]/95 backdrop-blur-lg border-t border-[#8A2BE2]/20"
+          >
+            <div className="px-6 py-4 space-y-4">
+              {navItems
+                .filter((item) => item.texto?.toLowerCase() !== 'contacto')
+                .map((item) => (
+                  <a
+                    key={item._key || item.url}
+                    href={item.url || '/'}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block text-[#EAEAEA] hover:text-[#8A2BE2] transition-colors duration-300 py-2 border-b border-white/10 last:border-b-0"
+                  >
+                    {item.texto}
+                  </a>
+                ))}
+              <a
+                href="/contacto"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block bg-[#8A2BE2] text-[#1A1A1A] px-4 py-3 text-center font-bold uppercase tracking-wider hover:bg-transparent hover:text-[#8A2BE2] border-2 border-[#8A2BE2] transition-all duration-300"
+              >
+                CONTACTO
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Header Content Area with Carousel Text */}
       {slides.length > 0 && (
-        <div className="relative z-10 py-6 md:py-8 lg:py-10 px-6">
+        <div className="relative z-10 py-16 px-6">
           <div className="max-w-7xl mx-auto">
             <AnimatePresence mode="wait">
               <motion.div
@@ -185,10 +191,10 @@ export default function Header({ businessProfile, navigation, headerCarousel }: 
                 transition={{ duration: 0.6, ease: "easeOut" }}
                 className="text-center"
               >
-                <h1 className="font-['Oswald'] text-xl sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl font-bold text-[#EAEAEA] uppercase tracking-wider mb-3 [text-shadow:_0_4px_12px_rgb(0_0_0_/_90%)]">
+                <h1 className="font-['Oswald'] text-4xl md:text-5xl lg:text-6xl font-bold text-[#EAEAEA] uppercase tracking-wider mb-4 [text-shadow:_0_4px_12px_rgb(0_0_0_/_90%)]">
                   {currentSlideData?.titulo}
                 </h1>
-                <p className="text-sm sm:text-base md:text-base lg:text-lg text-[#EAEAEA]/90 max-w-xl mx-auto [text-shadow:_0_2px_8px_rgb(0_0_0_/_80%)]">
+                <p className="text-lg md:text-xl text-[#EAEAEA]/90 max-w-3xl mx-auto [text-shadow:_0_2px_8px_rgb(0_0_0_/_80%)]">
                   {currentSlideData?.subtitulo}
                 </p>
               </motion.div>

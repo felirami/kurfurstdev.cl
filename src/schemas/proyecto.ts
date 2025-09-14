@@ -108,9 +108,10 @@ export default defineType({
     },
     {
       name: 'urlDelSitio',
-      title: 'URL del Sitio Web',
+      title: 'URL del Sitio Web en Vivo',
       type: 'url',
-      description: 'URL del proyecto en vivo (opcional)',
+      description: 'URL del proyecto en vivo - IMPORTANTE: Necesario para mostrar el botón "Visitar Sitio Web"',
+      validation: (Rule) => Rule.required().error('La URL del sitio web es obligatoria para mostrar el botón de visita'),
     },
     {
       name: 'fechaDeFinalizacion',

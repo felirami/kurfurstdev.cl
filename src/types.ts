@@ -103,6 +103,51 @@ export type CTASectionData = {
   };
 };
 
+export type TechnologiesSectionData = {
+  _key: string;
+  _type: "seccionTecnologias";
+  titulo: string;
+  subtitulo?: string;
+  mostrarSeccion?: boolean;
+  estiloVisualizacion: 'elegant' | 'monochrome' | 'glow';
+};
+
+export type PricingPlansSectionData = {
+  _key: string;
+  _type: "seccionPlanesDePrecios";
+  titulo: string;
+  subtitulo?: string;
+  planes: {
+    titulo: string;
+    subtitulo: string;
+    precio: {
+      mostrarPrecio: boolean;
+      moneda?: string;
+      cantidad?: number;
+      textoPersonalizado?: string;
+    };
+    destacado: boolean;
+    etiquetaDestacado?: string;
+    caracteristicas: {
+      texto: string;
+      incluido: boolean;
+    }[];
+    botonCTA: {
+      texto: string;
+      url?: string;
+      esWhatsApp?: boolean;
+    };
+    botonSecundario?: {
+      mostrar: boolean;
+      texto?: string;
+      url?: string;
+      esExterno?: boolean;
+    };
+    orden: number;
+  }[];
+  mostrarComparacion?: boolean;
+};
+
 // --- Un tipo "unión" que puede ser CUALQUIERA de nuestras secciones ---
 export type PageSection =
   | HeroSectionData
@@ -113,7 +158,9 @@ export type PageSection =
   | TestimonialsSectionData
   | ContactSectionData
   | FeaturedPortfolioSectionData
-  | CTASectionData;
+  | CTASectionData
+  | TechnologiesSectionData
+  | PricingPlansSectionData;
 
 // --- Tipo para la página completa ---
 export type PageData = {

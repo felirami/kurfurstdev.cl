@@ -19,8 +19,8 @@ export default function PortfolioGrid({ proyectos }: Props) {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-      {proyectos.map((proyecto) => (
-        <PortfolioCard key={proyecto._id} proyecto={proyecto} />
+      {proyectos.map((proyecto, index) => (
+        <PortfolioCard key={proyecto._id} proyecto={proyecto} index={index} />
       ))}
     </div>
   );

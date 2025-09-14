@@ -55,6 +55,7 @@ export default defineType({
         { type: 'seccionTestimonios' },
         { type: 'seccionContacto' },
         { type: 'seccionPortafolioDestacado' },
+        { type: 'seccionTecnologias' },
         { type: 'seccionCTA' },
       ],
     },

@@ -5,6 +5,7 @@ import ScrollAnimatedSection from "@/components/ScrollAnimatedSection";
 import Link from "next/link";
 import { urlFor } from "@/lib/sanity.client";
 import Image from "next/image";
+import GlassContainer from "@/components/GlassContainer";
 
 type Props = {
   section: ContentSectionData;
@@ -14,32 +15,39 @@ type Props = {
 const customComponents = {
   block: {
     normal: ({ children }: { children?: React.ReactNode }) => (
-      <p className="text-[#EAEAEA]/90 leading-relaxed mb-6 text-lg">{children}</p>
+      <p className="text-[#EAEAEA]/90 leading-relaxed mb-6 text-base sm:text-lg">{children}</p>
     ),
     h3: ({ children }: { children?: React.ReactNode }) => (
-      <h3 className="font-['Oswald'] text-2xl font-bold text-[#EAEAEA] uppercase tracking-wide mb-4 mt-8">{children}</h3>
+      <h3 className="font-['Oswald'] text-xl sm:text-2xl font-bold text-[#EAEAEA] uppercase tracking-wide mb-4 mt-8 border-l-4 border-[#8A2BE2] pl-4">{children}</h3>
     ),
     h4: ({ children }: { children?: React.ReactNode }) => (
-      <h4 className="font-['Oswald'] text-xl font-semibold text-[#8A2BE2] uppercase tracking-wide mb-3 mt-6">{children}</h4>
+      <h4 className="font-['Oswald'] text-lg sm:text-xl font-semibold text-[#8A2BE2] uppercase tracking-wide mb-3 mt-6 flex items-center">
+        <div className="w-2 h-2 bg-[#8A2BE2] rounded-full mr-3"></div>
+        {children}
+      </h4>
     ),
   },
   list: {
     bullet: ({ children }: { children?: React.ReactNode }) => (
-      <ul className="space-y-3 mb-6 ml-6">{children}</ul>
+      <ul className="space-y-4 mb-8 ml-0">{children}</ul>
     ),
     number: ({ children }: { children?: React.ReactNode }) => (
-      <ol className="space-y-3 mb-6 ml-6 list-decimal">{children}</ol>
+      <ol className="space-y-4 mb-8 ml-0 counter-reset-list">{children}</ol>
     ),
   },
   listItem: {
     bullet: ({ children }: { children?: React.ReactNode }) => (
-      <li className="flex items-start">
+      <li className="flex items-start bg-white/5 rounded-lg p-4 border border-white/10">
         <div className="w-2 h-2 bg-[#8A2BE2] rounded-full mt-3 mr-4 flex-shrink-0"></div>
-        <div className="text-[#EAEAEA]/90 leading-relaxed">{children}</div>
+        <div className="text-[#EAEAEA]/90 leading-relaxed flex-1">{children}</div>
       </li>
     ),
     number: ({ children }: { children?: React.ReactNode }) => (
-      <li className="text-[#EAEAEA]/90 leading-relaxed">{children}</li>
+      <li className="flex items-start bg-white/5 rounded-lg p-4 border border-white/10 counter-increment-list">
+        <div className="w-6 h-6 bg-[#8A2BE2] rounded-full flex items-center justify-center text-white text-sm font-bold mr-4 flex-shrink-0 before:content-[counter(list-item)]">
+        </div>
+        <div className="text-[#EAEAEA]/90 leading-relaxed flex-1">{children}</div>
+      </li>
     ),
   },
   marks: {
@@ -101,7 +109,7 @@ export default function ContentSection({ section }: Props) {
                 <div className="w-16 h-px bg-[#8A2BE2]"></div>
               </div>
               
-              <h2 className="font-['Oswald'] text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#EAEAEA] uppercase tracking-tight">
+              <h2 className="font-['Oswald'] text-4xl md:text-5xl lg:text-6xl font-bold text-[#EAEAEA] uppercase tracking-tight">
                 {titulo}
               </h2>
             </div>
@@ -116,8 +124,8 @@ export default function ContentSection({ section }: Props) {
                   <Image
                     src={urlFor(imagenPersonal).width(400).height(400).url()}
                     alt="Imagen personal"
-                    width={250}
-                    height={250}
+                    width={300}
+                    height={300}
                     className="rounded-full border-4 border-[#8A2BE2]/50 shadow-2xl"
                   />
                   {/* Geometric accent around image */}
@@ -128,15 +136,23 @@ export default function ContentSection({ section }: Props) {
 
               {/* Right Column - Content (2/3 width on desktop) */}
               <div className="md:col-span-2">
-                <div className="text-left prose prose-lg prose-invert max-w-none [&_h1]:text-[#EAEAEA] [&_h1]:font-['Oswald'] [&_h1]:font-bold [&_h1]:uppercase [&_h1]:tracking-wider [&_h2]:text-[#EAEAEA] [&_h2]:font-['Oswald'] [&_h2]:font-bold [&_h2]:uppercase [&_h2]:tracking-wider [&_h2]:border-b [&_h2]:border-[#8A2BE2]/30 [&_h2]:pb-2 [&_h2]:mb-6 [&_h3]:text-[#EAEAEA] [&_h3]:font-['Oswald'] [&_h3]:font-bold [&_h3]:uppercase [&_h3]:tracking-wider [&_h4]:text-[#EAEAEA] [&_h4]:font-['Oswald'] [&_h4]:font-bold [&_h4]:uppercase [&_h4]:tracking-wider [&_p]:text-[#EAEAEA]/90 [&_p]:leading-relaxed [&_p]:mb-6 [&_p]:text-lg [&_p]:text-left [&_strong]:text-[#8A2BE2] [&_strong]:font-semibold [&_a]:text-[#8A2BE2] [&_a]:no-underline [&_a]:border-b [&_a]:border-transparent [&_a]:transition-colors [&_a:hover]:border-[#8A2BE2] [&_ul]:text-[#EAEAEA]/90 [&_ol]:text-[#EAEAEA]/90 [&_li::marker]:text-[#8A2BE2] [&_blockquote]:border-l-4 [&_blockquote]:border-[#8A2BE2] [&_blockquote]:bg-[#8A2BE2]/10 [&_blockquote]:text-[#EAEAEA] [&_blockquote]:italic [&_blockquote]:p-6 [&_blockquote]:my-8">
-                  <PortableText value={cuerpo} components={customComponents} />
-                </div>
+                {/* Glassmorphism container for text content */}
+                <GlassContainer>
+                  <div className="text-left prose prose-lg prose-invert max-w-none [&_h1]:text-[#EAEAEA] [&_h1]:font-['Oswald'] [&_h1]:font-bold [&_h1]:uppercase [&_h1]:tracking-wider [&_h2]:text-[#EAEAEA] [&_h2]:font-['Oswald'] [&_h2]:font-bold [&_h2]:uppercase [&_h2]:tracking-wider [&_h2]:border-b [&_h2]:border-[#8A2BE2]/30 [&_h2]:pb-2 [&_h2]:mb-6 [&_h3]:text-[#EAEAEA] [&_h3]:font-['Oswald'] [&_h3]:font-bold [&_h3]:uppercase [&_h3]:tracking-wider [&_h4]:text-[#EAEAEA] [&_h4]:font-['Oswald'] [&_h4]:font-bold [&_h4]:uppercase [&_h4]:tracking-wider [&_p]:text-[#EAEAEA]/90 [&_p]:leading-relaxed [&_p]:mb-6 [&_p]:text-lg [&_p]:text-left [&_strong]:text-[#8A2BE2] [&_strong]:font-semibold [&_a]:text-[#8A2BE2] [&_a]:no-underline [&_a]:border-b [&_a]:border-transparent [&_a]:transition-colors [&_a:hover]:border-[#8A2BE2] [&_ul]:text-[#EAEAEA]/90 [&_ol]:text-[#EAEAEA]/90 [&_li::marker]:text-[#8A2BE2] [&_blockquote]:border-l-4 [&_blockquote]:border-[#8A2BE2] [&_blockquote]:bg-[#8A2BE2]/10 [&_blockquote]:text-[#EAEAEA] [&_blockquote]:italic [&_blockquote]:p-6 [&_blockquote]:my-8">
+                    <PortableText value={cuerpo} components={customComponents} />
+                  </div>
+                </GlassContainer>
               </div>
             </div>
           ) : (
             /* Single Column Layout - No personal image */
-            <div className="text-center prose prose-lg prose-invert max-w-none [&_h1]:text-[#EAEAEA] [&_h1]:font-['Oswald'] [&_h1]:font-bold [&_h1]:uppercase [&_h1]:tracking-wider [&_h2]:text-[#EAEAEA] [&_h2]:font-['Oswald'] [&_h2]:font-bold [&_h2]:uppercase [&_h2]:tracking-wider [&_h2]:border-b [&_h2]:border-[#8A2BE2]/30 [&_h2]:pb-2 [&_h2]:mb-6 [&_h3]:text-[#EAEAEA] [&_h3]:font-['Oswald'] [&_h3]:font-bold [&_h3]:uppercase [&_h3]:tracking-wider [&_h4]:text-[#EAEAEA] [&_h4]:font-['Oswald'] [&_h4]:font-bold [&_h4]:uppercase [&_h4]:tracking-wider [&_p]:text-[#EAEAEA]/90 [&_p]:leading-relaxed [&_p]:mb-6 [&_p]:text-lg [&_p]:text-center [&_strong]:text-[#8A2BE2] [&_strong]:font-semibold [&_a]:text-[#8A2BE2] [&_a]:no-underline [&_a]:border-b [&_a]:border-transparent [&_a]:transition-colors [&_a:hover]:border-[#8A2BE2] [&_ul]:text-[#EAEAEA]/90 [&_ol]:text-[#EAEAEA]/90 [&_li::marker]:text-[#8A2BE2] [&_blockquote]:border-l-4 [&_blockquote]:border-[#8A2BE2] [&_blockquote]:bg-[#8A2BE2]/10 [&_blockquote]:text-[#EAEAEA] [&_blockquote]:italic [&_blockquote]:p-6 [&_blockquote]:my-8">
-              <PortableText value={cuerpo} components={customComponents} />
+            <div className="max-w-4xl mx-auto">
+              {/* Glassmorphism container for text content */}
+              <GlassContainer>
+                <div className="text-left prose prose-lg prose-invert max-w-none [&_h1]:text-[#EAEAEA] [&_h1]:font-['Oswald'] [&_h1]:font-bold [&_h1]:uppercase [&_h1]:tracking-wider [&_h2]:text-[#EAEAEA] [&_h2]:font-['Oswald'] [&_h2]:font-bold [&_h2]:uppercase [&_h2]:tracking-wider [&_h2]:border-b [&_h2]:border-[#8A2BE2]/30 [&_h2]:pb-2 [&_h2]:mb-6 [&_h3]:text-[#EAEAEA] [&_h3]:font-['Oswald'] [&_h3]:font-bold [&_h3]:uppercase [&_h3]:tracking-wider [&_h4]:text-[#EAEAEA] [&_h4]:font-['Oswald'] [&_h4]:font-bold [&_h4]:uppercase [&_h4]:tracking-wider [&_p]:text-[#EAEAEA]/90 [&_p]:leading-relaxed [&_p]:mb-6 [&_p]:text-lg [&_p]:text-left [&_strong]:text-[#8A2BE2] [&_strong]:font-semibold [&_a]:text-[#8A2BE2] [&_a]:no-underline [&_a]:border-b [&_a]:border-transparent [&_a]:transition-colors [&_a:hover]:border-[#8A2BE2] [&_ul]:text-[#EAEAEA]/90 [&_ol]:text-[#EAEAEA]/90 [&_li::marker]:text-[#8A2BE2] [&_blockquote]:border-l-4 [&_blockquote]:border-[#8A2BE2] [&_blockquote]:bg-[#8A2BE2]/10 [&_blockquote]:text-[#EAEAEA] [&_blockquote]:italic [&_blockquote]:p-6 [&_blockquote]:my-8">
+                  <PortableText value={cuerpo} components={customComponents} />
+                </div>
+              </GlassContainer>
             </div>
           )}
 

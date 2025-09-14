@@ -1,14 +1,16 @@
 // src/components/DynamicPage.tsx
 
-import HeroSection from "./sections/HeroSection";
-import HeroCarouselSection from "./sections/HeroCarouselSection";
-import ServicesSection from "./sections/ServicesSection";
-import ContentSection from "./sections/ContentSection";
-import GallerySection from "./sections/GallerySection";
-import TestimonialsSection from "./sections/TestimonialsSection";
-import ContactSection from "./sections/ContactSection";
-import FeaturedPortfolioSection from "./sections/FeaturedPortfolioSection";
-import CTASection from "./sections/CTASection";
+import HeroSection from "./Sections/HeroSection";
+import HeroCarouselSection from "./Sections/HeroCarouselSection";
+import ServicesSection from "./Sections/ServicesSection";
+import ContentSection from "./Sections/ContentSection";
+import GallerySection from "./Sections/GallerySection";
+import TestimonialsSection from "./Sections/TestimonialsSection";
+import ContactSection from "./Sections/ContactSection";
+import FeaturedPortfolioSection from "./Sections/FeaturedPortfolioSection";
+import CTASection from "./Sections/CTASection";
+import TechnologiesSection from './Sections/TechnologiesSection';
+import PricingPlansSection from './Sections/PricingPlansSection';
 import { PageSection } from "@/types";
 
 // ... (código de tipos y props no cambia)
@@ -41,6 +43,10 @@ function SectionRenderer({ section }: { section: PageSection }) {
       return <FeaturedPortfolioSection section={section} />;
     case 'seccionCTA':
       return <CTASection section={section} />;
+    case 'seccionTecnologias':
+      return <TechnologiesSection section={section} />;
+    case 'seccionPlanesDePrecios':
+      return <PricingPlansSection data={section} />;
   }
 }
 

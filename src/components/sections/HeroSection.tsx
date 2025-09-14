@@ -14,7 +14,7 @@ export default function HeroSection({ section }: Props) {
   const bgImageUrl = imagenDeFondo ? urlFor(imagenDeFondo).url() : '';
 
   return (
-    <section className="relative h-[50vh] md:h-[55vh] lg:h-[60vh] overflow-hidden">
+    <section className="relative h-[80vh] overflow-hidden">
       {/* Static Background Image */}
       {bgImageUrl && (
         <div 
@@ -44,7 +44,7 @@ export default function HeroSection({ section }: Props) {
       </div>
 
       {/* Main Content Container */}
-      <div className="relative z-20 flex items-center h-[50vh] md:h-[55vh] lg:h-[60vh]">
+      <div className="relative z-20 flex items-center h-[80vh]">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
           <div className="grid grid-cols-12 gap-8 items-center">
             
@@ -60,27 +60,27 @@ export default function HeroSection({ section }: Props) {
               </div>
 
               {/* Static Title */}
-              <h1 className="font-bold text-[#EAEAEA] leading-[0.95] tracking-tight mb-6 md:mb-8 [text-shadow:_0_4px_12px_rgb(0_0_0_/_90%)]">
-                <span className="block text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl uppercase">
+              <h1 className="font-bold text-[#EAEAEA] leading-[0.95] tracking-tight mb-16 [text-shadow:_0_4px_12px_rgb(0_0_0_/_90%)]">
+                <span className="block text-3xl sm:text-4xl lg:text-5xl xl:text-6xl uppercase">
                   {titulo || "Título Principal"}
                 </span>
               </h1>
 
               {/* Static Paragraph */}
-              <div className="relative mb-6 md:mb-8">
+              <div className="relative mb-16">
                 <div className="absolute -left-6 top-0 w-px h-full bg-gradient-to-b from-[#8A2BE2] to-transparent opacity-50"></div>
-                <p className="text-[#EAEAEA] text-sm sm:text-base md:text-lg lg:text-lg leading-relaxed max-w-xl [text-shadow:_0_3px_8px_rgb(0_0_0_/_80%)]">
+                <p className="text-[#EAEAEA] text-lg sm:text-xl lg:text-2xl leading-relaxed max-w-2xl [text-shadow:_0_3px_8px_rgb(0_0_0_/_80%)]">
                   {subtitulo || "Subtítulo o párrafo descriptivo"}
                 </p>
               </div>
 
               {/* Static CTA Buttons */}
-              <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-6 space-y-3 sm:space-y-0 mt-4">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-12 space-y-6 sm:space-y-0 mt-8">
                 {/* Primary Button */}
                 {textoBotonPrimario && (
                   <a 
                     href={urlBotonPrimario || '#'}
-                    className="group relative bg-[#8A2BE2] text-white font-['Oswald'] font-bold text-xs md:text-sm px-5 md:px-6 py-2 md:py-3 uppercase tracking-wider transition-all duration-300 hover:bg-[#9A3BF2] hover:shadow-lg hover:shadow-[#8A2BE2]/25 focus:outline-none focus:ring-2 focus:ring-[#8A2BE2] focus:ring-offset-2 focus:ring-offset-[#1A1A1A] w-fit"
+                    className="group relative bg-[#8A2BE2] text-white font-['Oswald'] font-bold text-lg px-10 py-4 uppercase tracking-wider transition-all duration-300 hover:bg-[#9A3BF2] hover:shadow-lg hover:shadow-[#8A2BE2]/25 focus:outline-none focus:ring-2 focus:ring-[#8A2BE2] focus:ring-offset-2 focus:ring-offset-[#1A1A1A] w-fit"
                   >
                     <span className="relative z-10">{textoBotonPrimario}</span>
                     <div className="absolute inset-0 bg-gradient-to-r from-[#8A2BE2] to-[#9A3BF2] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -91,7 +91,7 @@ export default function HeroSection({ section }: Props) {
                 {textoBotonSecundario && (
                   <a 
                     href={urlBotonSecundario || '#'}
-                    className="group relative bg-transparent border-2 border-[#8A2BE2] text-[#8A2BE2] font-['Oswald'] font-bold text-xs md:text-sm px-5 md:px-6 py-1 md:py-2 uppercase tracking-wider transition-all duration-300 hover:bg-[#8A2BE2] hover:text-white focus:outline-none focus:ring-2 focus:ring-[#8A2BE2] focus:ring-offset-2 focus:ring-offset-[#1A1A1A] w-fit"
+                    className="group relative bg-transparent border-2 border-[#8A2BE2] text-[#8A2BE2] font-['Oswald'] font-bold text-lg px-8 py-3 uppercase tracking-wider transition-all duration-300 hover:bg-[#8A2BE2] hover:text-white focus:outline-none focus:ring-2 focus:ring-[#8A2BE2] focus:ring-offset-2 focus:ring-offset-[#1A1A1A] w-fit"
                   >
                     <span className="relative z-10">{textoBotonSecundario}</span>
                     <div className="absolute inset-0 bg-[#8A2BE2] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>

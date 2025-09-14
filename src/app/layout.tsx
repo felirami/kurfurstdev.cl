@@ -6,6 +6,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import JsonLdSchema from "@/components/JsonLdSchema";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import { client } from "@/lib/sanity.client";
 import { groq } from "next-sanity";
 import React from "react"; // Importamos React
@@ -47,6 +48,9 @@ export default async function RootLayout({
         <main>{children}</main>
 
         <Footer />
+        
+        {/* WhatsApp Button - Siempre visible */}
+        <WhatsAppButton />
         
         {/* Toaster para las notificaciones */}
         <Toaster 

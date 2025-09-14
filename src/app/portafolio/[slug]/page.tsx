@@ -128,28 +128,67 @@ export default async function ProjectDetailPage({ params: { slug } }: Props) {
                         </div>
                     )}
 
-                    {/* Live Site Button */}
-                    {proyecto.urlDelSitio && (
-                        <div className="flex justify-center">
+                    {/* Action Buttons Section */}
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16">
+                        {/* Live Site Button - Always show if URL exists */}
+                        {proyecto.urlDelSitio && (
                             <Link
                                 href={proyecto.urlDelSitio}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group relative bg-transparent border-2 border-[#8A2BE2] text-[#EAEAEA] font-['Oswald'] font-bold text-lg px-12 py-4 uppercase tracking-wider transition-all duration-300 hover:bg-[#8A2BE2] hover:text-[#1A1A1A] focus:outline-none focus:ring-2 focus:ring-[#8A2BE2] focus:ring-offset-2 focus:ring-offset-[#1A1A1A]"
+                                className="group relative bg-[#8A2BE2] text-white font-['Oswald'] font-bold text-lg px-12 py-4 uppercase tracking-wider transition-all duration-300 hover:bg-[#8A2BE2]/80 hover:shadow-[0_0_30px_rgba(138,43,226,0.5)] transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#8A2BE2] focus:ring-offset-2 focus:ring-offset-[#1A1A1A]"
                             >
-                                <span className="relative z-10">Visitar Sitio Web en Vivo</span>
-                                <div className="absolute inset-0 bg-[#8A2BE2] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-                                
-                                {/* External link icon */}
-                                <div className="absolute right-4 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <span className="relative z-10 flex items-center">
+                                    Visitar Sitio Web en Vivo
+                                    <svg className="ml-3 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="currentColor" viewBox="0 0 20 20">
                                         <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path>
                                         <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path>
                                     </svg>
-                                </div>
+                                </span>
+                                
+                                {/* Geometric accents */}
+                                <div className="absolute -top-1 -right-1 w-3 h-3 bg-white/20 transform rotate-45 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-white/20 transform rotate-45 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                             </Link>
+                        )}
+
+                        {/* Back to Portfolio Button */}
+                        <Link
+                            href="/portafolio"
+                            className="group relative bg-transparent border-2 border-[#8A2BE2] text-[#8A2BE2] font-['Oswald'] font-bold text-lg px-12 py-4 uppercase tracking-wider transition-all duration-300 hover:bg-[#8A2BE2] hover:text-[#1A1A1A] focus:outline-none focus:ring-2 focus:ring-[#8A2BE2] focus:ring-offset-2 focus:ring-offset-[#1A1A1A]"
+                        >
+                            <span className="relative z-10 flex items-center">
+                                <svg className="mr-3 w-5 h-5 transition-transform duration-300 group-hover:-translate-x-1" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fillRule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clipRule="evenodd" />
+                                </svg>
+                                Ver Más Proyectos
+                            </span>
+                            <div className="absolute inset-0 bg-[#8A2BE2] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+                        </Link>
+                    </div>
+
+                    {/* Project Info Cards */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+                        {/* Category Card */}
+                        <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 text-center">
+                            <div className="text-[#8A2BE2] text-sm font-medium uppercase tracking-wider mb-2">Categoría</div>
+                            <div className="text-[#EAEAEA] font-['Oswald'] font-bold uppercase">Sitio Web</div>
                         </div>
-                    )}
+
+                        {/* Status Card */}
+                        <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 text-center">
+                            <div className="text-[#8A2BE2] text-sm font-medium uppercase tracking-wider mb-2">Estado</div>
+                            <div className="text-[#EAEAEA] font-['Oswald'] font-bold uppercase">
+                                {proyecto.urlDelSitio ? 'En Vivo' : 'Completado'}
+                            </div>
+                        </div>
+
+                        {/* Type Card */}
+                        <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 text-center">
+                            <div className="text-[#8A2BE2] text-sm font-medium uppercase tracking-wider mb-2">Tipo</div>
+                            <div className="text-[#EAEAEA] font-['Oswald'] font-bold uppercase">Proyecto Web</div>
+                        </div>
+                    </div>
                 </article>
             </div>
         </div>

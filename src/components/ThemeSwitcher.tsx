@@ -1,7 +1,8 @@
 // src/components/ThemeSwitcher.tsx
 "use client";
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import GlassContainer from "./GlassContainer";
 
 export default function ThemeSwitcher() {
   const [theme, setTheme] = useState<'light' | 'dark'>('dark');
@@ -65,13 +66,14 @@ export default function ThemeSwitcher() {
   }
 
   return (
-    <motion.button
-      onClick={toggleTheme}
-      className="relative p-3 bg-white/5 backdrop-blur-lg border border-white/10 text-[#8A2BE2] hover:bg-[#8A2BE2]/10 hover:border-[#8A2BE2]/30 transition-all duration-500 group overflow-hidden"
-      aria-label={`Cambiar a tema ${theme === 'light' ? 'oscuro' : 'claro'}`}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-    >
+    <GlassContainer className="p-3" hover={true}>
+      <motion.button
+        onClick={toggleTheme}
+        className="relative text-[#8A2BE2] hover:bg-[#8A2BE2]/10 hover:border-[#8A2BE2]/30 transition-all duration-500 group overflow-hidden w-full h-full"
+        aria-label={`Cambiar a tema ${theme === 'light' ? 'oscuro' : 'claro'}`}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+      >
       {/* Geometric accent */}
       <div className="absolute -top-1 -right-1 w-3 h-3 bg-[#8A2BE2]/20 transform rotate-45 group-hover:bg-[#8A2BE2]/40 transition-colors duration-300" />
       
@@ -108,6 +110,7 @@ export default function ThemeSwitcher() {
 
       {/* Hover effect */}
       <div className="absolute inset-0 bg-gradient-to-r from-[#8A2BE2]/0 via-[#8A2BE2]/5 to-[#8A2BE2]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-    </motion.button>
+      </motion.button>
+    </GlassContainer>
   );
 }

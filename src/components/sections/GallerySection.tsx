@@ -3,6 +3,7 @@ import { urlFor } from "@/lib/sanity.client";
 import { GallerySectionData } from "@/types";
 import Image from "next/image";
 import ScrollAnimatedSection from "../ScrollAnimatedSection";
+import GlassContainer from "../GlassContainer";
 
 type Props = {
   section: GallerySectionData;
@@ -40,32 +41,35 @@ export default function GallerySection({ section }: Props) {
           {/* Gallery Grid */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6">
             {imagenes.map((imagen, index) => (
-              <div 
-                key={imagen._key} 
-                className="group relative aspect-square overflow-hidden border border-[#8A2BE2]/20 hover:border-[#8A2BE2]/60 transition-all duration-500"
+              <ScrollAnimatedSection 
+                key={imagen._key}
+                delay={index * 0.1}
+                duration={0.5}
               >
-                {/* Image number */}
-                <div className="absolute top-3 left-3 z-20 bg-[#1A1A1A]/80 text-[#8A2BE2] text-sm font-['Oswald'] font-bold px-2 py-1 backdrop-blur-sm">
-                  {String(index + 1).padStart(2, '0')}
-                </div>
+                <GlassContainer className="group aspect-square overflow-hidden hover:border-[#8A2BE2]/60 transition-all duration-500" padding="p-0">
+                  {/* Image number */}
+                  <div className="absolute top-3 left-3 z-20 bg-[#1A1A1A]/80 text-[#8A2BE2] text-sm font-['Oswald'] font-bold px-2 py-1 backdrop-blur-sm">
+                    {String(index + 1).padStart(2, '0')}
+                  </div>
 
-                {/* Hover accent line */}
-                <div className="absolute top-0 left-0 w-0 group-hover:w-full h-px bg-[#8A2BE2] transition-all duration-500 z-10"></div>
-                
-                <Image
-                  src={urlFor(imagen).url()}
-                  alt={`Imagen ${index + 1} de galería`}
-                  fill
-                  sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-[#1A1A1A]/40 group-hover:bg-[#8A2BE2]/20 transition-colors duration-500"></div>
-                
-                {/* Bottom right accent */}
-                <div className="absolute bottom-3 right-3 w-2 h-2 bg-[#8A2BE2] transform rotate-45 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </div>
+                  {/* Hover accent line */}
+                  <div className="absolute top-0 left-0 w-0 group-hover:w-full h-px bg-[#8A2BE2] transition-all duration-500 z-10"></div>
+                  
+                  <Image
+                    src={urlFor(imagen).url()}
+                    alt={`Imagen ${index + 1} de galería`}
+                    fill
+                    sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  
+                  {/* Overlay */}
+                  <div className="absolute inset-0 bg-[#1A1A1A]/40 group-hover:bg-[#8A2BE2]/20 transition-colors duration-500"></div>
+                  
+                  {/* Bottom right accent */}
+                  <div className="absolute bottom-3 right-3 w-2 h-2 bg-[#8A2BE2] transform rotate-45 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </GlassContainer>
+              </ScrollAnimatedSection>
             ))}
           </div>
 

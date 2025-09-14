@@ -16,17 +16,21 @@ export default function ScrollAnimatedSection({
   children, 
   className = "", 
   delay = 0, 
-  duration = 0.6,
+  duration = 0.8,
   direction = 'up'
 }: Props) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "0px" });
+  const isInView = useInView(ref, { 
+    once: true, 
+    margin: "-50px",
+    amount: 0.1
+  });
 
   const variants = {
-    up: { opacity: 0, y: 50 },
-    down: { opacity: 0, y: -50 },
-    left: { opacity: 0, x: -50 },
-    right: { opacity: 0, x: 50 },
+    up: { opacity: 0, y: 20 },
+    down: { opacity: 0, y: -20 },
+    left: { opacity: 0, x: -20 },
+    right: { opacity: 0, x: 20 },
     fade: { opacity: 0 }
   };
 
@@ -47,6 +51,11 @@ export default function ScrollAnimatedSection({
         ease: [0.25, 0.46, 0.45, 0.94]
       }}
       className={className}
+      style={{
+        willChange: 'transform, opacity',
+        backfaceVisibility: 'hidden',
+        transform: 'translateZ(0)'
+      }}
     >
       {children}
     </motion.div>

@@ -1,16 +1,42 @@
 // src/schemas/index.ts
+import { SchemaTypeDefinition } from 'sanity'
+
 // Document schemas
-export { default as pagina } from './pagina';
-export { default as proyecto } from './proyecto';
-export { default as headerCarousel } from './headerCarousel';
-export { default as perfilDeNegocio } from './perfilDeNegocio';
+import pagina from './pagina'
+import proyecto from './proyecto'
+import headerCarousel from './headerCarousel'
+import perfilDeNegocio from './perfilDeNegocio'
+import perfilPersonal from './perfilPersonal'
 
 // Section schemas
-export { default as seccionHero } from './seccionHero';
-export { default as seccionServicios } from './seccionServicios';
-export { default as seccionContenido } from './seccionContenido';
-export { default as seccionGaleria } from './seccionGaleria';
-export { default as seccionTestimonios } from './seccionTestimonios';
-export { default as seccionContacto } from './seccionContacto';
-export { default as seccionPortafolioDestacado } from './seccionPortafolioDestacado';
-export { default as seccionCTA } from './seccionCTA';
+import seccionHero from './seccionHero'
+import seccionServicios from './seccionServicios'
+import seccionContenido from './seccionContenido'
+import seccionGaleria from './seccionGaleria'
+import seccionTestimonios from './seccionTestimonios'
+import seccionContacto from './seccionContacto'
+import seccionPortafolioDestacado from './seccionPortafolioDestacado'
+import seccionCTA from './seccionCTA'
+import seccionTecnologias from './seccionTecnologias'
+
+export const schema: { types: SchemaTypeDefinition[] } = {
+  types: [
+    // Document types
+    pagina,
+    proyecto,
+    headerCarousel,
+    perfilDeNegocio,
+    perfilPersonal,
+  
+    // Section types
+    seccionHero,
+    seccionServicios,
+    seccionContenido,
+    seccionGaleria,
+    seccionTestimonios,
+    seccionContacto,
+    seccionPortafolioDestacado,
+    seccionCTA,
+    seccionTecnologias,
+  ]
+}
