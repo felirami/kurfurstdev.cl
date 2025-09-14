@@ -83,7 +83,7 @@ export default function Header({ businessProfile, navigation, headerCarousel }: 
   const bgImageUrl = currentSlideData?.imagenPortada ? urlFor(currentSlideData.imagenPortada).url() : '';
 
   return (
-    <header className="sticky top-0 z-50 header-spectacular">
+    <header className="sticky top-0 z-40 header-spectacular">
       {/* Header Carousel Background */}
       {slides.length > 0 && (
         <div className="absolute inset-0 overflow-hidden bg-[#1A1A1A]">
@@ -115,7 +115,7 @@ export default function Header({ businessProfile, navigation, headerCarousel }: 
       )}
       
       {/* Navigation Bar */}
-      <div className="relative z-10 bg-[#0F0F0F]/95 backdrop-blur-sm border-b border-[#8A2BE2]/20">
+      <div className="relative z-50 bg-[#0F0F0F]/95 backdrop-blur-sm border-b border-[#8A2BE2]/20">
         {/* Geometric accent line */}
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#8A2BE2] to-transparent opacity-40"></div>
         
@@ -188,7 +188,7 @@ export default function Header({ businessProfile, navigation, headerCarousel }: 
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="md:hidden absolute top-full left-0 right-0 bg-[#0F0F0F]/98 backdrop-blur-lg border-t border-[#8A2BE2]/20 shadow-2xl z-50 mobile-menu-container overflow-hidden"
+            className="md:hidden absolute top-full left-0 right-0 bg-[#0F0F0F]/98 backdrop-blur-lg border-t border-[#8A2BE2]/20 shadow-2xl z-[9999] mobile-menu-container overflow-hidden"
           >
               <div className="px-4 py-6 space-y-2 max-h-[70vh] overflow-y-auto">
                 {navItems
