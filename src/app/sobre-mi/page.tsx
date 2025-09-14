@@ -83,28 +83,28 @@ const AboutPage = () => {
   const experience = perfilData?.experiencia || defaultExperience;
 
   return (
-    <div className="min-h-screen text-white relative pt-20">
+    <div className="min-h-screen text-white relative pt-16 sm:pt-20">
       {/* Hero Section */}
-      <section className="py-16 px-4">
+      <section className="py-8 sm:py-12 md:py-16 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
           <ScrollAnimatedSection>
-            <GlassContainer className="p-8 mb-12">
+            <GlassContainer className="p-4 sm:p-6 md:p-8 mb-8 sm:mb-12">
               <div className="text-center">
                 {/* Accent Line */}
-                <div className="flex items-center justify-center mb-8">
-                  <div className="w-16 h-px bg-[#8A2BE2]"></div>
-                  <div className="ml-4 text-[#8A2BE2] text-sm font-medium tracking-[0.2em] uppercase">
+                <div className="flex items-center justify-center mb-6 sm:mb-8">
+                  <div className="w-12 sm:w-16 h-px bg-[#8A2BE2]"></div>
+                  <div className="ml-3 sm:ml-4 text-[#8A2BE2] text-xs sm:text-sm font-medium tracking-[0.2em] uppercase">
                     Sobre Mí
                   </div>
                 </div>
                 
-                <h1 className="text-4xl md:text-5xl font-bold text-[#EAEAEA] mb-6 font-['Oswald'] leading-tight tracking-tight">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#EAEAEA] mb-4 sm:mb-6 font-['Oswald'] leading-tight tracking-tight">
                   Desarrollador Full Stack
                 </h1>
                 
                 <div className="relative">
-                  <div className="absolute left-1/2 transform -translate-x-1/2 -left-6 top-0 w-px h-full bg-gradient-to-b from-[#8A2BE2] to-transparent opacity-50"></div>
-                  <p className="text-[#EAEAEA] text-lg md:text-xl leading-relaxed max-w-3xl mx-auto [text-shadow:_0_3px_8px_rgb(0_0_0_/_80%)]">
+                  <div className="hidden sm:block absolute left-1/2 transform -translate-x-1/2 -left-6 top-0 w-px h-full bg-gradient-to-b from-[#8A2BE2] to-transparent opacity-50"></div>
+                  <p className="text-[#EAEAEA] text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto [text-shadow:_0_3px_8px_rgb(0_0_0_/_80%)]">
                     Especializado en crear experiencias digitales excepcionales con tecnologías de vanguardia
                   </p>
                 </div>
@@ -113,12 +113,12 @@ const AboutPage = () => {
           </ScrollAnimatedSection>
 
           {/* Main Content - Two Column Layout */}
-          <div className="grid lg:grid-cols-2 gap-16 items-start">
+          <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-start">
             
             {/* Left Column - Profile Photo */}
             <ScrollAnimatedSection delay={0.1}>
               <div className="relative">
-                <GlassContainer className="p-8">
+                <GlassContainer className="p-4 sm:p-6 md:p-8">
                   <div className="aspect-square relative overflow-hidden rounded-lg">
                     {perfilData?.fotoPerfil ? (
                       <Image 
@@ -130,21 +130,21 @@ const AboutPage = () => {
                       />
                     ) : (
                       <div className="w-full h-full bg-gradient-to-br from-[#8A2BE2]/20 to-[#8A2BE2]/40 flex items-center justify-center">
-                        <FaCode className="w-24 h-24 text-[#8A2BE2]" />
+                        <FaCode className="w-16 sm:w-20 md:w-24 h-16 sm:h-20 md:h-24 text-[#8A2BE2]" />
                       </div>
                     )}
                     <div className="absolute inset-0 bg-gradient-to-t from-[#8A2BE2]/20 to-transparent"></div>
                   </div>
                   
                   {/* Profile Info */}
-                  <div className="mt-6 text-center">
-                    <h3 className="text-2xl font-bold text-white mb-2 font-['Oswald']">
+                  <div className="mt-4 sm:mt-6 text-center">
+                    <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 font-['Oswald']">
                       {perfilData?.nombre || 'Andrés Kurfürst'}
                     </h3>
-                    <p className="text-[#8A2BE2] font-medium">
+                    <p className="text-[#8A2BE2] font-medium text-sm sm:text-base">
                       {perfilData?.titulo || 'Full Stack Developer'}
                     </p>
-                    <p className="text-gray-300 text-sm mt-2">
+                    <p className="text-gray-300 text-xs sm:text-sm mt-2">
                       {perfilData?.ubicacion || 'Valparaíso, Chile'}
                     </p>
                   </div>
@@ -154,16 +154,16 @@ const AboutPage = () => {
 
             {/* Right Column - About Content */}
             <ScrollAnimatedSection delay={0.2}>
-              <div className="space-y-8">
+              <div className="space-y-6 sm:space-y-8">
                 
                 {/* About Text */}
-                <GlassContainer className="p-8">
-                  <div className="flex items-center mb-6">
-                    <FaGraduationCap className="w-6 h-6 text-[#8A2BE2] mr-3" />
-                    <h2 className="text-2xl font-bold text-white font-['Oswald']">Mi Historia</h2>
+                <GlassContainer className="p-4 sm:p-6 md:p-8">
+                  <div className="flex items-center mb-4 sm:mb-6">
+                    <FaGraduationCap className="w-5 h-5 sm:w-6 sm:h-6 text-[#8A2BE2] mr-2 sm:mr-3" />
+                    <h2 className="text-xl sm:text-2xl font-bold text-white font-['Oswald']">Mi Historia</h2>
                   </div>
                   
-                  <div className="space-y-4 text-gray-300 leading-relaxed">
+                  <div className="space-y-3 sm:space-y-4 text-gray-300 leading-relaxed text-sm sm:text-base">
                     <p>
                       Soy un desarrollador full stack apasionado por crear soluciones digitales que combinan 
                       funcionalidad excepcional con diseño elegante. Mi enfoque se centra en la precisión 
