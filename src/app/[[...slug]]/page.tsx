@@ -58,35 +58,52 @@ const getPageQuery = (slug: string) => groq`
   }
 `;
 
-export async function generateMetadata({ params }: { params: { slug: string[] } }): Promise<Metadata> {
-  const slug = params.slug?.join("/") || "inicio";
-  const pageData: PageData = await client.fetch(getPageQuery(slug)); // <-- 2. AHORA SÍ ENCUENTRA 'PageData'
+export async function generateMetadata({ params }: { params: Promise<{ slug: string[] }> }): Promise<Metadata> {
+  const resolvedParams = await params;
+  const slug = resolvedParams.slug?.join("/") || "inicio";
+  
+  try {
+    const pageData: PageData = await client.fetch(getPageQuery(slug));
 
-  if (!pageData) {
+    if (!pageData) {
+      return {
+        title: "Página no encontrada",
+      };
+    }
+
     return {
-      title: "Página no encontrada",
+      title: pageData.seo?.metaTitulo || pageData.titulo,
+      description: pageData.seo?.metaDescripcion || "Bienvenido a nuestro sitio web.",
+    };
+  } catch (error) {
+    console.error('Error fetching page metadata:', error);
+    return {
+      title: "KurfurstDev",
+      description: "Desarrollo web profesional con tecnología de vanguardia.",
     };
   }
-
-  return {
-    title: pageData.seo?.metaTitulo || pageData.titulo,
-    description: pageData.seo?.metaDescripcion || "Bienvenido a nuestro sitio web.",
-  };
 }
 
 type Props = {
-  params: {
+  params: Promise<{
     slug: string[];
-  };
+  }>;
 };
 
 export default async function Page({ params }: Props) {
-  const slug = params.slug?.join("/") || "inicio";
-  const pageData = await client.fetch(getPageQuery(slug));
+  const resolvedParams = await params;
+  const slug = resolvedParams.slug?.join("/") || "inicio";
+  
+  try {
+    const pageData = await client.fetch(getPageQuery(slug));
 
-  if (!pageData) {
+    if (!pageData) {
+      notFound();
+    }
+
+    return <DynamicPage pageData={pageData} />;
+  } catch (error) {
+    console.error('Error fetching page data:', error);
     notFound();
   }
-
-  return <DynamicPage pageData={pageData} />;
 }

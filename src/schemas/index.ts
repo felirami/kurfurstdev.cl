@@ -18,25 +18,29 @@ import seccionContacto from './seccionContacto'
 import seccionPortafolioDestacado from './seccionPortafolioDestacado'
 import seccionCTA from './seccionCTA'
 import seccionTecnologias from './seccionTecnologias'
+import seccionPlanesDePrecios from './seccionPlanesDePrecios'
+
+export const schemaTypes: SchemaTypeDefinition[] = [
+  // Document types
+  pagina,
+  proyecto,
+  headerCarousel,
+  perfilDeNegocio,
+  perfilPersonal,
+
+  // Section types
+  seccionHero,
+  seccionServicios,
+  seccionContenido,
+  seccionGaleria,
+  seccionTestimonios,
+  seccionContacto,
+  seccionPortafolioDestacado,
+  seccionCTA,
+  seccionTecnologias,
+  seccionPlanesDePrecios,
+]
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [
-    // Document types
-    pagina,
-    proyecto,
-    headerCarousel,
-    perfilDeNegocio,
-    perfilPersonal,
-  
-    // Section types
-    seccionHero,
-    seccionServicios,
-    seccionContenido,
-    seccionGaleria,
-    seccionTestimonios,
-    seccionContacto,
-    seccionPortafolioDestacado,
-    seccionCTA,
-    seccionTecnologias,
-  ]
+  types: schemaTypes
 }

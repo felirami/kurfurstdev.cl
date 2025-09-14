@@ -1,8 +1,9 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { FaRocket, FaLock, FaCode, FaUsers, FaChartLine, FaCrown, FaArrowRight, FaWhatsapp, FaStar, FaShieldAlt, FaCog, FaLightbulb, FaGem, FaTachometerAlt, FaHeadset } from 'react-icons/fa';
+import { FaRocket, FaCrown, FaArrowRight, FaWhatsapp, FaStar, FaShieldAlt, FaCog, FaLightbulb, FaTachometerAlt, FaHeadset, FaChartLine } from 'react-icons/fa';
 import { SiNextdotjs, SiReact, SiTypescript, SiTailwindcss, SiSanity, SiVercel } from 'react-icons/si';
 import ScrollAnimatedSection from '@/components/ScrollAnimatedSection';
 import GlassContainer from '@/components/GlassContainer';
@@ -138,7 +139,7 @@ const OnyxHubPage = () => {
                 transition={{ delay: 0.6 }}
                 className="flex flex-col sm:flex-row gap-4 justify-center"
               >
-                <a
+                <Link
                   href="/servicios#planes"
                   className="group relative bg-[#8A2BE2] text-white font-['Oswald'] font-bold text-lg px-10 py-4 uppercase tracking-wider transition-all duration-300 hover:bg-[#9A3BF2] hover:shadow-lg hover:shadow-[#8A2BE2]/25 focus:outline-none focus:ring-2 focus:ring-[#8A2BE2] focus:ring-offset-2 focus:ring-offset-[#1A1A1A] w-fit"
                 >
@@ -147,7 +148,7 @@ const OnyxHubPage = () => {
                     <FaArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </span>
                   <div className="absolute inset-0 bg-gradient-to-r from-[#8A2BE2] to-[#9A3BF2] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </a>
+                </Link>
                 <a
                   href="https://wa.me/56912345678?text=Hola! Quiero conocer más sobre Onyx Hub"
                   className="group relative bg-transparent border-2 border-[#8A2BE2] text-[#8A2BE2] font-['Oswald'] font-bold text-lg px-8 py-3 uppercase tracking-wider transition-all duration-300 hover:bg-[#8A2BE2] hover:text-white focus:outline-none focus:ring-2 focus:ring-[#8A2BE2] focus:ring-offset-2 focus:ring-offset-[#1A1A1A] w-fit"
@@ -353,7 +354,7 @@ const OnyxHubPage = () => {
                       <FaStar key={i} className="w-5 h-5 text-yellow-400" />
                     ))}
                   </div>
-                  <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-12">"{testimonial.text}"</p>
+                  <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-12">&ldquo;{testimonial.text}&rdquo;</p>
                   <div>
                     <p className="text-white font-bold">{testimonial.name}</p>
                     <p className="text-purple-400 text-sm">{testimonial.company}</p>
@@ -394,7 +395,7 @@ const OnyxHubPage = () => {
                   </div>
                   
                   <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-                    <a
+                    <Link
                       href="/servicios#planes"
                       className="group relative bg-[#8A2BE2] text-white font-['Oswald'] font-bold text-lg px-10 py-4 uppercase tracking-wider transition-all duration-300 hover:bg-[#9A3BF2] hover:shadow-lg hover:shadow-[#8A2BE2]/25 focus:outline-none focus:ring-2 focus:ring-[#8A2BE2] focus:ring-offset-2 focus:ring-offset-[#1A1A1A] w-fit"
                     >
@@ -403,7 +404,7 @@ const OnyxHubPage = () => {
                         <FaArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                       </span>
                       <div className="absolute inset-0 bg-gradient-to-r from-[#8A2BE2] to-[#9A3BF2] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    </a>
+                    </Link>
                     <a
                       href="https://wa.me/56912345678?text=Hola! Quiero una demostración personalizada de Onyx Hub"
                       className="group relative bg-transparent border-2 border-[#8A2BE2] text-[#8A2BE2] font-['Oswald'] font-bold text-lg px-8 py-3 uppercase tracking-wider transition-all duration-300 hover:bg-[#8A2BE2] hover:text-white focus:outline-none focus:ring-2 focus:ring-[#8A2BE2] focus:ring-offset-2 focus:ring-offset-[#1A1A1A] w-fit"

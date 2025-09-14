@@ -9,12 +9,13 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 type Props = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
-export async function generateMetadata({ params: { slug } }: Props): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+    const { slug } = await params;
     const query = groq`*[_type == "proyecto" && slug.current == "${slug}"][0]`;
     const proyecto: ProyectoData = await client.fetch(query);
     if (!proyecto) {
@@ -26,7 +27,8 @@ export async function generateMetadata({ params: { slug } }: Props): Promise<Met
     };
 }
 
-export default async function ProjectDetailPage({ params: { slug } }: Props) {
+export default async function ProjectDetailPage({ params }: Props) {
+    const { slug } = await params;
     const query = groq`*[_type == "proyecto" && slug.current == "${slug}"][0]`;
     const proyecto: ProyectoData = await client.fetch(query);
 

@@ -34,7 +34,19 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode; // Corregido a React.ReactNode
 }) {
-  const { businessProfile, navigation, headerCarousel } = await client.fetch(query);
+  let businessProfile = null;
+  let navigation = null;
+  let headerCarousel = null;
+  
+  try {
+    const data = await client.fetch(query);
+    businessProfile = data.businessProfile;
+    navigation = data.navigation;
+    headerCarousel = data.headerCarousel;
+  } catch (error) {
+    console.error('Error fetching layout data from Sanity:', error);
+    // Continue with null values - components will handle gracefully
+  }
 
   return (
     <html lang="es">

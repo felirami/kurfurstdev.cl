@@ -1,5 +1,5 @@
 // Debug script to check projects in Sanity
-const { createClient } = require('@sanity/client');
+import { createClient } from '@sanity/client';
 
 const client = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'your-project-id',

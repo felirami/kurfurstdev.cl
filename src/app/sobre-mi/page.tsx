@@ -17,7 +17,9 @@ const AboutPage = () => {
         const data = await client.fetch(`*[_type == "perfilPersonal"][0]{
           nombre,
           titulo,
-          fotoPerfil,
+          fotoPerfil{
+            asset->
+          },
           ubicacion,
           biografia,
           habilidades,
@@ -26,6 +28,15 @@ const AboutPage = () => {
         setPerfilData(data);
       } catch (error) {
         console.error('Error fetching perfil:', error);
+        // Set fallback data if Sanity fetch fails
+        setPerfilData({
+          nombre: "Andrés Kurfürst",
+          titulo: "Desarrollador Full Stack",
+          ubicacion: "Chile",
+          biografia: "Desarrollador especializado en crear soluciones web modernas y eficientes.",
+          habilidades: [],
+          experiencia: []
+        });
       }
     };
     
