@@ -26,7 +26,7 @@ const nextConfig = {
   },
   
   // Webpack optimizations
-  webpack: (config, { dev, isServer }) => {
+  webpack: (config: any, { dev, isServer }: { dev: boolean; isServer: boolean }) => {
     if (!dev && !isServer) {
       config.optimization.splitChunks = {
         chunks: 'all',
