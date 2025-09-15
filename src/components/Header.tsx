@@ -182,33 +182,36 @@ export default function Header({ businessProfile, navigation, headerCarousel }: 
         </div>
       </div>
 
-      {/* Mobile Menu - Debug Version */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 right-0 bg-red-500 border-4 border-yellow-400 z-[9999] min-h-[200px]">
-            <div className="p-4 text-white">
-              <p>DEBUG: Menu is open!</p>
-              <p>navItems count: {navItems?.length || 0}</p>
-              <div className="space-y-2 mt-4">
-                {navItems
-                  ?.filter((item) => item.texto?.toLowerCase() !== 'contacto')
-                  .map((item) => (
-                    <div key={item._key || item.url} className="bg-blue-500 p-2">
-                      <Link href={item.url || '/'} className="text-white">
-                        {item.texto}
-                      </Link>
-                    </div>
-                  ))}
-                <div className="bg-green-500 p-2 mt-4">
-                  <Link href="/contacto" className="text-white font-bold">
-                    CONTACTO
+      {/* Mobile Menu - Fixed Version */}
+      {isMobileMenuOpen && (
+        <div className="fixed top-[72px] left-0 right-0 bg-[#0F0F0F]/98 backdrop-blur-lg border-t border-[#8A2BE2]/20 shadow-2xl z-[9999] min-h-[200px] md:hidden">
+          <div className="px-4 py-6 space-y-2 max-h-[70vh] overflow-y-auto">
+            {navItems
+              ?.filter((item) => item.texto?.toLowerCase() !== 'contacto')
+              .map((item) => (
+                <div key={item._key || item.url}>
+                  <Link 
+                    href={item.url || '/'} 
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block text-[#EAEAEA] hover:text-[#8A2BE2] transition-colors duration-300 py-4 px-4 rounded-lg hover:bg-white/5 border-b border-white/10 last:border-b-0 font-medium text-lg"
+                  >
+                    {item.texto}
                   </Link>
                 </div>
-              </div>
+              ))}
+            
+            <div className="pt-4">
+              <Link
+                href="/contacto"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block bg-gradient-to-r from-[#8A2BE2] to-[#9A3BF2] text-white px-6 py-4 text-center font-bold uppercase tracking-wider hover:from-[#9A3BF2] hover:to-[#8A2BE2] border-2 border-[#8A2BE2] transition-all duration-300 rounded-lg shadow-lg hover:shadow-[#8A2BE2]/25 transform hover:scale-105 text-lg"
+              >
+                CONTACTO
+              </Link>
             </div>
           </div>
-        )}
-      </AnimatePresence>
+        </div>
+      )}
 
       {/* Header Content Area with Carousel Text */}
       {slides.length > 0 && (
