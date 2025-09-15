@@ -192,17 +192,17 @@ export default function Header({ businessProfile, navigation, headerCarousel }: 
               <div className="space-y-2 mt-4">
                 {navItems
                   ?.filter((item) => item.texto?.toLowerCase() !== 'contacto')
-                  .map((item, index) => (
+                  .map((item) => (
                     <div key={item._key || item.url} className="bg-blue-500 p-2">
-                      <a href={item.url || '/'} className="text-white">
+                      <Link href={item.url || '/'} className="text-white">
                         {item.texto}
-                      </a>
+                      </Link>
                     </div>
                   ))}
                 <div className="bg-green-500 p-2 mt-4">
-                  <a href="/contacto" className="text-white font-bold">
+                  <Link href="/contacto" className="text-white font-bold">
                     CONTACTO
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
