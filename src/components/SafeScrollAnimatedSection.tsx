@@ -1,4 +1,3 @@
-// src/components/ScrollAnimatedSection.tsx
 "use client";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
@@ -12,7 +11,7 @@ type Props = {
   direction?: 'up' | 'down' | 'left' | 'right' | 'fade';
 };
 
-export default function ScrollAnimatedSection({ 
+export default function SafeScrollAnimatedSection({ 
   children, 
   className = "", 
   delay = 0, 
@@ -20,17 +19,18 @@ export default function ScrollAnimatedSection({
   direction = 'up'
 }: Props) {
   const ref = useRef(null);
+  
   const isInView = useInView(ref, { 
-    once: true, 
+    once: true,
     margin: "-50px",
     amount: 0.1
   });
 
   const variants = {
-    up: { opacity: 0, y: 20 },
-    down: { opacity: 0, y: -20 },
-    left: { opacity: 0, x: -20 },
-    right: { opacity: 0, x: 20 },
+    up: { opacity: 0, y: 30 },
+    down: { opacity: 0, y: -30 },
+    left: { opacity: 0, x: -30 },
+    right: { opacity: 0, x: 30 },
     fade: { opacity: 0 }
   };
 
@@ -46,8 +46,8 @@ export default function ScrollAnimatedSection({
       initial={variants[direction]}
       animate={isInView ? animate : variants[direction]}
       transition={{ 
-        duration, 
-        delay,
+        duration,
+        delay: isInView ? delay : 0,
         ease: [0.25, 0.46, 0.45, 0.94]
       }}
       className={className}

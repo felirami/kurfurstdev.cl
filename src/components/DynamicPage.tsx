@@ -1,23 +1,18 @@
-// src/components/DynamicPage.tsx 
-// comentario.
-
-// Fixed imports with correct case-sensitive paths
-import HeroSection from "@/components/sections/HeroSection";
-import HeroCarouselSection from "@/components/sections/HeroCarouselSection";
-import ServicesSection from "@/components/sections/ServicesSection";
-import ContentSection from "@/components/sections/ContentSection";
-import GallerySection from "@/components/sections/GallerySection";
-import TestimonialsSection from "@/components/sections/TestimonialsSection";
-import ContactSection from "@/components/sections/ContactSection";
-import FeaturedPortfolioSection from "@/components/sections/FeaturedPortfolioSection";
-import CTASection from "@/components/sections/CTASection";
-import TechnologiesSection from '@/components/sections/TechnologiesSection';
-import PricingPlansSection from '@/components/sections/PricingPlansSection';
-
-// ... el resto de tus importaciones ...
+import HeroSection from "@/components/Section/HeroSection";
+import HeroCarouselSection from "@/components/Section/HeroCarouselSection";
+import ServicesSection from "@/components/Section/ServicesSection";
+import ContentSection from "@/components/Section/ContentSection";
+import GallerySection from "@/components/Section/GallerySection";
+import TestimonialsSection from "@/components/Section/TestimonialsSection";
+import ContactSection from "@/components/Section/ContactSection";
+import FeaturedPortfolioSection from "@/components/Section/FeaturedPortfolioSection";
+import CTASection from "@/components/Section/CTASection";
+import TechnologiesSection from '@/components/Section/TechnologiesSection';
+import PricingPlansSection from '@/components/Section/PricingPlansSection';
+import MainCTASection from '@/components/Section/MainCTASection';
+import FinalCTASection from '@/components/Section/FinalCTASection';
 import { PageSection } from "@/types";
 
-// ... (código de tipos y props no cambia)
 type PageData = {
   titulo: string;
   secciones?: PageSection[] | null;
@@ -54,7 +49,6 @@ function SectionRenderer({ section }: { section: PageSection }) {
   }
 }
 
-// ... (código de DynamicPage no cambia)
 export default function DynamicPage({ pageData }: Props) {
   const { secciones } = pageData;
   const seccionesReales = secciones || [];

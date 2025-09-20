@@ -1,4 +1,3 @@
-// src/components/JsonLdSchema.tsx
 import React from 'react';
 import { urlFor } from '@/lib/sanity.client';
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
@@ -49,7 +48,6 @@ export default function JsonLdSchema({ perfilDeNegocio }: JsonLdSchemaProps) {
       description: perfilDeNegocio.textoFooter || 'Soluciones digitales profesionales con Onyx Hub CMS para emprendedores y empresas',
     };
 
-    // Add logo if available
     if (perfilDeNegocio.logo) {
       (baseSchema as JsonLdSchema).logo = {
         '@type': 'ImageObject',
@@ -59,7 +57,6 @@ export default function JsonLdSchema({ perfilDeNegocio }: JsonLdSchemaProps) {
       };
     }
 
-    // Add contact point if phone or email available
     if (perfilDeNegocio.telefonoPrincipal || perfilDeNegocio.emailDeContacto) {
       (baseSchema as JsonLdSchema).contactPoint = {
         '@type': 'ContactPoint',
@@ -70,7 +67,6 @@ export default function JsonLdSchema({ perfilDeNegocio }: JsonLdSchemaProps) {
       };
     }
 
-    // Add address if available
     if (perfilDeNegocio.direccion) {
       (baseSchema as JsonLdSchema).address = {
         '@type': 'PostalAddress',
@@ -80,7 +76,6 @@ export default function JsonLdSchema({ perfilDeNegocio }: JsonLdSchemaProps) {
       };
     }
 
-    // Add specific fields for ProfessionalService
     if (businessType === 'ProfessionalService') {
       (baseSchema as JsonLdSchema).serviceType = 'Desarrollo Web y CMS';
       (baseSchema as JsonLdSchema).areaServed = {
@@ -89,7 +84,6 @@ export default function JsonLdSchema({ perfilDeNegocio }: JsonLdSchemaProps) {
       };
     }
 
-    // Add same organization as WebSite schema
     const websiteSchema = {
       '@context': 'https://schema.org',
       '@type': 'WebSite',

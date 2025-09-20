@@ -1,30 +1,32 @@
 // src/lib/sanity.client.ts
-import { createClient } from 'next-sanity'
-import imageUrlBuilder from '@sanity/image-url'
-import { SanityImageSource } from '@sanity/image-url/lib/types/types'
+// This file should only contain client-safe code
+import imageUrlBuilder from '@sanity/image-url';
+import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
 
-export const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'c7dyz33g'
-export const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
+export const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
+export const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET;
+export const apiVersion = process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2023-05-03';
 
-// Check if Sanity is properly configured
-if (!projectId || projectId === 'your-project-id') {
-  console.warn('Sanity project ID not configured. Some features may not work properly.');
+if (!projectId) {
+  console.error('Sanity project ID is not configured. Check your .env.local file.');
 }
-const apiVersion = '2023-05-03'
+if (!dataset) {
+  console.error('Sanity dataset is not configured. Check your .env.local file.');
+}
+
+// This client is safe to use in client-side components
+import { createClient } from 'next-sanity';
 
 export const client = createClient({
   projectId,
   dataset,
   apiVersion,
-  useCdn: false,
-  // Add timeout and retry configuration
-  requestTagPrefix: 'kurfurst-dev',
-  ignoreBrowserTokenWarning: true,
-})
+  useCdn: true, // `true` for client-side fetching
+});
 
-// --- NUEVA SECCIÓN PARA IMÁGENES ---
-const builder = imageUrlBuilder(client)
+// Client-safe image URL builder
+const builder = imageUrlBuilder(client);
 
 export function urlFor(source: SanityImageSource) {
-  return builder.image(source)
+  return builder.image(source);
 }

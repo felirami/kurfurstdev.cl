@@ -1,8 +1,7 @@
-// src/components/ThemeSwitcher.tsx
 "use client";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import GlassContainer from "./GlassContainer";
+import ArchitecturalContainer from "./ArchitecturalContainer";
 
 export default function ThemeSwitcher() {
   const [theme, setTheme] = useState<'light' | 'dark'>('dark');
@@ -15,7 +14,6 @@ export default function ThemeSwitcher() {
       setTheme(savedTheme);
       applyTheme(savedTheme);
     } else {
-      // Default to dark theme
       applyTheme('dark');
     }
   }, []);
@@ -24,28 +22,26 @@ export default function ThemeSwitcher() {
     const root = document.documentElement;
     
     if (newTheme === 'light') {
-      // Light theme - Precisión Metálica Claro
-      root.style.setProperty('--bg-primary', '#F8F9FA');     // Casi blanco
-      root.style.setProperty('--bg-secondary', '#FFFFFF');    // Blanco puro
-      root.style.setProperty('--bg-tertiary', '#E9ECEF');     // Gris muy claro
-      root.style.setProperty('--text-primary', '#1A1A1A');    // Texto oscuro
-      root.style.setProperty('--text-secondary', '#495057');  // Gris oscuro
-      root.style.setProperty('--accent-primary', '#8A2BE2');  // Violeta (mantener)
-      root.style.setProperty('--accent-secondary', '#9D4EDD'); // Violeta claro
-      root.style.setProperty('--border-color', '#DEE2E6');    // Borde claro
+      root.style.setProperty('--bg-primary', '#F8F9FA');
+      root.style.setProperty('--bg-secondary', '#FFFFFF');
+      root.style.setProperty('--bg-tertiary', '#E9ECEF');
+      root.style.setProperty('--text-primary', '#1A1A1A');
+      root.style.setProperty('--text-secondary', '#495057');
+      root.style.setProperty('--accent-primary', '#30E0A0');
+      root.style.setProperty('--accent-secondary', '#2ECB98');
+      root.style.setProperty('--border-color', '#DEE2E6');
       root.style.setProperty('--glass-bg', 'rgba(255, 255, 255, 0.1)');
       root.style.setProperty('--glass-border', 'rgba(26, 26, 26, 0.1)');
       root.classList.add('light-theme');
       root.classList.remove('dark-theme');
     } else {
-      // Dark theme - Precisión Metálica Oscuro (original)
       root.style.setProperty('--bg-primary', '#1A1A1A');
       root.style.setProperty('--bg-secondary', '#111111');
       root.style.setProperty('--bg-tertiary', '#0F0F0F');
       root.style.setProperty('--text-primary', '#EAEAEA');
       root.style.setProperty('--text-secondary', '#B0B0B0');
-      root.style.setProperty('--accent-primary', '#8A2BE2');
-      root.style.setProperty('--accent-secondary', '#7B68EE');
+      root.style.setProperty('--accent-primary', '#30E0A0');
+      root.style.setProperty('--accent-secondary', '#2ECB98');
       root.style.setProperty('--border-color', '#333333');
       root.style.setProperty('--glass-bg', 'rgba(255, 255, 255, 0.05)');
       root.style.setProperty('--glass-border', 'rgba(234, 234, 234, 0.1)');
@@ -66,26 +62,23 @@ export default function ThemeSwitcher() {
   }
 
   return (
-    <GlassContainer className="p-3" hover={true}>
+    <ArchitecturalContainer className="p-3" hover={true}>
       <motion.button
         onClick={toggleTheme}
-        className="relative text-[#8A2BE2] hover:bg-[#8A2BE2]/10 hover:border-[#8A2BE2]/30 transition-all duration-500 group overflow-hidden w-full h-full"
+        className="relative text-[#30E0A0] hover:bg-[#30E0A0]/10 hover:border-[#30E0A0]/30 transition-all duration-500 group overflow-hidden w-full h-full"
         aria-label={`Cambiar a tema ${theme === 'light' ? 'oscuro' : 'claro'}`}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >
-      {/* Geometric accent */}
-      <div className="absolute -top-1 -right-1 w-3 h-3 bg-[#8A2BE2]/20 transform rotate-45 group-hover:bg-[#8A2BE2]/40 transition-colors duration-300" />
+      <div className="absolute -top-1 -right-1 w-3 h-3 bg-[#30E0A0]/20 transform rotate-45 group-hover:bg-[#30E0A0]/40 transition-colors duration-300" />
       
-      {/* Icon container */}
       <div className="relative z-10">
         <motion.div
           initial={false}
           animate={{ rotate: theme === 'light' ? 180 : 0 }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
         >
           {theme === 'light' ? (
-            // Moon icon for dark mode
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path 
                 strokeLinecap="round" 
@@ -95,7 +88,6 @@ export default function ThemeSwitcher() {
               />
             </svg>
           ) : (
-            // Sun icon for light mode
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path 
                 strokeLinecap="round" 
@@ -108,9 +100,8 @@ export default function ThemeSwitcher() {
         </motion.div>
       </div>
 
-      {/* Hover effect */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#8A2BE2]/0 via-[#8A2BE2]/5 to-[#8A2BE2]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#30E0A0]/0 via-[#30E0A0]/5 to-[#30E0A0]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       </motion.button>
-    </GlassContainer>
+    </ArchitecturalContainer>
   );
 }

@@ -1,18 +1,23 @@
-// src/components/Section/CTASection.tsx
-// DATABASE TEMPLATE - CTA Section Reconstruction
-// STRICT: Architectural container, mint green button (#2ECB98), no purple
+// src/components/Section/FinalCTASection.tsx
+// DATABASE TEMPLATE - Final CTA Section
+// STRICT: Architectural container, mint green button, no purple colors
 
-import { CTASectionData } from "@/types";
-import Link from "next/link";
 import ArchitecturalContainer from "../ArchitecturalContainer";
+import Link from "next/link";
 
-type Props = {
-  section: CTASectionData;
-};
+interface FinalCTASectionProps {
+  titulo?: string;
+  subtitulo?: string;
+  botonTexto?: string;
+  botonUrl?: string;
+}
 
-export default function CTASection({ section }: Props) {
-  const { titulo, subtitulo, boton } = section;
-
+export default function FinalCTASection({
+  titulo = "CONSTRUYAMOS TU FUTURO DIGITAL",
+  subtitulo = "¿Listo para llevar tu negocio al siguiente nivel? Trabajemos juntos para crear una solución digital que impulse tu crecimiento y conecte con tu audiencia de manera efectiva.",
+  botonTexto = "COMENZAR AHORA",
+  botonUrl = "/contacto"
+}: FinalCTASectionProps) {
   return (
     <section className="py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -20,7 +25,7 @@ export default function CTASection({ section }: Props) {
           <div className="flex items-center justify-center mb-4">
             <div className="w-16 h-px bg-gradient-to-r from-[#2ECB98] to-[#28B888]"></div>
             <div className="mx-4 text-[#2ECB98] text-sm font-medium tracking-[0.2em] uppercase">
-              Llamada a la Acción
+              Colaboremos
             </div>
             <div className="w-16 h-px bg-gradient-to-r from-[#28B888] to-[#2ECB98]"></div>
           </div>
@@ -29,32 +34,21 @@ export default function CTASection({ section }: Props) {
             {titulo}
           </h2>
 
-          {/* Subtitle */}
+          {/* Subtitle/Description */}
           {subtitulo && (
             <p className="section-subtitle max-w-4xl mx-auto mb-12">
               {subtitulo}
             </p>
           )}
 
-          {/* CTA Button - MINT GREEN ONLY */}
+          {/* CTA Button */}
           <div className="flex justify-center">
-            {boton.esExterno ? (
-              <a
-                href={boton.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary px-6 sm:px-8 py-3 sm:py-4"
-              >
-                {boton.texto}
-              </a>
-            ) : (
-              <Link
-                href={boton.url}
-                className="btn-primary px-6 sm:px-8 py-3 sm:py-4"
-              >
-                {boton.texto}
-              </Link>
-            )}
+            <Link 
+              href={botonUrl}
+              className="btn-primary px-6 sm:px-8 py-3 sm:py-4"
+            >
+              {botonTexto}
+            </Link>
           </div>
         </ArchitecturalContainer>
       </div>

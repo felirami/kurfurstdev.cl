@@ -1,9 +1,12 @@
-// src/components/sections/TestimonialsSection.tsx
+// src/components/Section/TestimonialsSection.tsx
+// DATABASE TEMPLATE - Testimonials Section Reconstruction
+// STRICT: Glassmorphism containers ONLY for testimonials, mint green accents
+
 import { TestimonialsSectionData } from "@/types";
 import { urlFor } from "@/lib/sanity.client";
 import Image from "next/image";
-import ScrollAnimatedSection from "../ScrollAnimatedSection";
-import GlassContainer from "../GlassContainer";
+import ArchitecturalContainer from "../ArchitecturalContainer";
+import GlassmorphismContainer from "../GlassmorphismContainer";
 
 type Props = {
   section: TestimonialsSectionData;
@@ -13,88 +16,64 @@ export default function TestimonialsSection({ section }: Props) {
   const { titulo, testimonios = [] } = section;
 
   return (
-    <ScrollAnimatedSection>
-      <section className="relative py-20 px-6 lg:px-8 overflow-hidden">
-      {/* Geometric background elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-32 right-12 w-px h-56 bg-[#8A2BE2] opacity-15"></div>
-        <div className="absolute bottom-24 left-20 w-48 h-px bg-[#8A2BE2] opacity-20"></div>
-        <div className="absolute top-2/3 left-1/4 w-4 h-4 bg-[#8A2BE2] transform rotate-45 opacity-25"></div>
-      </div>
-
-      <div className="relative z-10 mx-auto max-w-7xl">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <div className="flex items-center justify-center mb-6">
-            <div className="w-16 h-px bg-[#8A2BE2]"></div>
-            <div className="mx-4 text-[#8A2BE2] text-sm font-medium tracking-[0.2em] uppercase">
+    <section className="py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Section Title in Architectural Container */}
+        <ArchitecturalContainer className="text-center mb-12">
+          <div className="flex items-center justify-center mb-4">
+            <div className="w-16 h-px bg-gradient-to-r from-[#2ECB98] to-[#28B888]"></div>
+            <div className="mx-4 text-[#2ECB98] text-sm font-medium tracking-[0.2em] uppercase">
               Testimonios
             </div>
-            <div className="w-16 h-px bg-[#8A2BE2]"></div>
+            <div className="w-16 h-px bg-gradient-to-r from-[#28B888] to-[#2ECB98]"></div>
           </div>
-          
-          <h2 className="font-['Oswald'] text-4xl md:text-5xl lg:text-6xl font-bold text-[#EAEAEA] uppercase tracking-tight">
-            {titulo}
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white uppercase tracking-wider">
+            {titulo || "TESTIMONIOS DE NUESTROS CLIENTES"}
           </h2>
-        </div>
+        </ArchitecturalContainer>
 
-        {/* Testimonials Grid */}
+        {/* Testimonials Grid - Using Glassmorphism (ONLY allowed here) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {testimonios.map((testimonio, index) => (
-            <ScrollAnimatedSection 
-              key={testimonio._key}
-              delay={index * 0.1}
-              duration={0.6}
-            >
-              <GlassContainer className="group h-full">
-                {/* Top accent line */}
-                <div className="absolute top-0 left-0 w-0 group-hover:w-full h-px bg-[#8A2BE2] transition-all duration-500"></div>
-                
-                {/* Quote icon */}
-                <div className="mb-6">
-                  <svg className="w-8 h-8 text-[#8A2BE2] opacity-60" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
-                  </svg>
-                </div>
+            <GlassmorphismContainer key={testimonio._key} className="group h-full">
+              {/* Quote icon */}
+              <div className="mb-6">
+                <svg className="w-8 h-8 text-[#2ECB98]" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                </svg>
+              </div>
 
-                {/* Testimonial text */}
-                <blockquote className="text-[#EAEAEA]/90 text-lg leading-relaxed mb-8 italic">
-                  &quot;{testimonio.texto}&quot;
-                </blockquote>
+              {/* Testimonial text */}
+              <blockquote className="text-[#BBBBBB] text-lg leading-relaxed mb-8 italic">
+                &quot;{testimonio.texto}&quot;
+              </blockquote>
 
-                {/* Author section */}
-                <div className="flex items-center">
-                  {testimonio.avatar && (
-                    <div className="relative h-12 w-12 flex-shrink-0 overflow-hidden border border-[#8A2BE2]/30">
-                      <Image
-                        src={urlFor(testimonio.avatar).url()}
-                        alt={`Foto de ${testimonio.autor}`}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                  )}
-                  <div className="ml-4">
-                    <div className="flex items-center">
-                      <p className="font-['Oswald'] font-bold text-[#EAEAEA] uppercase tracking-wide">
-                        {testimonio.autor}
-                      </p>
-                      <div className="ml-3 w-6 h-px bg-[#8A2BE2]/40"></div>
-                    </div>
-                    <div className="text-[#8A2BE2] text-sm font-medium">
-                      Cliente #{String(index + 1).padStart(2, '0')}
-                    </div>
+              {/* Author section */}
+              <div className="flex items-center">
+                {testimonio.avatar && (
+                  <div className="relative h-12 w-12 flex-shrink-0 overflow-hidden rounded-xl border border-[#333333]">
+                    <Image
+                      src={urlFor(testimonio.avatar).url()}
+                      alt={`Foto de ${testimonio.autor}`}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                )}
+                <div className="ml-4">
+                  <p className="font-medium text-white uppercase tracking-wide">
+                    {testimonio.autor}
+                  </p>
+                  <div className="text-[#2ECB98] text-sm font-medium">
+                    Cliente #{String(index + 1).padStart(2, '0')}
                   </div>
                 </div>
-
-                {/* Bottom geometric accent */}
-                <div className="absolute bottom-6 right-6 w-2 h-2 bg-[#8A2BE2] transform rotate-45 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </GlassContainer>
-            </ScrollAnimatedSection>
+              </div>
+            </GlassmorphismContainer>
           ))}
         </div>
       </div>
     </section>
-    </ScrollAnimatedSection>
   );
 }

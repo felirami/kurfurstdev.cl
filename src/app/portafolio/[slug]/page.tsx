@@ -1,4 +1,3 @@
-// src/app/portafolio/[slug]/page.tsx
 import { client, urlFor } from "@/lib/sanity.client";
 import { groq } from "next-sanity";
 import { Metadata } from "next";
@@ -7,6 +6,9 @@ import { PortableText } from "@portabletext/react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { SectionContainer, ArchitecturalContainer } from "@/components/UnifiedContainers";
+import SafeScrollAnimatedSection from "@/components/SafeScrollAnimatedSection";
+import { FiArrowLeft, FiExternalLink, FiCalendar, FiTag } from "react-icons/fi";
 
 type Props = {
   params: Promise<{
@@ -37,162 +39,140 @@ export default async function ProjectDetailPage({ params }: Props) {
     }
 
     return (
-        <div className="relative bg-[#1A1A1A] min-h-screen overflow-hidden">
-            {/* Geometric background elements */}
-            <div className="absolute inset-0">
-                <div className="absolute top-32 left-8 w-px h-80 bg-[#8A2BE2] opacity-15"></div>
-                <div className="absolute bottom-40 right-12 w-64 h-px bg-[#8A2BE2] opacity-20"></div>
-                <div className="absolute top-1/2 right-1/3 w-5 h-5 bg-[#8A2BE2] transform rotate-45 opacity-25"></div>
-            </div>
-
-            <div className="relative z-10 mx-auto max-w-6xl py-20 px-6 lg:px-8">
+        <SectionContainer withAura={true}>
+            <div className="max-w-7xl mx-auto pt-24">
                 <article>
-                    {/* Back Navigation */}
-                    <div className="mb-12">
-                        <Link 
-                            href="/portafolio" 
-                            className="group inline-flex items-center text-[#8A2BE2] hover:text-[#EAEAEA] transition-colors duration-300"
-                        >
-                            <svg className="w-5 h-5 mr-2 transition-transform duration-300 group-hover:-translate-x-1" fill="currentColor" viewBox="0 0 20 20">
-                                <path fillRule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clipRule="evenodd" />
-                            </svg>
-                            <span className="font-medium">VOLVER AL PORTAFOLIO</span>
-                        </Link>
-                    </div>
-
-                    {/* Project Header */}
-                    <div className="mb-16">
-                        <div className="flex items-center mb-6">
-                            <div className="w-16 h-px bg-[#8A2BE2]"></div>
-                            <div className="ml-4 text-[#8A2BE2] text-sm font-medium tracking-[0.2em] uppercase">
-                                Proyecto
-                            </div>
+                    <SafeScrollAnimatedSection delay={0.1} duration={0.6}>
+                        <div className="mb-12">
+                            <Link 
+                                href="/portafolio" 
+                                className="group inline-flex items-center text-[#2ECB98] hover:text-white transition-colors duration-300"
+                            >
+                                <FiArrowLeft className="w-5 h-5 mr-2 transition-transform duration-300 group-hover:-translate-x-1" />
+                                <span className="font-medium uppercase tracking-wider">VOLVER AL PORTAFOLIO</span>
+                            </Link>
                         </div>
-                        
-                        <h1 className="font-['Oswald'] text-4xl md:text-5xl lg:text-6xl font-bold text-[#EAEAEA] uppercase tracking-tight">
-                            {proyecto.titulo}
-                        </h1>
-                    </div>
+                    </SafeScrollAnimatedSection>
 
-                    {/* Main Image */}
-                    <div className="relative mb-16 aspect-video w-full overflow-hidden border border-[#8A2BE2]/20">
-                        <Image
-                            src={urlFor(proyecto.imagenPrincipal).url()}
-                            alt={`Imagen principal de ${proyecto.titulo}`}
-                            fill
-                            sizes="100vw"
-                            className="object-cover"
-                        />
-                        <div className="absolute inset-0 bg-[#1A1A1A]/20"></div>
-                        
-                        {/* Image accent lines */}
-                        <div className="absolute top-0 left-0 w-20 h-px bg-[#8A2BE2]"></div>
-                        <div className="absolute bottom-0 right-0 w-20 h-px bg-[#8A2BE2]"></div>
-                    </div>
-
-                    {/* Project Description */}
-                    <div className="prose prose-lg prose-invert max-w-none mb-16 [&_h1]:text-[#EAEAEA] [&_h1]:font-['Oswald'] [&_h1]:font-bold [&_h1]:uppercase [&_h1]:tracking-wider [&_h2]:text-[#EAEAEA] [&_h2]:font-['Oswald'] [&_h2]:font-bold [&_h2]:uppercase [&_h2]:tracking-wider [&_h2]:border-b-2 [&_h2]:border-[#8A2BE2]/30 [&_h2]:pb-2 [&_h2]:mb-8 [&_h3]:text-[#EAEAEA] [&_h3]:font-['Oswald'] [&_h3]:font-bold [&_h3]:uppercase [&_h3]:tracking-wider [&_h4]:text-[#EAEAEA] [&_h4]:font-['Oswald'] [&_h4]:font-bold [&_h4]:uppercase [&_h4]:tracking-wider [&_p]:text-[#EAEAEA]/90 [&_p]:leading-relaxed [&_p]:mb-6 [&_p]:text-lg [&_strong]:text-[#8A2BE2] [&_strong]:font-semibold [&_a]:text-[#8A2BE2] [&_a]:no-underline [&_a]:border-b [&_a]:border-transparent [&_a]:transition-colors [&_a:hover]:border-[#8A2BE2]">
-                        <PortableText value={proyecto.descripcion} />
-                    </div>
-
-                    {/* Project Gallery */}
-                    {proyecto.galeriaDeImagenes && proyecto.galeriaDeImagenes.length > 0 && (
-                        <div className="mb-16">
-                            <div className="flex items-center mb-12">
-                                <div className="w-16 h-px bg-[#8A2BE2]"></div>
-                                <h2 className="ml-4 font-['Oswald'] text-2xl font-bold text-[#EAEAEA] uppercase tracking-wide">
-                                    Galería del Proyecto
-                                </h2>
+                    <SafeScrollAnimatedSection delay={0.2} duration={0.6}>
+                        <ArchitecturalContainer className="text-center mb-16">
+                            <div className="flex items-center justify-center mb-4">
+                                <div className="w-16 h-px bg-gradient-to-r from-[#2ECB98] to-[#28B888]"></div>
+                                <div className="mx-4 text-[#2ECB98] text-sm font-medium tracking-[0.2em] uppercase">
+                                    Proyecto
+                                </div>
+                                <div className="w-16 h-px bg-gradient-to-r from-[#28B888] to-[#2ECB98]"></div>
                             </div>
                             
-                            <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-                                {proyecto.galeriaDeImagenes.map((imagen, index) => (
-                                    <div 
-                                        key={imagen._key} 
-                                        className="group relative aspect-square overflow-hidden border border-[#8A2BE2]/20 hover:border-[#8A2BE2]/60 transition-all duration-500"
-                                    >
-                                        <Image
-                                            src={urlFor(imagen).url()}
-                                            alt="Imagen de la galería del proyecto"
-                                            fill
-                                            sizes="(max-width: 640px) 50vw, 33vw"
-                                            className="object-cover transition-transform duration-700 group-hover:scale-110"
-                                        />
-                                        <div className="absolute inset-0 bg-[#1A1A1A]/60 group-hover:bg-[#8A2BE2]/20 transition-colors duration-500"></div>
-                                        
-                                        {/* Gallery item number */}
-                                        <div className="absolute top-4 left-4 text-[#8A2BE2] font-['Oswald'] text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                            {String(index + 1).padStart(2, '0')}
-                                        </div>
+                            <h1 className="section-title text-4xl md:text-5xl lg:text-6xl mb-6">
+                                {proyecto.titulo}
+                            </h1>
+
+                            {proyecto.descripcion && typeof proyecto.descripcion === 'string' && (
+                                <p className="section-subtitle max-w-4xl mx-auto">
+                                    {proyecto.descripcion}
+                                </p>
+                            )}
+                        </ArchitecturalContainer>
+                    </SafeScrollAnimatedSection>
+
+                    <SafeScrollAnimatedSection delay={0.3} duration={0.6}>
+                        <ArchitecturalContainer className="relative mb-16 aspect-video w-full overflow-hidden">
+                            <Image
+                                src={urlFor(proyecto.imagenPrincipal).url()}
+                                alt={`Imagen principal de ${proyecto.titulo}`}
+                                fill
+                                sizes="100vw"
+                                className="object-cover"
+                            />
+                            <div className="absolute inset-0 bg-black/10"></div>
+                        </ArchitecturalContainer>
+                    </SafeScrollAnimatedSection>
+
+                    <SafeScrollAnimatedSection delay={0.4} duration={0.6}>
+                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-16">
+                            <div className="lg:col-span-2">
+                                <ArchitecturalContainer>
+                                    <h2 className="section-title text-2xl mb-6">DESCRIPCIÓN DEL PROYECTO</h2>
+                                    <div className="prose prose-lg prose-invert max-w-none [&_h1]:text-white [&_h1]:section-title [&_h2]:text-white [&_h2]:section-title [&_h2]:text-xl [&_h2]:border-b [&_h2]:border-[#2ECB98]/30 [&_h2]:pb-2 [&_h2]:mb-6 [&_h3]:text-white [&_h3]:font-semibold [&_h4]:text-white [&_h4]:font-semibold [&_p]:text-[#BBBBBB] [&_p]:leading-relaxed [&_p]:mb-4 [&_strong]:text-[#2ECB98] [&_strong]:font-semibold [&_a]:text-[#2ECB98] [&_a]:no-underline [&_a]:border-b [&_a]:border-transparent [&_a]:transition-colors [&_a:hover]:border-[#2ECB98]">
+                                        <PortableText value={proyecto.descripcion} />
                                     </div>
-                                ))}
+                                </ArchitecturalContainer>
+                            </div>
+
+                            <div>
+                                <ArchitecturalContainer>
+                                    <h3 className="section-title text-xl mb-6">DETALLES</h3>
+                                    <div className="space-y-4">
+                                        <div className="flex items-center space-x-3">
+                                            <FiTag className="w-5 h-5 text-[#2ECB98]" />
+                                            <span className="text-[#BBBBBB]">Proyecto Web</span>
+                                        </div>
+
+                                        {proyecto.urlDelSitio && (
+                                            <div className="pt-4">
+                                                <a
+                                                    href={proyecto.urlDelSitio}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="inline-flex items-center space-x-2 text-[#2ECB98] hover:text-white transition-colors duration-300 border border-[#2ECB98] hover:bg-[#2ECB98]/10 px-4 py-2 rounded"
+                                                >
+                                                    <FiExternalLink className="w-4 h-4" />
+                                                    <span className="font-medium">VISITAR SITIO</span>
+                                                </a>
+                                            </div>
+                                        )}
+                                    </div>
+                                </ArchitecturalContainer>
                             </div>
                         </div>
+                    </SafeScrollAnimatedSection>
+
+                    {proyecto.galeriaDeImagenes && proyecto.galeriaDeImagenes.length > 0 && (
+                        <SafeScrollAnimatedSection delay={0.5} duration={0.6}>
+                            <div className="mb-16">
+                                <ArchitecturalContainer className="text-center mb-12">
+                                    <h2 className="section-title text-2xl">GALERÍA DEL PROYECTO</h2>
+                                </ArchitecturalContainer>
+                                
+                                <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+                                    {proyecto.galeriaDeImagenes.map((imagen, index) => (
+                                        <ArchitecturalContainer 
+                                            key={imagen._key} 
+                                            className="group relative aspect-square overflow-hidden"
+                                        >
+                                            <Image
+                                                src={urlFor(imagen).url()}
+                                                alt="Imagen de la galería del proyecto"
+                                                fill
+                                                sizes="(max-width: 640px) 50vw, 33vw"
+                                                className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                            />
+                                            <div className="absolute inset-0 bg-black/20 group-hover:bg-[#2ECB98]/10 transition-colors duration-500"></div>
+                                            
+                                            <div className="absolute top-4 left-4 text-[#2ECB98] text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                                {String(index + 1).padStart(2, '0')}
+                                            </div>
+                                        </ArchitecturalContainer>
+                                    ))}
+                                </div>
+                            </div>
+                        </SafeScrollAnimatedSection>
                     )}
 
-                    {/* Action Buttons Section */}
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16">
-                        {/* Live Site Button - Always show if URL exists */}
-                        {proyecto.urlDelSitio && (
+                    <SafeScrollAnimatedSection delay={0.6} duration={0.6}>
+                        <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
                             <Link
-                                href={proyecto.urlDelSitio}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="group relative bg-[#8A2BE2] text-white font-['Oswald'] font-bold text-lg px-12 py-4 uppercase tracking-wider transition-all duration-300 hover:bg-[#8A2BE2]/80 hover:shadow-[0_0_30px_rgba(138,43,226,0.5)] transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#8A2BE2] focus:ring-offset-2 focus:ring-offset-[#1A1A1A]"
+                                href="/portafolio"
+                                className="group inline-flex items-center space-x-2 text-[#2ECB98] hover:text-white transition-colors duration-300 border border-[#2ECB98] hover:bg-[#2ECB98]/10 px-6 py-3 rounded"
                             >
-                                <span className="relative z-10 flex items-center">
-                                    Visitar Sitio Web en Vivo
-                                    <svg className="ml-3 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path>
-                                        <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path>
-                                    </svg>
-                                </span>
-                                
-                                {/* Geometric accents */}
-                                <div className="absolute -top-1 -right-1 w-3 h-3 bg-white/20 transform rotate-45 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                                <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-white/20 transform rotate-45 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                <FiArrowLeft className="w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1" />
+                                <span className="font-medium uppercase tracking-wider">VER MÁS PROYECTOS</span>
                             </Link>
-                        )}
-
-                        {/* Back to Portfolio Button */}
-                        <Link
-                            href="/portafolio"
-                            className="group relative bg-transparent border-2 border-[#8A2BE2] text-[#8A2BE2] font-['Oswald'] font-bold text-lg px-12 py-4 uppercase tracking-wider transition-all duration-300 hover:bg-[#8A2BE2] hover:text-[#1A1A1A] focus:outline-none focus:ring-2 focus:ring-[#8A2BE2] focus:ring-offset-2 focus:ring-offset-[#1A1A1A]"
-                        >
-                            <span className="relative z-10 flex items-center">
-                                <svg className="mr-3 w-5 h-5 transition-transform duration-300 group-hover:-translate-x-1" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fillRule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clipRule="evenodd" />
-                                </svg>
-                                Ver Más Proyectos
-                            </span>
-                            <div className="absolute inset-0 bg-[#8A2BE2] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-                        </Link>
-                    </div>
-
-                    {/* Project Info Cards */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-                        {/* Category Card */}
-                        <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 text-center">
-                            <div className="text-[#8A2BE2] text-sm font-medium uppercase tracking-wider mb-2">Categoría</div>
-                            <div className="text-[#EAEAEA] font-['Oswald'] font-bold uppercase">Sitio Web</div>
                         </div>
-
-                        {/* Status Card */}
-                        <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 text-center">
-                            <div className="text-[#8A2BE2] text-sm font-medium uppercase tracking-wider mb-2">Estado</div>
-                            <div className="text-[#EAEAEA] font-['Oswald'] font-bold uppercase">
-                                {proyecto.urlDelSitio ? 'En Vivo' : 'Completado'}
-                            </div>
-                        </div>
-
-                        {/* Type Card */}
-                        <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-6 text-center">
-                            <div className="text-[#8A2BE2] text-sm font-medium uppercase tracking-wider mb-2">Tipo</div>
-                            <div className="text-[#EAEAEA] font-['Oswald'] font-bold uppercase">Proyecto Web</div>
-                        </div>
-                    </div>
+                    </SafeScrollAnimatedSection>
                 </article>
             </div>
-        </div>
+        </SectionContainer>
     );
 }

@@ -1,51 +1,33 @@
-// src/app/layout.tsx
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { inter } from '@/lib/fonts';
 import "./globals.css";
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import JsonLdSchema from "@/components/JsonLdSchema";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import { client } from "@/lib/sanity.client";
+import { client } from "@/lib/sanity.server";
 import { groq } from "next-sanity";
-import React from "react"; // Importamos React
+import React from "react";
 import { Toaster } from "react-hot-toast";
 
-const inter = Inter({ subsets: ["latin"] });
 
 const query = groq`{
-  "businessProfile": *[_type == "perfilDeNegocio"][0],
-  "navigation": *[_type == "navegacion"][0],
-  "headerCarousel": *[_type == "headerCarousel"][0]{
-    slides[]{
-      _key,
-      titulo,
-      subtitulo,
-      imagenPortada{
-        asset->
-      }
-    }
-  }
+  "businessProfile": *[_type == "perfilDeNegocio"][0]
 }`;
 
 export default async function RootLayout({
   children,
 }: {
-  children: React.ReactNode; // Corregido a React.ReactNode
+  children: React.ReactNode;
 }) {
   let businessProfile = null;
-  let navigation = null;
-  let headerCarousel = null;
   
   try {
     const data = await client.fetch(query);
     businessProfile = data.businessProfile;
-    navigation = data.navigation;
-    headerCarousel = data.headerCarousel;
   } catch (error) {
     console.error('Error fetching layout data from Sanity:', error);
-    // Continue with null values - components will handle gracefully
   }
 
   return (
@@ -53,18 +35,15 @@ export default async function RootLayout({
       <head>
         {businessProfile && <JsonLdSchema perfilDeNegocio={businessProfile} />}
       </head>
-        <body className={`${inter.className}`}>
-        {/* ESTA ES LA LÍNEA CRÍTICA CORREGIDA */}
-        {businessProfile && <Header businessProfile={businessProfile} navigation={navigation} headerCarousel={headerCarousel} />}
+      <body className={`${inter.variable} font-sans`}>
+        <Header />
 
         <main>{children}</main>
 
         <Footer />
         
-        {/* WhatsApp Button - Siempre visible */}
         <WhatsAppButton />
         
-        {/* Toaster para las notificaciones */}
         <Toaster 
           position="top-right"
           toastOptions={{
@@ -72,11 +51,11 @@ export default async function RootLayout({
             style: {
               background: '#1A1A1A',
               color: '#EAEAEA',
-              border: '1px solid #8A2BE2',
+              border: '1px solid #30E0A0',
             },
             success: {
               iconTheme: {
-                primary: '#8A2BE2',
+                primary: '#30E0A0',
                 secondary: '#EAEAEA',
               },
             },

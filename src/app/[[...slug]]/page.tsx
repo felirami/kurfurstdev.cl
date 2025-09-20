@@ -1,27 +1,21 @@
-// src/app/[[...slug]]/page.tsx
-import { client } from "@/lib/sanity.client";
+import { client } from "@/lib/sanity.server";
 import { groq } from "next-sanity";
 import { notFound } from "next/navigation";
 import DynamicPage from "@/components/DynamicPage";
 import { Metadata } from "next";
-import { PageData } from "@/types"; // <-- 1. IMPORTAMOS EL TIPO CORREGIDO
+import { PageData } from "@/types";
 
-// En src/app/[[...slug]]/page.tsx
-
-// Esta función genera las consultas a Sanity
 const getPageQuery = (slug: string) => groq`
   *[_type == "pagina" && slug.current == "${slug}"][0] {
     ...,
     "secciones": secciones[]{
       ...,
-      // SI LA SECCIÓN ES UN HERO SIMPLE, PEDIMOS LOS CAMPOS DIRECTOS
       _type == "seccionHero" => {
         ...,
         imagenDeFondo {
           asset->
         }
       },
-      // SI LA SECCIÓN ES UN HERO CARRUSEL, PEDIMOS LOS DATOS DE LOS SLIDES
       _type == "seccionHeroCarrusel" => {
         slides[]{
           ...,
@@ -30,7 +24,6 @@ const getPageQuery = (slug: string) => groq`
           }
         }
       },
-      // SI LA SECCIÓN ES PORTAFOLIO DESTACADO, PEDIMOS LOS PROYECTOS REFERENCIADOS
       _type == "seccionPortafolioDestacado" => {
         ...,
         "proyectosDestacados": proyectosDestacados[]->{
@@ -45,7 +38,6 @@ const getPageQuery = (slug: string) => groq`
           urlDelSitio
         }
       },
-      // SI LA SECCIÓN ES CTA, PEDIMOS TODOS LOS CAMPOS
       _type == "seccionCTA" => {
         ...,
         boton {

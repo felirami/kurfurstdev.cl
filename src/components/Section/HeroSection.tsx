@@ -1,4 +1,4 @@
-// src/components/sections/HeroSection.tsx
+// src/components/Section/HeroSection.tsx
 "use client";
 import { urlFor } from "@/lib/sanity.client";
 import { HeroSectionData } from "@/types";
@@ -31,16 +31,16 @@ export default function HeroSection({ section }: Props) {
       
       {/* Animated Geometric Grid Overlay */}
       <div className="absolute inset-0 opacity-5 z-10">
-        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-[#8A2BE2]/10 to-transparent animate-pulse-slow"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-transparent via-[#2ECB98]/10 to-transparent animate-pulse-slow"></div>
         <div className="grid-pattern absolute inset-0"></div>
       </div>
 
       {/* Geometric Background Elements */}
       <div className="absolute inset-0 z-10">
-        <div className="absolute top-20 right-10 w-px h-32 bg-[#8A2BE2] opacity-60"></div>
-        <div className="absolute top-40 left-16 w-24 h-px bg-[#8A2BE2] opacity-40"></div>
-        <div className="absolute bottom-32 right-32 w-px h-48 bg-gradient-to-b from-[#8A2BE2] to-transparent opacity-30"></div>
-        <div className="absolute top-1/3 left-1/4 w-2 h-2 bg-[#8A2BE2] transform rotate-45"></div>
+        <div className="absolute top-20 right-10 w-px h-32 bg-[#2ECB98] opacity-60"></div>
+        <div className="absolute top-40 left-16 w-24 h-px bg-[#2ECB98] opacity-40"></div>
+        <div className="absolute bottom-32 right-32 w-px h-48 bg-gradient-to-b from-[#2ECB98] to-transparent opacity-30"></div>
+        <div className="absolute top-1/3 left-1/4 w-2 h-2 bg-[#2ECB98] transform rotate-45"></div>
       </div>
 
       {/* Main Content Container */}
@@ -53,8 +53,8 @@ export default function HeroSection({ section }: Props) {
               
               {/* Accent Line */}
               <div className="flex items-center mb-8">
-                <div className="w-16 h-px bg-[#8A2BE2]"></div>
-                <div className="ml-4 text-[#8A2BE2] text-sm font-medium tracking-[0.2em] uppercase">
+                <div className="w-16 h-px bg-[#2ECB98]"></div>
+                <div className="ml-4 text-[#2ECB98] text-sm font-medium tracking-[0.2em] uppercase">
                   Hero Simple
                 </div>
               </div>
@@ -68,7 +68,7 @@ export default function HeroSection({ section }: Props) {
 
               {/* Static Paragraph */}
               <div className="relative mb-16">
-                <div className="absolute -left-6 top-0 w-px h-full bg-gradient-to-b from-[#8A2BE2] to-transparent opacity-50"></div>
+                <div className="absolute -left-6 top-0 w-px h-full bg-gradient-to-b from-[#2ECB98] to-transparent opacity-50"></div>
                 <p className="text-[#EAEAEA] text-lg sm:text-xl lg:text-2xl leading-relaxed max-w-2xl [text-shadow:_0_3px_8px_rgb(0_0_0_/_80%)]">
                   {subtitulo || "Subtítulo o párrafo descriptivo"}
                 </p>
@@ -80,10 +80,10 @@ export default function HeroSection({ section }: Props) {
                 {textoBotonPrimario && (
                   <a 
                     href={urlBotonPrimario || '#'}
-                    className="group relative bg-[#8A2BE2] text-white font-['Oswald'] font-bold text-lg px-10 py-4 uppercase tracking-wider transition-all duration-300 hover:bg-[#9A3BF2] hover:shadow-lg hover:shadow-[#8A2BE2]/25 focus:outline-none focus:ring-2 focus:ring-[#8A2BE2] focus:ring-offset-2 focus:ring-offset-[#1A1A1A] w-fit"
+                    className="group relative bg-gradient-to-r from-[#30E0A0] to-[#28B888] text-black font-bold text-lg px-10 py-4 uppercase tracking-wider transition-all duration-300 hover:from-[#34E4A4] hover:to-[#2BC08C] hover:shadow-lg hover:shadow-[#30E0A0]/25 focus:outline-none focus:ring-2 focus:ring-[#30E0A0] focus:ring-offset-2 focus:ring-offset-[#1A1A1A] w-fit"
                   >
                     <span className="relative z-10">{textoBotonPrimario}</span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#8A2BE2] to-[#9A3BF2] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#34E4A4] to-[#2BC08C] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </a>
                 )}
                 
@@ -91,10 +91,10 @@ export default function HeroSection({ section }: Props) {
                 {textoBotonSecundario && (
                   <a 
                     href={urlBotonSecundario || '#'}
-                    className="group relative bg-transparent border-2 border-[#8A2BE2] text-[#8A2BE2] font-['Oswald'] font-bold text-lg px-8 py-3 uppercase tracking-wider transition-all duration-300 hover:bg-[#8A2BE2] hover:text-white focus:outline-none focus:ring-2 focus:ring-[#8A2BE2] focus:ring-offset-2 focus:ring-offset-[#1A1A1A] w-fit"
+                    className="group relative bg-transparent border-2 border-[#30E0A0] text-[#30E0A0] font-bold text-lg px-8 py-3 uppercase tracking-wider transition-all duration-300 hover:bg-gradient-to-r hover:from-[#30E0A0] hover:to-[#28B888] hover:text-black focus:outline-none focus:ring-2 focus:ring-[#30E0A0] focus:ring-offset-2 focus:ring-offset-[#1A1A1A] w-fit"
                   >
                     <span className="relative z-10">{textoBotonSecundario}</span>
-                    <div className="absolute inset-0 bg-[#8A2BE2] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#30E0A0] to-[#28B888] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
                   </a>
                 )}
               </div>
@@ -104,13 +104,13 @@ export default function HeroSection({ section }: Props) {
             <div className="hidden lg:block lg:col-span-4 xl:col-span-5">
               <div className="relative h-96 w-full">
                 {/* Main geometric shape */}
-                <div className="absolute inset-0 border-2 border-[#8A2BE2] opacity-20 transform rotate-12"></div>
+                <div className="absolute inset-0 border-2 border-[#2ECB98] opacity-20 transform rotate-12"></div>
                 <div className="absolute inset-4 border border-[#EAEAEA] opacity-10 transform -rotate-6"></div>
                 
                 {/* Floating elements */}
-                <div className="absolute top-8 right-8 w-3 h-3 bg-[#8A2BE2] transform rotate-45"></div>
+                <div className="absolute top-8 right-8 w-3 h-3 bg-[#2ECB98] transform rotate-45"></div>
                 <div className="absolute bottom-12 left-12 w-2 h-2 bg-[#EAEAEA] opacity-60"></div>
-                <div className="absolute top-1/2 right-1/4 w-px h-16 bg-[#8A2BE2] opacity-40"></div>
+                <div className="absolute top-1/2 right-1/4 w-px h-16 bg-[#2ECB98] opacity-40"></div>
               </div>
             </div>
           </div>
@@ -118,7 +118,7 @@ export default function HeroSection({ section }: Props) {
       </div>
 
       {/* Bottom Accent Line */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#8A2BE2] to-transparent opacity-30 z-10"></div>
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#2ECB98] to-transparent opacity-30 z-10"></div>
     </section>
   );
 }

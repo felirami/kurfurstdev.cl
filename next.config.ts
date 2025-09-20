@@ -36,9 +36,10 @@ const nextConfig = {
   },
   
   // Webpack optimizations (fallback for non-Turbopack builds)
-  webpack: (config: any, { dev, isServer }: { dev: boolean; isServer: boolean }) => {
+  webpack: (config: { optimization?: { splitChunks?: unknown } }, { dev, isServer }: { dev: boolean; isServer: boolean }) => {
     // Only apply webpack optimizations if not using Turbopack
     if (!process.env.TURBOPACK && !dev && !isServer) {
+      config.optimization = config.optimization || {};
       config.optimization.splitChunks = {
         chunks: 'all',
         cacheGroups: {

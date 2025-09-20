@@ -2,8 +2,9 @@
 
 import React, { useEffect, useState } from 'react';
 import { FaCode, FaLaptopCode, FaRocket, FaGraduationCap, FaAward, FaBriefcase } from 'react-icons/fa';
-import ScrollAnimatedSection from '@/components/ScrollAnimatedSection';
-import GlassContainer from '@/components/GlassContainer';
+import SafeScrollAnimatedSection from '@/components/SafeScrollAnimatedSection';
+import { ArchitecturalContainer, SectionContainer } from '@/components/UnifiedContainers';
+import PageHeader from '@/components/PageHeader';
 import { client } from '@/lib/sanity.client';
 import { urlFor } from '@/lib/sanity.client';
 import Link from 'next/link';
@@ -52,73 +53,48 @@ const AboutPage = () => {
         setPerfilData(data);
       } catch (error) {
         console.error('Error fetching perfil:', error);
-        // Set fallback data if Sanity fetch fails
-        setPerfilData({
-          nombre: "Andrés Kurfürst",
-          titulo: "Desarrollador Full Stack",
-          ubicacion: "Chile",
-          biografia: "Desarrollador especializado en crear soluciones web modernas y eficientes.",
-          habilidades: [],
-          experiencia: []
-        });
       }
     };
     
     fetchPerfil();
   }, []);
 
-  const defaultSkills = [
-    { icon: <FaCode className="w-8 h-8 text-[#8A2BE2]" />, name: "Frontend Development", level: "Experto" },
-    { icon: <FaLaptopCode className="w-8 h-8 text-[#8A2BE2]" />, name: "Backend Development", level: "Avanzado" },
-    { icon: <FaRocket className="w-8 h-8 text-[#8A2BE2]" />, name: "Full Stack Solutions", level: "Experto" }
+  const skills = perfilData?.habilidades || [
+    { icon: <FaCode className="w-5 h-5 text-[#2ECB98]" />, name: 'Desarrollo Frontend', level: 'Avanzado' },
+    { icon: <FaLaptopCode className="w-5 h-5 text-[#2ECB98]" />, name: 'Desarrollo Backend', level: 'Avanzado' },
+    { icon: <FaRocket className="w-5 h-5 text-[#2ECB98]" />, name: 'Optimización y SEO', level: 'Avanzado' },
   ];
 
-  const defaultExperience = [
-    { year: "2023-2025", role: "Desarrollador Full Stack", company: "KurfurstDev", description: "Desarrollo de soluciones web personalizadas con tecnologías modernas" },
-    { year: "2022-2023", role: "Frontend Developer", company: "Freelance", description: "Creación de interfaces de usuario elegantes y funcionales" },
-    { year: "2021-2022", role: "Web Developer", company: "Proyectos Personales", description: "Desarrollo de aplicaciones web con React y Node.js" }
+  const experience = perfilData?.experiencia || [
+    {
+      year: '2021 - PRESENTE',
+      role: 'DESARROLLADOR FULL STACK',
+      company: 'Proyectos Freelance',
+      description: 'He trabajado con startups y empresas para crear productos desde cero, definiendo la arquitectura, desarrollando tanto el frontend como el backend, y desplegando en la nube.',
+    },
+    {
+      year: '2019 - 2021',
+      role: 'DESARROLLADOR FRONTEND',
+      company: 'Agencia Digital Creativa',
+      description: 'Fui responsable de traducir diseños complejos en interfaces de usuario interactivas y responsivas, utilizando React y Next.js para asegurar un rendimiento óptimo.',
+    },
   ];
-
-  const skills = perfilData?.habilidades || defaultSkills;
-  const experience = perfilData?.experiencia || defaultExperience;
 
   return (
-    <div className="min-h-screen text-white relative pt-16 sm:pt-20">
-      {/* Hero Section */}
-      <section className="py-8 sm:py-12 md:py-16 px-4 sm:px-6">
-        <div className="max-w-6xl mx-auto">
-          <ScrollAnimatedSection>
-            <GlassContainer className="p-4 sm:p-6 md:p-8 mb-8 sm:mb-12">
-              <div className="text-center">
-                {/* Accent Line */}
-                <div className="flex items-center justify-center mb-6 sm:mb-8">
-                  <div className="w-12 sm:w-16 h-px bg-[#8A2BE2]"></div>
-                  <div className="ml-3 sm:ml-4 text-[#8A2BE2] text-xs sm:text-sm font-medium tracking-[0.2em] uppercase">
-                    Sobre Mí
-                  </div>
-                </div>
-                
-                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#EAEAEA] mb-4 sm:mb-6 font-['Oswald'] leading-tight tracking-tight">
-                  Desarrollador Full Stack
-                </h1>
-                
-                <div className="relative">
-                  <div className="hidden sm:block absolute left-1/2 transform -translate-x-1/2 -left-6 top-0 w-px h-full bg-gradient-to-b from-[#8A2BE2] to-transparent opacity-50"></div>
-                  <p className="text-[#EAEAEA] text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto [text-shadow:_0_3px_8px_rgb(0_0_0_/_80%)]">
-                    Especializado en crear experiencias digitales excepcionales con tecnologías de vanguardia
-                  </p>
-                </div>
-              </div>
-            </GlassContainer>
-          </ScrollAnimatedSection>
+    <SectionContainer withAura={true}>
+      <div className="max-w-7xl mx-auto pt-24">
+          <SafeScrollAnimatedSection delay={0.1} duration={0.6}>
+            <PageHeader 
+              subtitle="Sobre Mí"
+              title="DESARROLLADOR FULL STACK"
+              description="Transformo ideas en soluciones digitales reales. Cada línea de código tiene un propósito: hacer que tu negocio crezca."
+            />
+          </SafeScrollAnimatedSection>
 
-          {/* Main Content - Two Column Layout */}
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-start">
-            
-            {/* Left Column - Profile Photo */}
-            <ScrollAnimatedSection delay={0.1}>
+            <SafeScrollAnimatedSection delay={0.1}>
               <div className="relative">
-                <GlassContainer className="p-4 sm:p-6 md:p-8">
+                <ArchitecturalContainer className="p-4 sm:p-6 md:p-8">
                   <div className="aspect-square relative overflow-hidden rounded-lg">
                     {perfilData?.fotoPerfil ? (
                       <Image 
@@ -129,150 +105,136 @@ const AboutPage = () => {
                         height={400}
                       />
                     ) : (
-                      <div className="w-full h-full bg-gradient-to-br from-[#8A2BE2]/20 to-[#8A2BE2]/40 flex items-center justify-center">
-                        <FaCode className="w-16 sm:w-20 md:w-24 h-16 sm:h-20 md:h-24 text-[#8A2BE2]" />
+                      <div className="w-full h-full bg-gradient-to-br from-[#30E0A0]/20 to-[#2ECB98]/40 flex items-center justify-center">
+                        <FaCode className="w-16 sm:w-20 md:w-24 h-16 sm:h-20 md:h-24 text-[#30E0A0]" />
                       </div>
                     )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#8A2BE2]/20 to-transparent"></div>
                   </div>
                   
-                  {/* Profile Info */}
-                  <div className="mt-4 sm:mt-6 text-center">
-                    <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 font-['Oswald']">
-                      {perfilData?.nombre || 'Andrés Kurfürst'}
+                  <div className="mt-6 text-center">
+                    <h3 className="text-xl font-bold text-white mb-2 uppercase tracking-wider">
+                      {perfilData?.nombre || 'ANDRÉS KURFÜRST'}
                     </h3>
-                    <p className="text-[#8A2BE2] font-medium text-sm sm:text-base">
-                      {perfilData?.titulo || 'Full Stack Developer'}
+                    <p className="text-[#2ECB98] font-medium text-sm">
+                      {perfilData?.titulo || 'FULL STACK DEVELOPER'}
                     </p>
-                    <p className="text-gray-300 text-xs sm:text-sm mt-2">
+                    <p className="text-[#BBBBBB] text-xs mt-2">
                       {perfilData?.ubicacion || 'Valparaíso, Chile'}
                     </p>
                   </div>
-                </GlassContainer>
+                </ArchitecturalContainer>
               </div>
-            </ScrollAnimatedSection>
+            </SafeScrollAnimatedSection>
 
-            {/* Right Column - About Content */}
-            <ScrollAnimatedSection delay={0.2}>
+            <SafeScrollAnimatedSection delay={0.2}>
               <div className="space-y-6 sm:space-y-8">
                 
-                {/* About Text */}
-                <GlassContainer className="p-4 sm:p-6 md:p-8">
-                  <div className="flex items-center mb-4 sm:mb-6">
-                    <FaGraduationCap className="w-5 h-5 sm:w-6 sm:h-6 text-[#8A2BE2] mr-2 sm:mr-3" />
-                    <h2 className="text-xl sm:text-2xl font-bold text-white font-['Oswald']">Mi Historia</h2>
+                <ArchitecturalContainer>
+                  <div className="flex items-baseline mb-6">
+                    <FaGraduationCap className="w-6 h-6 text-[#2ECB98] mr-3 flex-shrink-0" />
+                    <h2 className="text-2xl sm:text-3xl font-bold text-white uppercase tracking-wider">MI HISTORIA</h2>
                   </div>
                   
-                  <div className="space-y-3 sm:space-y-4 text-gray-300 leading-relaxed text-sm sm:text-base">
+                  <div className="space-y-4 section-subtitle leading-relaxed">
                     <p>
-                      Soy un desarrollador full stack apasionado por crear soluciones digitales que combinan 
-                      funcionalidad excepcional con diseño elegante. Mi enfoque se centra en la precisión 
-                      técnica y la atención al detalle.
+                      Llevo más de 3 años construyendo aplicaciones web que realmente funcionan. No me conformo 
+                      con código que "simplemente funciona" - busco soluciones elegantes que resuelvan problemas reales.
                     </p>
                     <p>
-                      Con experiencia en tecnologías modernas como React, Next.js, TypeScript y Node.js, 
-                      me especializo en desarrollar aplicaciones web escalables y de alto rendimiento que 
-                      impulsan el crecimiento de los negocios.
+                      Mi stack favorito incluye React, Next.js y TypeScript en el frontend, con Node.js y bases de datos 
+                      modernas en el backend. Pero la tecnología es solo la herramienta - lo importante es entender 
+                      qué necesita tu negocio.
                     </p>
                     <p>
-                      Cada proyecto es una oportunidad para superar expectativas y entregar resultados 
-                      que marquen la diferencia en el mundo digital.
+                      ¿Mi filosofía? Cada proyecto debe generar valor real. Si no mejora tu proceso, aumenta tus ventas 
+                      o facilita la vida de tus usuarios, entonces no vale la pena construirlo.
                     </p>
                   </div>
-                </GlassContainer>
+                </ArchitecturalContainer>
 
-                {/* Skills */}
-                <GlassContainer className="p-8">
-                  <div className="flex items-center mb-6">
-                    <FaAward className="w-6 h-6 text-[#8A2BE2] mr-3" />
-                    <h2 className="text-2xl font-bold text-white font-['Oswald']">Especialidades</h2>
+                <ArchitecturalContainer>
+                  <div className="flex items-baseline mb-6">
+                    <FaAward className="w-6 h-6 text-[#2ECB98] mr-3 flex-shrink-0" />
+                    <h2 className="text-2xl sm:text-3xl font-bold text-white uppercase tracking-wider">ESPECIALIDADES</h2>
                   </div>
                   
                   <div className="grid gap-4">
                     {skills.map((skill: { icon: React.ReactNode; name: string; level: string }, index: number) => (
-                      <div key={index} className="flex items-center justify-between p-4 bg-white/5 rounded-lg border border-white/10">
+                      <div key={index} className="flex items-center justify-between p-4 bg-[#111111] rounded-xl border border-[#333333] hover:border-[#2ECB98] transition-all duration-300">
                         <div className="flex items-center">
-                          <div className="p-2 bg-[#8A2BE2]/10 rounded-full mr-4">
+                          <div className="p-2 bg-[#2ECB98]/10 rounded-full mr-4">
                             {skill.icon}
                           </div>
-                          <span className="text-white font-medium">{skill.name}</span>
+                          <span className="text-white font-medium uppercase tracking-wide">{skill.name}</span>
                         </div>
-                        <span className="text-[#8A2BE2] text-sm font-medium">{skill.level}</span>
+                        <span className="text-[#2ECB98] text-sm font-medium">{skill.level}</span>
                       </div>
                     ))}
                   </div>
-                </GlassContainer>
+                </ArchitecturalContainer>
 
               </div>
-            </ScrollAnimatedSection>
+            </SafeScrollAnimatedSection>
           </div>
 
-          {/* Experience Section */}
-          <ScrollAnimatedSection delay={0.3}>
-            <GlassContainer className="p-8 mt-16">
-              <div className="flex items-center mb-8">
-                <FaBriefcase className="w-6 h-6 text-[#8A2BE2] mr-3" />
-                <h2 className="text-3xl font-bold text-white font-['Oswald']">Experiencia</h2>
-              </div>
+          <ArchitecturalContainer className="mt-16">
+            <div className="flex items-baseline mb-8">
+              <FaBriefcase className="w-6 h-6 text-[#2ECB98] mr-3 flex-shrink-0" />
+              <h2 className="text-3xl sm:text-4xl font-bold text-white uppercase tracking-wider">EXPERIENCIA</h2>
+            </div>
               
               <div className="space-y-6">
                 {experience.map((exp: { year: string; role: string; company: string; description: string }, index: number) => (
-                  <div key={index} className="flex flex-col md:flex-row md:items-center p-6 bg-white/5 rounded-lg border border-white/10 hover:bg-white/10 transition-all duration-300">
+                  <div key={index} className="flex flex-col md:flex-row md:items-center p-6 bg-[#111111] rounded-xl border border-[#333333] hover:border-[#2ECB98] transition-all duration-300">
                     <div className="md:w-32 flex-shrink-0 mb-4 md:mb-0">
-                      <span className="text-[#8A2BE2] font-bold text-sm">{exp.year}</span>
+                      <span className="text-[#2ECB98] font-bold text-sm uppercase tracking-wider">{exp.year}</span>
                     </div>
                     <div className="flex-grow">
-                      <h3 className="text-xl font-bold text-white mb-1 font-['Oswald']">{exp.role}</h3>
-                      <p className="text-[#8A2BE2] font-medium mb-2">{exp.company}</p>
-                      <p className="text-gray-300">{exp.description}</p>
+                      <h3 className="text-xl font-bold text-white mb-1 uppercase tracking-wide">{exp.role}</h3>
+                      <p className="text-[#2ECB98] font-medium mb-2">{exp.company}</p>
+                      <p className="section-subtitle">{exp.description}</p>
                     </div>
                   </div>
                 ))}
               </div>
-            </GlassContainer>
-          </ScrollAnimatedSection>
+          </ArchitecturalContainer>
 
-          {/* CTA Section */}
-          <ScrollAnimatedSection delay={0.4}>
-            <GlassContainer className="p-8 mt-16 text-center">
-              <div className="flex items-center justify-center mb-6">
-                <div className="w-16 h-px bg-[#8A2BE2]"></div>
-                <div className="ml-4 text-[#8A2BE2] text-sm font-medium tracking-[0.2em] uppercase">
-                  Colaboremos
-                </div>
+          <ArchitecturalContainer className="mt-16 text-center">
+            <div className="flex items-center justify-center mb-6">
+              <div className="w-16 h-px bg-gradient-to-r from-[#2ECB98] to-[#28B888]"></div>
+              <div className="mx-4 text-[#2ECB98] text-sm font-medium tracking-[0.2em] uppercase">
+                Colaboremos
               </div>
+              <div className="w-16 h-px bg-gradient-to-r from-[#28B888] to-[#2ECB98]"></div>
+            </div>
+            
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white uppercase tracking-wider mb-6">
+              ¿TIENES UN PROYECTO EN MENTE?
+            </h2>
               
-              <h2 className="text-3xl font-bold text-white mb-6 font-['Oswald']">
-                ¿Tienes un proyecto en mente?
-              </h2>
+            <p className="section-subtitle mb-8 max-w-2xl mx-auto">
+              ¿Tienes una idea que quieres convertir en realidad? Hablemos. Me encanta escuchar 
+              nuevos desafíos y encontrar la mejor forma de resolverlos.
+            </p>
               
-              <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
-                Estoy siempre abierto a nuevos desafíos y oportunidades de colaboración. 
-                Hablemos sobre cómo puedo ayudarte a materializar tu visión digital.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link
-                  href="/contacto"
-                  className="group relative bg-[#8A2BE2] text-white font-['Oswald'] font-bold text-lg px-8 py-4 uppercase tracking-wider transition-all duration-300 hover:bg-[#9A3BF2] hover:shadow-lg hover:shadow-[#8A2BE2]/25 focus:outline-none focus:ring-2 focus:ring-[#8A2BE2] focus:ring-offset-2 focus:ring-offset-[#1A1A1A]"
-                >
-                  <span className="relative z-10">Iniciar Proyecto</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#8A2BE2] to-[#9A3BF2] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </Link>
-                <Link
-                  href="/portafolio"
-                  className="group relative bg-transparent border-2 border-[#8A2BE2] text-[#8A2BE2] font-['Oswald'] font-bold text-lg px-8 py-4 uppercase tracking-wider transition-all duration-300 hover:bg-[#8A2BE2] hover:text-white focus:outline-none focus:ring-2 focus:ring-[#8A2BE2] focus:ring-offset-2 focus:ring-offset-[#1A1A1A]"
-                >
-                  <span className="relative z-10">Ver Portafolio</span>
-                  <div className="absolute inset-0 bg-[#8A2BE2] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-                </Link>
-              </div>
-            </GlassContainer>
-          </ScrollAnimatedSection>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="/contacto"
+                className="btn-primary px-6 sm:px-8 py-3 sm:py-4"
+              >
+                INICIAR PROYECTO
+              </Link>
+              <Link
+                href="/portafolio"
+                className="px-8 py-3 text-white border border-[#333333] rounded-xl font-medium text-sm uppercase tracking-wider hover:border-[#2ECB98] hover:text-[#2ECB98] transition-all duration-300"
+              >
+                VER PORTAFOLIO
+              </Link>
+            </div>
+          </ArchitecturalContainer>
 
         </div>
-      </section>
-    </div>
+    </SectionContainer>
   );
 };
 

@@ -1,4 +1,4 @@
-function readPackage(pkg, context) {
+function readPackage(pkg) {
   // Allow specific packages to run their build scripts
   if (pkg.name === '@tailwindcss/oxide' || 
       pkg.name === 'esbuild' || 

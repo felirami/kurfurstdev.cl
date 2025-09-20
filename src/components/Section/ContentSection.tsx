@@ -1,28 +1,26 @@
-// src/components/sections/ContentSection.tsx
 import { ContentSectionData } from "@/types";
 import { PortableText } from "@portabletext/react";
-import ScrollAnimatedSection from "@/components/ScrollAnimatedSection";
+import SafeScrollAnimatedSection from "@/components/SafeScrollAnimatedSection";
 import Link from "next/link";
 import { urlFor } from "@/lib/sanity.client";
 import Image from "next/image";
-import GlassContainer from "@/components/GlassContainer";
+import ArchitecturalContainer from "@/components/ArchitecturalContainer";
 
 type Props = {
   section: ContentSectionData;
 };
 
-// Custom components for PortableText
 const customComponents = {
   block: {
     normal: ({ children }: { children?: React.ReactNode }) => (
-      <p className="text-[#EAEAEA]/90 leading-relaxed mb-6 text-base sm:text-lg">{children}</p>
+      <p className="text-[#BBBBBB] leading-relaxed mb-6 text-lg font-normal">{children}</p>
     ),
     h3: ({ children }: { children?: React.ReactNode }) => (
-      <h3 className="font-['Oswald'] text-xl sm:text-2xl font-bold text-[#EAEAEA] uppercase tracking-wide mb-4 mt-8 border-l-4 border-[#8A2BE2] pl-4">{children}</h3>
+      <h3 className="text-xl font-bold text-white uppercase tracking-wider mb-4 mt-8 border-l-3 border-[#2ECB98] pl-4">{children}</h3>
     ),
     h4: ({ children }: { children?: React.ReactNode }) => (
-      <h4 className="font-['Oswald'] text-lg sm:text-xl font-semibold text-[#8A2BE2] uppercase tracking-wide mb-3 mt-6 flex items-center">
-        <div className="w-2 h-2 bg-[#8A2BE2] rounded-full mr-3"></div>
+      <h4 className="text-lg font-semibold text-[#2ECB98] uppercase tracking-wide mb-3 mt-6 flex items-center">
+        <div className="w-2 h-2 bg-[#2ECB98] rounded-full mr-3"></div>
         {children}
       </h4>
     ),
@@ -37,30 +35,30 @@ const customComponents = {
   },
   listItem: {
     bullet: ({ children }: { children?: React.ReactNode }) => (
-      <li className="flex items-start bg-white/5 rounded-lg p-4 border border-white/10">
-        <div className="w-2 h-2 bg-[#8A2BE2] rounded-full mt-3 mr-4 flex-shrink-0"></div>
-        <div className="text-[#EAEAEA]/90 leading-relaxed flex-1">{children}</div>
+      <li className="flex items-start bg-[#111111] rounded-xl p-4 border border-[#333333] hover:border-[#2ECB98] transition-all duration-300 mb-4">
+        <div className="w-2 h-2 bg-[#2ECB98] rounded-full mt-2 mr-4 flex-shrink-0"></div>
+        <div className="text-[#BBBBBB] leading-relaxed flex-1 text-base">{children}</div>
       </li>
     ),
     number: ({ children }: { children?: React.ReactNode }) => (
-      <li className="flex items-start bg-white/5 rounded-lg p-4 border border-white/10 counter-increment-list">
-        <div className="w-6 h-6 bg-[#8A2BE2] rounded-full flex items-center justify-center text-white text-sm font-bold mr-4 flex-shrink-0 before:content-[counter(list-item)]">
+      <li className="flex items-start bg-[#111111] rounded-xl p-4 border border-[#333333] hover:border-[#2ECB98] transition-all duration-300 counter-increment-list mb-4">
+        <div className="w-6 h-6 bg-[#2ECB98] rounded-full flex items-center justify-center text-black text-sm font-bold mr-4 flex-shrink-0 before:content-[counter(list-item)]">
         </div>
-        <div className="text-[#EAEAEA]/90 leading-relaxed flex-1">{children}</div>
+        <div className="text-[#BBBBBB] leading-relaxed flex-1 text-base">{children}</div>
       </li>
     ),
   },
   marks: {
     link: ({ children, value }: { children?: React.ReactNode; value?: { href: string } }) => (
       <Link 
-        href={value?.href || '#'} 
-        className="text-[#8A2BE2] hover:text-[#8A2BE2]/80 underline transition-colors duration-300"
+        href={value?.href || '#'}
+        className="text-[#2ECB98] hover:text-[#2ECB98]/80 underline transition-colors duration-300"
       >
         {children}
       </Link>
     ),
     strong: ({ children }: { children?: React.ReactNode }) => (
-      <strong className="text-[#8A2BE2] font-semibold">{children}</strong>
+      <strong className="text-[#2ECB98] font-semibold">{children}</strong>
     ),
   },
   types: {
@@ -70,7 +68,7 @@ const customComponents = {
         <div className="my-8">
           <Link 
             href={urlBoton}
-            className="inline-flex items-center px-8 py-4 bg-[#8A2BE2] hover:bg-[#8A2BE2]/80 text-white font-medium rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+            className="btn-primary px-6 sm:px-8 py-3 sm:py-4"
           >
             {textoBoton}
             <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -87,83 +85,132 @@ export default function ContentSection({ section }: Props) {
   const { titulo, imagenPersonal, cuerpo } = section;
 
   return (
-    <ScrollAnimatedSection>
-      <section className="relative py-20 overflow-hidden">
-        {/* Geometric Background Elements */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-20 left-10 w-px h-32 bg-[#8A2BE2]"></div>
-          <div className="absolute top-40 right-16 w-24 h-px bg-[#8A2BE2]"></div>
-          <div className="absolute bottom-32 left-32 w-px h-48 bg-gradient-to-b from-[#8A2BE2] to-transparent"></div>
-          <div className="absolute top-1/3 right-1/4 w-2 h-2 bg-[#8A2BE2] transform rotate-45"></div>
-        </div>
-
-        <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-8">
-          {/* Section Header */}
-          {titulo && (
-            <div className="text-center mb-16">
-              <div className="flex items-center justify-center mb-8">
-                <div className="w-16 h-px bg-[#8A2BE2]"></div>
-                <div className="mx-6 text-[#8A2BE2] text-sm font-medium tracking-[0.3em] uppercase">
-                  Contenido
+    <section className="py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {titulo && (
+          <SafeScrollAnimatedSection delay={0.1}>
+            <ArchitecturalContainer className="text-center mb-12">
+              <div className="flex items-center justify-center mb-6">
+                <div className="w-24 h-px bg-gradient-to-r from-[#2ECB98] to-[#28B888]"></div>
+                <div className="mx-6 text-[#2ECB98] text-sm font-medium tracking-[0.3em] uppercase">
+                  Bienvenido
                 </div>
-                <div className="w-16 h-px bg-[#8A2BE2]"></div>
+                <div className="w-24 h-px bg-gradient-to-r from-[#28B888] to-[#2ECB98]"></div>
               </div>
               
-              <h2 className="font-['Oswald'] text-4xl md:text-5xl lg:text-6xl font-bold text-[#EAEAEA] uppercase tracking-tight">
+              <h2 className="section-title text-4xl md:text-5xl lg:text-6xl mb-6">
                 {titulo}
               </h2>
-            </div>
-          )}
+              
+              <div className="flex items-center justify-center mt-8">
+                <div className="w-2 h-2 bg-[#2ECB98] rounded-full"></div>
+                <div className="w-16 h-px bg-gradient-to-r from-[#2ECB98] to-transparent mx-4"></div>
+                <div className="w-1 h-1 bg-[#2ECB98] rounded-full"></div>
+                <div className="w-16 h-px bg-gradient-to-l from-[#2ECB98] to-transparent mx-4"></div>
+                <div className="w-2 h-2 bg-[#2ECB98] rounded-full"></div>
+              </div>
+            </ArchitecturalContainer>
+          </SafeScrollAnimatedSection>
+        )}
 
-          {/* Content Layout - Two columns if personal image exists, single column otherwise */}
+        <SafeScrollAnimatedSection delay={0.2}>
           {imagenPersonal ? (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
-              {/* Left Column - Personal Image (1/3 width on desktop) */}
-              <div className="md:col-span-1 flex justify-center mb-8 md:mb-0">
-                <div className="relative">
-                  <Image
-                    src={urlFor(imagenPersonal).width(400).height(400).url()}
-                    alt="Imagen personal"
-                    width={300}
-                    height={300}
-                    className="rounded-full border-4 border-[#8A2BE2]/50 shadow-2xl"
-                  />
-                  {/* Geometric accent around image */}
-                  <div className="absolute -top-2 -right-2 w-4 h-4 bg-[#8A2BE2] transform rotate-45"></div>
-                  <div className="absolute -bottom-2 -left-2 w-2 h-2 bg-[#8A2BE2] transform rotate-45"></div>
+            <div className="max-w-7xl mx-auto">
+              <ArchitecturalContainer className="relative overflow-hidden">
+                <div className="absolute inset-0 opacity-[0.02]">
+                  <div className="absolute inset-0" style={{
+                    backgroundImage: `radial-gradient(circle at 25% 25%, #2ECB98 1px, transparent 1px)`,
+                    backgroundSize: '40px 40px'
+                  }}></div>
                 </div>
-              </div>
+                
+                <div className="absolute top-0 left-0 w-20 h-px bg-gradient-to-r from-[#2ECB98] to-transparent opacity-60"></div>
+                <div className="absolute top-0 left-0 w-px h-20 bg-gradient-to-b from-[#2ECB98] to-transparent opacity-60"></div>
+                <div className="absolute bottom-0 right-0 w-20 h-px bg-gradient-to-l from-[#2ECB98] to-transparent opacity-60"></div>
+                <div className="absolute bottom-0 right-0 w-px h-20 bg-gradient-to-t from-[#2ECB98] to-transparent opacity-60"></div>
+                
+                <div className="relative z-10 p-12 lg:p-16">
+                  <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+                    
+                    <div className="lg:col-span-4 flex justify-center lg:justify-start">
+                      <div className="relative group">
+                        <div className="relative">
+                          <div className="w-64 h-64 lg:w-72 lg:h-72 relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#111111] to-[#1a1a1a] border border-[#333333] shadow-2xl">
+                            <Image
+                              src={urlFor(imagenPersonal).width(400).height(400).url()}
+                              alt="Imagen personal"
+                              width={400}
+                              height={400}
+                              className="w-full h-full object-cover"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#111111]/20 via-transparent to-transparent"></div>
+                          </div>
+                          
+                          <div className="absolute -bottom-4 -right-4 bg-[#2ECB98] text-black px-4 py-2 rounded-xl font-bold text-sm uppercase tracking-wider shadow-lg">
+                            <div className="flex items-center gap-2">
+                              <div className="w-2 h-2 bg-black rounded-full"></div>
+                              Disponible
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 
-              {/* Right Column - Content (2/3 width on desktop) */}
-              <div className="md:col-span-2">
-                {/* Glassmorphism container for text content */}
-                <GlassContainer>
-                  <div className="text-left prose prose-lg prose-invert max-w-none [&_h1]:text-[#EAEAEA] [&_h1]:font-['Oswald'] [&_h1]:font-bold [&_h1]:uppercase [&_h1]:tracking-wider [&_h2]:text-[#EAEAEA] [&_h2]:font-['Oswald'] [&_h2]:font-bold [&_h2]:uppercase [&_h2]:tracking-wider [&_h2]:border-b [&_h2]:border-[#8A2BE2]/30 [&_h2]:pb-2 [&_h2]:mb-6 [&_h3]:text-[#EAEAEA] [&_h3]:font-['Oswald'] [&_h3]:font-bold [&_h3]:uppercase [&_h3]:tracking-wider [&_h4]:text-[#EAEAEA] [&_h4]:font-['Oswald'] [&_h4]:font-bold [&_h4]:uppercase [&_h4]:tracking-wider [&_p]:text-[#EAEAEA]/90 [&_p]:leading-relaxed [&_p]:mb-6 [&_p]:text-lg [&_p]:text-left [&_strong]:text-[#8A2BE2] [&_strong]:font-semibold [&_a]:text-[#8A2BE2] [&_a]:no-underline [&_a]:border-b [&_a]:border-transparent [&_a]:transition-colors [&_a:hover]:border-[#8A2BE2] [&_ul]:text-[#EAEAEA]/90 [&_ol]:text-[#EAEAEA]/90 [&_li::marker]:text-[#8A2BE2] [&_blockquote]:border-l-4 [&_blockquote]:border-[#8A2BE2] [&_blockquote]:bg-[#8A2BE2]/10 [&_blockquote]:text-[#EAEAEA] [&_blockquote]:italic [&_blockquote]:p-6 [&_blockquote]:my-8">
-                    <PortableText value={cuerpo} components={customComponents} />
+                    <div className="lg:col-span-8">
+                      <div className="space-y-8">
+                        <div className="space-y-4">
+                          <div className="flex items-center gap-4 mb-6">
+                            <div className="w-12 h-px bg-[#2ECB98]"></div>
+                            <span className="text-[#2ECB98] text-sm font-medium uppercase tracking-[0.3em]">
+                              Desarrollador Full Stack
+                            </span>
+                            <div className="flex-1 h-px bg-gradient-to-r from-[#2ECB98] to-transparent"></div>
+                          </div>
+                        </div>
+                        
+                        <div className="prose prose-lg max-w-none">
+                          <PortableText value={cuerpo} components={customComponents} />
+                        </div>
+                        
+                        <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 pt-8 border-t border-[#333333]">
+                          <div className="text-center lg:text-left">
+                            <div className="text-2xl font-bold text-[#2ECB98] mb-1">5+</div>
+                            <div className="text-sm text-[#BBBBBB] uppercase tracking-wider">Años Experiencia</div>
+                          </div>
+                          <div className="text-center lg:text-left">
+                            <div className="text-2xl font-bold text-[#2ECB98] mb-1">10</div>
+                            <div className="text-sm text-[#BBBBBB] uppercase tracking-wider">Proyectos Completados</div>
+                          </div>
+                          <div className="text-center lg:text-left col-span-2 lg:col-span-1">
+                            <div className="text-2xl font-bold text-[#2ECB98] mb-1">100%</div>
+                            <div className="text-sm text-[#BBBBBB] uppercase tracking-wider">Satisfacción Cliente</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </GlassContainer>
-              </div>
+                </div>
+              </ArchitecturalContainer>
             </div>
           ) : (
-            /* Single Column Layout - No personal image */
-            <div className="max-w-4xl mx-auto">
-              {/* Glassmorphism container for text content */}
-              <GlassContainer>
-                <div className="text-left prose prose-lg prose-invert max-w-none [&_h1]:text-[#EAEAEA] [&_h1]:font-['Oswald'] [&_h1]:font-bold [&_h1]:uppercase [&_h1]:tracking-wider [&_h2]:text-[#EAEAEA] [&_h2]:font-['Oswald'] [&_h2]:font-bold [&_h2]:uppercase [&_h2]:tracking-wider [&_h2]:border-b [&_h2]:border-[#8A2BE2]/30 [&_h2]:pb-2 [&_h2]:mb-6 [&_h3]:text-[#EAEAEA] [&_h3]:font-['Oswald'] [&_h3]:font-bold [&_h3]:uppercase [&_h3]:tracking-wider [&_h4]:text-[#EAEAEA] [&_h4]:font-['Oswald'] [&_h4]:font-bold [&_h4]:uppercase [&_h4]:tracking-wider [&_p]:text-[#EAEAEA]/90 [&_p]:leading-relaxed [&_p]:mb-6 [&_p]:text-lg [&_p]:text-left [&_strong]:text-[#8A2BE2] [&_strong]:font-semibold [&_a]:text-[#8A2BE2] [&_a]:no-underline [&_a]:border-b [&_a]:border-transparent [&_a]:transition-colors [&_a:hover]:border-[#8A2BE2] [&_ul]:text-[#EAEAEA]/90 [&_ol]:text-[#EAEAEA]/90 [&_li::marker]:text-[#8A2BE2] [&_blockquote]:border-l-4 [&_blockquote]:border-[#8A2BE2] [&_blockquote]:bg-[#8A2BE2]/10 [&_blockquote]:text-[#EAEAEA] [&_blockquote]:italic [&_blockquote]:p-6 [&_blockquote]:my-8">
+            <div className="max-w-5xl mx-auto">
+              <ArchitecturalContainer className="p-12 lg:p-16 relative">
+                <div className="absolute top-8 right-8 w-16 h-px bg-[#2ECB98] opacity-30"></div>
+                <div className="absolute bottom-8 left-8 w-px h-16 bg-[#2ECB98] opacity-30"></div>
+                
+                <div className="max-w-none text-center">
                   <PortableText value={cuerpo} components={customComponents} />
                 </div>
-              </GlassContainer>
+                
+                <div className="flex items-center justify-center mt-12">
+                  <div className="w-32 h-px bg-gradient-to-r from-transparent via-[#2ECB98] to-transparent"></div>
+                </div>
+              </ArchitecturalContainer>
             </div>
           )}
-
-          {/* Bottom accent */}
-          <div className="flex items-center justify-center mt-16">
-            <div className="w-8 h-px bg-[#8A2BE2]"></div>
-            <div className="mx-3 w-1 h-1 bg-[#8A2BE2] transform rotate-45"></div>
-            <div className="w-8 h-px bg-[#8A2BE2]"></div>
-          </div>
-        </div>
-      </section>
-    </ScrollAnimatedSection>
+        </SafeScrollAnimatedSection>
+      </div>
+    </section>
   );
 }
