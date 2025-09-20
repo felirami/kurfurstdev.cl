@@ -4,7 +4,6 @@ import { ServicesSectionData } from "@/types";
 import { urlFor } from "@/lib/sanity.client";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { useState } from "react";
 import Image from "next/image";
 import SafeScrollAnimatedSection from "../SafeScrollAnimatedSection";
 import { ArchitecturalContainer, SectionContainer } from "../UnifiedContainers";
