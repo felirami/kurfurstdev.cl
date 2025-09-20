@@ -85,7 +85,7 @@ const getPlanIcon = (planTitle: string) => {
   return <FaGem className="w-8 h-8 text-[#2ECB98]" />;
 };
 
-const PricingCard: React.FC<{ plan: PricingPlan; index: number }> = ({ plan, index }) => {
+const PricingCard: React.FC<{ plan: PricingPlan }> = ({ plan }) => {
   const isHighlighted = plan.destacado;
 
   const scrollToComparison = (e: React.MouseEvent) => {
@@ -209,7 +209,7 @@ const PricingPlansSection: React.FC<PricingPlansSectionProps> = ({ data }) => {
                   : 'md:grid-cols-2 lg:grid-cols-4'
           }`}>
             {sortedPlans.map((plan, index) => (
-              <PricingCard key={index} plan={plan} index={index} />
+              <PricingCard key={index} plan={plan} />
             ))}
           </div>
         </SafeScrollAnimatedSection>

@@ -8,10 +8,9 @@ import ArchitecturalContainer from "./ArchitecturalContainer";
 
 type Props = {
   proyecto: ProyectoData;
-  index?: number;
 };
 
-export default function PortfolioCard({ proyecto, index = 0 }: Props) {
+export default function PortfolioCard({ proyecto }: Props) {
   const imageUrl = urlFor(proyecto.imagenPrincipal).width(800).height(600).url();
   
   const getDescriptionPreview = (description: PortableTextBlock[]) => {

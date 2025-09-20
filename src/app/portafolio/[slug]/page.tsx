@@ -8,7 +8,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SectionContainer, ArchitecturalContainer } from "@/components/UnifiedContainers";
 import SafeScrollAnimatedSection from "@/components/SafeScrollAnimatedSection";
-import { FiArrowLeft, FiExternalLink, FiCalendar, FiTag } from "react-icons/fi";
+import { FiArrowLeft, FiExternalLink, FiTag } from "react-icons/fi";
 
 type Props = {
   params: Promise<{

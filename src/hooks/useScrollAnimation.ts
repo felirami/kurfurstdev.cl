@@ -1,7 +1,7 @@
 // src/hooks/useScrollAnimation.ts
 "use client";
 import { useInView } from "framer-motion";
-import React, { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 
 interface UseScrollAnimationOptions {
   once?: boolean;

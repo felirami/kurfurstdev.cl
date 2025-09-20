@@ -138,7 +138,7 @@ const AboutPage = () => {
                   <div className="space-y-4 section-subtitle leading-relaxed">
                     <p>
                       Llevo más de 3 años construyendo aplicaciones web que realmente funcionan. No me conformo 
-                      con código que "simplemente funciona" - busco soluciones elegantes que resuelvan problemas reales.
+                      con código que &quot;simplemente funciona&quot; - busco soluciones elegantes que resuelvan problemas reales.
                     </p>
                     <p>
                       Mi stack favorito incluye React, Next.js y TypeScript en el frontend, con Node.js y bases de datos 

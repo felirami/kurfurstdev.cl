@@ -7,14 +7,12 @@ interface KineticTypographyProps {
   text: string;
   className?: string;
   delay?: number;
-  duration?: number;
 }
 
 const KineticTypography: React.FC<KineticTypographyProps> = ({
   text,
   className = '',
-  delay = 0,
-  duration = 0.6
+  delay = 0
 }) => {
   const words = text.split(' ');
 

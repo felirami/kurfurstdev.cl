@@ -90,7 +90,7 @@ export default function TechnologiesSection({ section }: Props) {
 
         <SafeScrollAnimatedSection delay={0.2}>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8">
-          {techStack.map((tech, index) => {
+          {techStack.map((tech) => {
             const IconComponent = tech.icon;
             return (
               <ArchitecturalContainer 

@@ -6,7 +6,6 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import Image from "next/image";
-import { FaArrowRight } from "react-icons/fa";
 import SafeScrollAnimatedSection from "../SafeScrollAnimatedSection";
 import { ArchitecturalContainer, SectionContainer } from "../UnifiedContainers";
 import PageHeader from "../PageHeader";
@@ -18,8 +17,7 @@ type Props = {
 
 export default function ServicesSection({ section }: Props) {
   const { titulo, listaDeServicios } = section;
-  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
-
+  
   return (
     <SectionContainer withAura={true}>
       <div className="max-w-7xl mx-auto pt-24">
@@ -42,9 +40,7 @@ export default function ServicesSection({ section }: Props) {
                   className="group overflow-hidden h-[500px] relative"
                 >
                   <motion.div
-                    onHoverStart={() => setHoveredCard(servicio._key)}
-                    onHoverEnd={() => setHoveredCard(null)}
-                    whileHover={{ y: -5 }}
+                                        whileHover={{ y: -5 }}
                     transition={{ duration: 0.3 }}
                     className="h-full"
                   >

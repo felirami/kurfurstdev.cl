@@ -11,7 +11,7 @@ import {
   FiCpu, 
   FiArrowRight
 } from 'react-icons/fi';
-import { ArchitecturalContainer, GradientTitle, SectionContainer } from '@/components/UnifiedContainers';
+import { ArchitecturalContainer, GradientTitle } from '@/components/UnifiedContainers';
 import SafeScrollAnimatedSection from '@/components/SafeScrollAnimatedSection';
 import { 
   SiReact, 

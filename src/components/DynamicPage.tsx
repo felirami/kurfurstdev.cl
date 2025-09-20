@@ -9,8 +9,6 @@ import FeaturedPortfolioSection from "@/components/Section/FeaturedPortfolioSect
 import CTASection from "@/components/Section/CTASection";
 import TechnologiesSection from '@/components/Section/TechnologiesSection';
 import PricingPlansSection from '@/components/Section/PricingPlansSection';
-import MainCTASection from '@/components/Section/MainCTASection';
-import FinalCTASection from '@/components/Section/FinalCTASection';
 import { PageSection } from "@/types";
 
 type PageData = {
