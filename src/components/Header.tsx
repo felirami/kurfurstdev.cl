@@ -137,3 +137,5 @@ const Header = () => {
 };
 
 export default Header;
+
+// Forzar detección de cambios
