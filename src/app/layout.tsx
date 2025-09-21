@@ -35,10 +35,12 @@ export default async function RootLayout({
       <head>
         {businessProfile && <JsonLdSchema perfilDeNegocio={businessProfile} />}
       </head>
-      <body className={`${inter.variable} font-sans overflow-x-hidden`}>
+      <body className={`${inter.variable} font-sans`}>
         <Header />
 
-        <main>{children}</main>
+        <div className="relative w-full overflow-x-hidden">
+          <main>{children}</main>
+        </div>
 
         <Footer />
         

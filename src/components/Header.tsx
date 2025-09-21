@@ -23,13 +23,10 @@ const Header = () => {
   };
 
   useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
+    document.body.classList.toggle('no-scroll', isMenuOpen);
+
     return () => {
-      document.body.style.overflow = 'auto';
+      document.body.classList.remove('no-scroll');
     };
   }, [isMenuOpen]);
 
@@ -107,7 +104,7 @@ const Header = () => {
             >
               <button
                 onClick={toggleMenu}
-                className="absolute top-5 right-5 text-zinc-300 hover:text-[#2ECB98] transition-colors duration-300"
+                className="absolute top-5 right-5 text-zinc-300 hover:text-[#2ECB98] transition-colors duration-300 z-50"
               >
                 <FiX size={28} />
               </button>

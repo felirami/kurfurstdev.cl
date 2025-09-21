@@ -128,7 +128,7 @@ export const GradientTitle = ({
   const baseClasses = "font-medium leading-tight uppercase tracking-wide bg-gradient-to-b from-white to-[#BDBDBD] bg-clip-text text-transparent";
   
   const levelClasses = {
-    1: "text-4xl md:text-5xl lg:text-7xl mb-8",
+    1: "text-3xl sm:text-5xl lg:text-7xl mb-8",
     2: "text-4xl lg:text-5xl mb-6", 
     3: "text-3xl lg:text-4xl mb-4"
   };

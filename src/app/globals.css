@@ -283,3 +283,7 @@ body::after {
 .btn-primary:hover::before {
   left: 100%;
 }
+
+.no-scroll {
+  overflow: hidden;
+}
