@@ -71,10 +71,10 @@ export default function HeroCarouselSection({ section }: Props) {
       </div>
 
       {/* Geometric Background Elements */}
-      <div className="absolute inset-0 z-10">
-        <div className="absolute top-20 right-10 w-px h-32 bg-[#2ECB98] opacity-60"></div>
+      <div className="absolute inset-0 z-10 overflow-hidden">
+        <div className="absolute top-20 right-16 w-px h-32 bg-[#2ECB98] opacity-60"></div>
         <div className="absolute top-40 left-16 w-24 h-px bg-[#2ECB98] opacity-40"></div>
-        <div className="absolute bottom-32 right-32 w-px h-48 bg-gradient-to-b from-[#2ECB98] to-transparent opacity-30"></div>
+        <div className="absolute bottom-32 right-40 w-px h-48 bg-gradient-to-b from-[#2ECB98] to-transparent opacity-30"></div>
         <div className="absolute top-1/3 left-1/4 w-2 h-2 bg-[#2ECB98] transform rotate-45"></div>
       </div>
 
@@ -146,11 +146,11 @@ export default function HeroCarouselSection({ section }: Props) {
 
             {/* Right Column - Geometric Visual Element */}
             <div className="hidden lg:block lg:col-span-4 xl:col-span-5">
-              <div className="relative h-96 w-full">
+              <div className="relative h-96 w-full overflow-hidden">
                 {/* Architectural Geometric Accents */}
-                <div className="absolute bottom-10 right-10 opacity-30">
+                <div className="absolute bottom-10 right-16 opacity-30">
                   <div className="w-32 h-32 border-2 border-[#2ECB98] rounded-xl transform rotate-12"></div>
-                  <div className="w-16 h-16 bg-[#2ECB98] transform -translate-y-24 translate-x-8 rounded-lg"></div>
+                  <div className="w-16 h-16 bg-[#2ECB98] transform -translate-y-24 translate-x-4 rounded-lg"></div>
                 </div>
               </div>
             </div>
