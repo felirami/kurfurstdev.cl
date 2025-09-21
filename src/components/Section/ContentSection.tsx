@@ -130,10 +130,10 @@ export default function ContentSection({ section }: Props) {
                 <div className="absolute bottom-0 right-0 w-20 h-px bg-gradient-to-l from-[#2ECB98] to-transparent opacity-60"></div>
                 <div className="absolute bottom-0 right-0 w-px h-20 bg-gradient-to-t from-[#2ECB98] to-transparent opacity-60"></div>
                 
-                <div className="relative z-10 p-12 lg:p-16">
-                  <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+                <div className="relative z-10 p-8 lg:p-12">
+                  <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                     
-                    <div className="lg:col-span-4 flex justify-center lg:justify-start">
+                    <div className="lg:col-span-4 flex justify-center">
                       <div className="relative group">
                         <div className="relative">
                           <div className="w-64 h-64 lg:w-72 lg:h-72 relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#111111] to-[#1a1a1a] border border-[#333333] shadow-2xl">
@@ -158,9 +158,9 @@ export default function ContentSection({ section }: Props) {
                     </div>
 
                     <div className="lg:col-span-8">
-                      <div className="space-y-8">
+                      <div className="space-y-8 text-center lg:text-left">
                         <div className="space-y-4">
-                          <div className="flex items-center gap-4 mb-6">
+                          <div className="flex items-center justify-center lg:justify-start gap-4 mb-6">
                             <div className="w-12 h-px bg-[#2ECB98]"></div>
                             <span className="text-[#2ECB98] text-sm font-medium uppercase tracking-[0.3em]">
                               Desarrollador Full Stack

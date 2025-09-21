@@ -93,11 +93,11 @@ const Header = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="md:hidden fixed inset-0 bg-[#111111]/95 backdrop-blur-xl z-50"
+              className="md:hidden fixed inset-0 bg-[#111111]/95 backdrop-blur-xl z-[9999]"
             >
               <button
                 onClick={toggleMenu}
-                className="absolute top-5 right-5 text-zinc-300 hover:text-[#2ECB98] transition-colors duration-300 z-50"
+                className="absolute top-5 right-5 text-zinc-300 hover:text-[#2ECB98] transition-colors duration-300 z-[10000]"
               >
                 <FiX size={28} />
               </button>
