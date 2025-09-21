@@ -38,9 +38,7 @@ export default async function RootLayout({
       <body className={`${inter.variable} font-sans`}>
         <Header />
 
-        <div className="relative w-full overflow-x-hidden">
-          <main>{children}</main>
-        </div>
+        <main>{children}</main>
 
         <Footer />
         
