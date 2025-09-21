@@ -22,6 +22,17 @@ const Header = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isMenuOpen]);
+
   const closeMenu = () => {
     setIsMenuOpen(false);
   };
@@ -92,8 +103,14 @@ const Header = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="md:hidden fixed inset-0 bg-[#111111]/95 backdrop-blur-xl z-40"
+              className="md:hidden fixed inset-0 bg-[#111111]/95 backdrop-blur-xl z-50"
             >
+              <button
+                onClick={toggleMenu}
+                className="absolute top-5 right-5 text-zinc-300 hover:text-[#2ECB98] transition-colors duration-300"
+              >
+                <FiX size={28} />
+              </button>
               <div className="flex flex-col items-center justify-center h-full space-y-8">
                 {navigationItems.map((item) => (
                   <Link
