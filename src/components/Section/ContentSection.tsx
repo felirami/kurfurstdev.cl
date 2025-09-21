@@ -173,16 +173,16 @@ export default function ContentSection({ section }: Props) {
                           <PortableText value={cuerpo} components={customComponents} />
                         </div>
                         
-                        <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 pt-8 border-t border-[#333333]">
-                          <div className="text-center lg:text-left">
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-8 border-t border-[#333333]">
+                          <div className="text-center">
                             <div className="text-2xl font-bold text-[#2ECB98] mb-1">5+</div>
                             <div className="text-sm text-[#BBBBBB] uppercase tracking-wider">Años Experiencia</div>
                           </div>
-                          <div className="text-center lg:text-left">
+                          <div className="text-center">
                             <div className="text-2xl font-bold text-[#2ECB98] mb-1">10</div>
                             <div className="text-sm text-[#BBBBBB] uppercase tracking-wider">Proyectos Completados</div>
                           </div>
-                          <div className="text-center lg:text-left col-span-2 lg:col-span-1">
+                          <div className="text-center">
                             <div className="text-2xl font-bold text-[#2ECB98] mb-1">100%</div>
                             <div className="text-sm text-[#BBBBBB] uppercase tracking-wider">Satisfacción Cliente</div>
                           </div>

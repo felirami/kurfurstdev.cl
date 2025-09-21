@@ -3,12 +3,15 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiMenu, FiX } from 'react-icons/fi';
+import { createPortal } from 'react-dom';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
@@ -37,6 +40,53 @@ const Header = () => {
     { name: 'Portafolio', href: '/portafolio' },
     { name: 'Sobre Mí', href: '/sobre-mi' },
   ];
+
+  // Componente del menú móvil como portal
+  const MobileMenu = () => {
+    if (!mounted) return null;
+    
+    return createPortal(
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 bg-[#111111]/95 backdrop-blur-xl z-[9999] md:hidden"
+            style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }}
+          >
+            <button
+              onClick={toggleMenu}
+              className="absolute top-5 right-5 text-zinc-300 hover:text-[#2ECB98] transition-colors duration-300 z-[10000]"
+            >
+              <FiX size={28} />
+            </button>
+            <div className="flex flex-col items-center justify-center h-full space-y-8">
+              {navigationItems.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  onClick={closeMenu}
+                  className="text-zinc-300 hover:text-[#2ECB98] transition-colors duration-300 font-medium text-2xl font-['Inter'] uppercase tracking-wider"
+                >
+                  {item.name}
+                </Link>
+              ))}
+              <Link
+                href="/contacto"
+                onClick={closeMenu}
+                className="bg-[#2ECB98] text-black px-8 py-4 hover:bg-[#26B88A] transition-all duration-300 font-bold border border-[#2ECB98] text-center rounded-xl font-['Inter'] uppercase text-base tracking-wider mt-4"
+              >
+                Contacto
+              </Link>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>,
+      document.body
+    );
+  };
 
   return (
     <header className="relative">
@@ -86,44 +136,8 @@ const Header = () => {
             </button>
           </div>
         </div>
-        <AnimatePresence>
-          {isMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="md:hidden fixed inset-0 bg-[#111111]/95 backdrop-blur-xl z-[9999]"
-            >
-              <button
-                onClick={toggleMenu}
-                className="absolute top-5 right-5 text-zinc-300 hover:text-[#2ECB98] transition-colors duration-300 z-[10000]"
-              >
-                <FiX size={28} />
-              </button>
-              <div className="flex flex-col items-center justify-center h-full space-y-8">
-                {navigationItems.map((item) => (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    onClick={closeMenu}
-                    className="text-zinc-300 hover:text-[#2ECB98] transition-colors duration-300 font-medium text-2xl font-['Inter'] uppercase tracking-wider"
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-                <Link
-                  href="/contacto"
-                  onClick={closeMenu}
-                  className="bg-[#2ECB98] text-black px-8 py-4 hover:bg-[#26B88A] transition-all duration-300 font-bold border border-[#2ECB98] text-center rounded-xl font-['Inter'] uppercase text-base tracking-wider mt-4"
-                >
-                  Contacto
-                </Link>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </nav>
+      <MobileMenu />
     </header>
   );
 };
