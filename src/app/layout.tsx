@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { inter } from '@/lib/fonts';
 import "./globals.css";
-
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import JsonLdSchema from "@/components/JsonLdSchema";
@@ -10,7 +9,6 @@ import { client } from "@/lib/sanity.server";
 import { groq } from "next-sanity";
 import React from "react";
 import { Toaster } from "react-hot-toast";
-
 
 const query = groq`{
   "businessProfile": *[_type == "perfilDeNegocio"][0]
@@ -22,7 +20,6 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   let businessProfile = null;
-  
   try {
     const data = await client.fetch(query);
     businessProfile = data.businessProfile;
@@ -37,13 +34,9 @@ export default async function RootLayout({
       </head>
       <body className={`${inter.variable} font-sans`}>
         <Header />
-
         <main>{children}</main>
-
         <Footer />
-        
         <WhatsAppButton />
-        
         <Toaster 
           position="top-right"
           toastOptions={{

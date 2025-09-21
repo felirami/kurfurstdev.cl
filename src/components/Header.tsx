@@ -1,10 +1,8 @@
 'use client';
-
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiMenu, FiX } from 'react-icons/fi';
-
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -24,7 +22,6 @@ const Header = () => {
 
   useEffect(() => {
     document.body.classList.toggle('no-scroll', isMenuOpen);
-
     return () => {
       document.body.classList.remove('no-scroll');
     };
@@ -61,7 +58,6 @@ const Header = () => {
                 KurfurstDev
               </span>
             </Link>
-
             <div className="hidden md:flex items-center space-x-8">
               {navigationItems.map((item) => (
                 <Link
@@ -74,7 +70,6 @@ const Header = () => {
                 </Link>
               ))}
             </div>
-
             <div className="hidden md:block">
               <Link
                 href="/contacto"
@@ -83,7 +78,6 @@ const Header = () => {
                 Contacto
               </Link>
             </div>
-
             <button
               onClick={toggleMenu}
               className="md:hidden text-zinc-300 hover:text-[#2ECB98] transition-colors duration-300"
@@ -92,7 +86,6 @@ const Header = () => {
             </button>
           </div>
         </div>
-
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
@@ -131,11 +124,7 @@ const Header = () => {
           )}
         </AnimatePresence>
       </nav>
-
     </header>
   );
 };
-
 export default Header;
-
-// Forzar detección de cambios
