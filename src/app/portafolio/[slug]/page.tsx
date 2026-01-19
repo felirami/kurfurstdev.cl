@@ -1,4 +1,4 @@
-import { client, urlFor } from "@/lib/sanity.client";
+import { client, urlFor, isSanityConfigured } from "@/lib/sanity.client";
 import { groq } from "next-sanity";
 import { Metadata } from "next";
 import { ProyectoData } from "@/types";
@@ -8,6 +8,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SectionContainer, ArchitecturalContainer } from "@/components/UnifiedContainers";
 import SafeScrollAnimatedSection from "@/components/SafeScrollAnimatedSection";
+import PlaceholderPage from "@/components/PlaceholderPage";
 import { FiArrowLeft, FiExternalLink, FiTag } from "react-icons/fi";
 
 type Props = {
@@ -17,6 +18,9 @@ type Props = {
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
+    if (!isSanityConfigured) {
+        return { title: "KurfurstDev | Portafolio" };
+    }
     const { slug } = await params;
     const query = groq`*[_type == "proyecto" && slug.current == "${slug}"][0]`;
     const proyecto: ProyectoData = await client.fetch(query);
@@ -30,6 +34,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function ProjectDetailPage({ params }: Props) {
+    if (!isSanityConfigured) {
+        return <PlaceholderPage />;
+    }
+
     const { slug } = await params;
     const query = groq`*[_type == "proyecto" && slug.current == "${slug}"][0]`;
     const proyecto: ProyectoData = await client.fetch(query);

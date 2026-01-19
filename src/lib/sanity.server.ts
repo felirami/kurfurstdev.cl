@@ -2,11 +2,9 @@
 // This file should only contain server-side code
 import 'server-only';
 import { createClient } from 'next-sanity';
-import { projectId, dataset, apiVersion } from './sanity.client';
+import { projectId, dataset, apiVersion, isSanityConfigured } from './sanity.client';
 
-if (!projectId || !dataset) {
-  throw new Error('Sanity project ID and dataset must be configured in .env.local');
-}
+export { isSanityConfigured };
 
 export const client = createClient({
   projectId,

@@ -3,12 +3,15 @@ import { structureTool } from 'sanity/structure'
 import { visionTool } from '@sanity/vision'
 import { schemaTypes } from './src/schemas'
 
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'placeholder'
+const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
+
 export default defineConfig({
   name: 'default',
   title: 'KurfurstDev CMS',
 
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
+  projectId,
+  dataset,
 
   plugins: [structureTool(), visionTool()],
 

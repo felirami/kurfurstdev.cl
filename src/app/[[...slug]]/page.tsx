@@ -1,7 +1,8 @@
-import { client } from "@/lib/sanity.server";
+import { client, isSanityConfigured } from "@/lib/sanity.server";
 import { groq } from "next-sanity";
 import { notFound } from "next/navigation";
 import DynamicPage from "@/components/DynamicPage";
+import PlaceholderPage from "@/components/PlaceholderPage";
 import { Metadata } from "next";
 import { PageData } from "@/types";
 
@@ -85,6 +86,11 @@ type Props = {
 export default async function Page({ params }: Props) {
   const resolvedParams = await params;
   const slug = resolvedParams.slug?.join("/") || "inicio";
+  
+  // Show placeholder page if Sanity is not configured
+  if (!isSanityConfigured) {
+    return <PlaceholderPage />;
+  }
   
   try {
     const pageData = await client.fetch(getPageQuery(slug));

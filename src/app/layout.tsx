@@ -6,7 +6,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import JsonLdSchema from "@/components/JsonLdSchema";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import { client } from "@/lib/sanity.server";
+import { client, isSanityConfigured } from "@/lib/sanity.server";
 import { groq } from "next-sanity";
 import React from "react";
 import { Toaster } from "react-hot-toast";
@@ -23,11 +23,14 @@ export default async function RootLayout({
 }) {
   let businessProfile = null;
   
-  try {
-    const data = await client.fetch(query);
-    businessProfile = data.businessProfile;
-  } catch (error) {
-    console.error('Error fetching layout data from Sanity:', error);
+  // Only fetch from Sanity if configured
+  if (isSanityConfigured) {
+    try {
+      const data = await client.fetch(query);
+      businessProfile = data.businessProfile;
+    } catch (error) {
+      console.error('Error fetching layout data from Sanity:', error);
+    }
   }
 
   return (

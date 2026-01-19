@@ -5,7 +5,7 @@ import { FaCode, FaLaptopCode, FaRocket, FaGraduationCap, FaAward, FaBriefcase }
 import SafeScrollAnimatedSection from '@/components/SafeScrollAnimatedSection';
 import { ArchitecturalContainer, SectionContainer } from '@/components/UnifiedContainers';
 import PageHeader from '@/components/PageHeader';
-import { client } from '@/lib/sanity.client';
+import { client, isSanityConfigured } from '@/lib/sanity.client';
 import { urlFor } from '@/lib/sanity.client';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -38,6 +38,9 @@ const AboutPage = () => {
   
   useEffect(() => {
     const fetchPerfil = async () => {
+      // Skip fetch if Sanity is not configured
+      if (!isSanityConfigured) return;
+      
       try {
         const data = await client.fetch(`*[_type == "perfilPersonal"][0]{
           nombre,
