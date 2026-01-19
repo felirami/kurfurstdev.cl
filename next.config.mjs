@@ -6,6 +6,9 @@ const nextConfig = {
     optimizePackageImports: ['framer-motion', 'react-icons'],
   },
   
+  // Empty turbopack config to enable default Turbopack (Next.js 16+)
+  turbopack: {},
+  
   // Compresión y optimización
   compress: true,
   poweredByHeader: false,
@@ -23,34 +26,6 @@ const nextConfig = {
     minimumCacheTTL: 60,
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-  },
-  
-  // Webpack optimizations
-  webpack: (config, { dev, isServer }) => {
-    if (!dev && !isServer) {
-      config.optimization = config.optimization || {};
-      config.optimization.splitChunks = {
-        chunks: 'all',
-        cacheGroups: {
-          vendor: {
-            test: /[\\/]node_modules[\\/]/,
-            name: 'vendors',
-            chunks: 'all',
-          },
-          framerMotion: {
-            test: /[\\/]node_modules[\\/]framer-motion[\\/]/,
-            name: 'framer-motion',
-            chunks: 'all',
-          },
-          reactIcons: {
-            test: /[\\/]node_modules[\\/]react-icons[\\/]/,
-            name: 'react-icons',
-            chunks: 'all',
-          },
-        },
-      };
-    }
-    return config;
   },
 };
 
