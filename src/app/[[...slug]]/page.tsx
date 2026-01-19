@@ -52,6 +52,14 @@ const getPageQuery = (slug: string) => groq`
 `;
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string[] }> }): Promise<Metadata> {
+  // Return default metadata if Sanity is not configured
+  if (!isSanityConfigured) {
+    return {
+      title: "KurfurstDev - Desarrollo Web Profesional",
+      description: "Desarrollo web profesional con tecnología de vanguardia. Creamos experiencias digitales que impulsan tu negocio.",
+    };
+  }
+
   const resolvedParams = await params;
   const slug = resolvedParams.slug?.join("/") || "inicio";
   
@@ -82,6 +90,17 @@ type Props = {
     slug: string[];
   }>;
 };
+
+// Generate static params for the home page when Sanity is not configured
+export async function generateStaticParams() {
+  // Always generate the home page (empty slug)
+  if (!isSanityConfigured) {
+    return [{ slug: [] }];
+  }
+  
+  // When Sanity is configured, let it be fully dynamic
+  return [];
+}
 
 export default async function Page({ params }: Props) {
   const resolvedParams = await params;
