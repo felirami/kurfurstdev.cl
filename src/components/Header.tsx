@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiMenu, FiX } from 'react-icons/fi';
@@ -14,17 +14,29 @@ const Header = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  // Lock body scroll when menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMenuOpen]);
 
-  const closeMenu = () => {
+  const toggleMenu = useCallback(() => {
+    setIsMenuOpen(prev => !prev);
+  }, []);
+
+  const closeMenu = useCallback(() => {
     setIsMenuOpen(false);
-  };
+  }, []);
 
   const navigationItems = [
     { name: 'Inicio', href: '/' },
@@ -78,9 +90,11 @@ const Header = () => {
 
             <button
               onClick={toggleMenu}
-              className="md:hidden text-zinc-300 hover:text-[#2ECB98] transition-colors duration-300"
+              className="md:hidden text-zinc-300 hover:text-[#2ECB98] transition-colors duration-300 min-w-[48px] min-h-[48px] flex items-center justify-center -mr-2 active:scale-95"
+              aria-label={isMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
+              aria-expanded={isMenuOpen}
             >
-              {isMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+              {isMenuOpen ? <FiX size={28} /> : <FiMenu size={28} />}
             </button>
           </div>
         </div>
@@ -91,28 +105,53 @@ const Header = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="md:hidden fixed inset-0 bg-[#111111]/95 backdrop-blur-xl z-40"
+              transition={{ duration: 0.25 }}
+              className="md:hidden fixed inset-0 bg-[#0D0D0D]/98 backdrop-blur-xl z-40"
+              style={{ top: 0 }}
             >
-              <div className="flex flex-col items-center justify-center h-full space-y-8">
-                {navigationItems.map((item) => (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    onClick={closeMenu}
-                    className="text-zinc-300 hover:text-[#2ECB98] transition-colors duration-300 font-medium text-2xl font-['Inter'] uppercase tracking-wider"
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-                <Link
-                  href="/contacto"
+              {/* Close button at top */}
+              <div className="absolute top-0 right-0 p-4">
+                <button
                   onClick={closeMenu}
-                  className="bg-[#2ECB98] text-black px-8 py-4 hover:bg-[#26B88A] transition-all duration-300 font-bold border border-[#2ECB98] text-center rounded-xl font-['Inter'] uppercase text-base tracking-wider mt-4"
+                  className="text-zinc-300 hover:text-[#2ECB98] min-w-[48px] min-h-[48px] flex items-center justify-center active:scale-95"
+                  aria-label="Cerrar menú"
                 >
-                  Contacto
-                </Link>
+                  <FiX size={28} />
+                </button>
               </div>
+              
+              <nav className="flex flex-col items-center justify-center h-full space-y-4 px-6">
+                {navigationItems.map((item, index) => (
+                  <motion.div
+                    key={item.name}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1, duration: 0.3 }}
+                  >
+                    <Link
+                      href={item.href}
+                      onClick={closeMenu}
+                      className="text-zinc-300 hover:text-[#2ECB98] active:text-[#2ECB98] transition-colors duration-300 font-medium text-xl sm:text-2xl font-['Inter'] uppercase tracking-wider py-3 px-4 block min-h-[48px] flex items-center justify-center"
+                    >
+                      {item.name}
+                    </Link>
+                  </motion.div>
+                ))}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: navigationItems.length * 0.1, duration: 0.3 }}
+                  className="pt-4"
+                >
+                  <Link
+                    href="/contacto"
+                    onClick={closeMenu}
+                    className="bg-[#2ECB98] text-black px-8 py-4 hover:bg-[#26B88A] active:bg-[#26B88A] active:scale-[0.98] transition-all duration-300 font-bold border border-[#2ECB98] text-center rounded-xl font-['Inter'] uppercase text-base tracking-wider min-h-[52px] flex items-center justify-center"
+                  >
+                    Contacto
+                  </Link>
+                </motion.div>
+              </nav>
             </motion.div>
           )}
         </AnimatePresence>

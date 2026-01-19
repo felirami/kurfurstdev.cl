@@ -16,6 +16,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* Enable momentum scrolling for iOS */
+  -webkit-overflow-scrolling: touch;
 }
 
 body {
@@ -36,6 +38,26 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
+  /* Prevent horizontal overflow on mobile */
+  overflow-x: hidden;
+  
+  /* Smooth overscroll behavior for pull-to-refresh feel */
+  overscroll-behavior-y: contain;
+}
+
+/* Fix iOS Safari background-attachment: fixed performance issue */
+@supports (-webkit-touch-callout: none) {
+  body {
+    background-attachment: scroll;
+  }
+}
+
+/* Also fix for touch devices via media query */
+@media (hover: none) and (pointer: coarse) {
+  body {
+    background-attachment: scroll;
+  }
 }
 
 
@@ -282,4 +304,145 @@ body::after {
 
 .btn-primary:hover::before {
   left: 100%;
+}
+
+/* ===========================================
+   MOBILE-FIRST RESPONSIVE UTILITIES
+   =========================================== */
+
+/* Minimum touch target size (44x44px per Apple/Google guidelines) */
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Safe dynamic viewport height utility */
+.min-h-dvh {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+.h-dvh {
+  height: 100vh;
+  height: 100dvh;
+}
+
+/* Mobile-optimized container padding */
+@media (max-width: 640px) {
+  .architectural-container {
+    padding: 1.25rem;
+  }
+  
+  .glassmorphism-container {
+    padding: 1.25rem;
+  }
+  
+  .section-spacing {
+    padding: 2.5rem 0;
+  }
+  
+  .section-spacing-lg {
+    padding: 3rem 0;
+  }
+}
+
+/* Disable hover effects on touch devices for better performance */
+@media (hover: none) and (pointer: coarse) {
+  .architectural-container:hover {
+    border-color: var(--border-main);
+    box-shadow: none;
+  }
+  
+  .btn-primary:hover {
+    transform: none;
+    box-shadow: none;
+  }
+  
+  .btn-primary:hover::before {
+    left: -100%;
+  }
+  
+  /* Enable active state feedback instead */
+  .btn-primary:active {
+    transform: scale(0.98);
+    opacity: 0.9;
+  }
+  
+  .architectural-container:active {
+    border-color: var(--accent-primary);
+  }
+}
+
+/* Reduced motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Hide scanline animation on mobile for performance */
+@media (max-width: 768px) {
+  body::after {
+    display: none;
+  }
+}
+
+/* Improved focus states for accessibility on touch */
+@media (pointer: coarse) {
+  *:focus {
+    outline-width: 3px;
+    outline-offset: 3px;
+  }
+}
+
+/* Mobile typography improvements */
+@media (max-width: 640px) {
+  body {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  
+  .section-subtitle {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+  }
+}
+
+/* Swipe-friendly horizontal scrolling */
+.swipe-scroll {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.swipe-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.swipe-scroll > * {
+  scroll-snap-align: start;
+}
+
+/* Prevent text selection during swipe gestures */
+.no-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hardware acceleration for smooth animations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform;
 }

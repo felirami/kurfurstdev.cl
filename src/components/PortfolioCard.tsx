@@ -22,33 +22,34 @@ export default function PortfolioCard({ proyecto }: Props) {
 
   return (
     <ArchitecturalContainer className="group overflow-hidden">
-      <Link href={`/portafolio/${proyecto.slug.current}`} className="block">
-        <div className="relative h-64 mb-6 overflow-hidden rounded-lg">
+      <Link href={`/portafolio/${proyecto.slug.current}`} className="block active:opacity-90">
+        <div className="relative h-48 sm:h-56 lg:h-64 mb-4 sm:mb-6 overflow-hidden rounded-lg">
           <Image
             src={imageUrl}
             alt={proyecto.titulo}
             fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             className="object-cover transition-transform duration-300 group-hover:scale-105"
           />
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-3 sm:space-y-4">
           <div>
-            <span className="inline-block px-3 py-1 text-xs font-medium text-[#2ECB98] bg-[#2ECB98]/10 border border-[#2ECB98]/20 rounded uppercase tracking-wider">
+            <span className="inline-block px-2 sm:px-3 py-1 text-[10px] sm:text-xs font-medium text-[#2ECB98] bg-[#2ECB98]/10 border border-[#2ECB98]/20 rounded uppercase tracking-wider">
               SITIO WEB
             </span>
           </div>
 
-          <h3 className="font-bold text-xl text-white uppercase tracking-wide leading-tight group-hover:text-[#2ECB98] transition-colors duration-300">
+          <h3 className="font-bold text-lg sm:text-xl text-white uppercase tracking-wide leading-tight group-hover:text-[#2ECB98] transition-colors duration-300">
             {proyecto.titulo}
           </h3>
 
-          <p className="text-[#BBBBBB] text-sm leading-relaxed">
+          <p className="text-[#BBBBBB] text-sm leading-relaxed line-clamp-3">
             {getDescriptionPreview(proyecto.descripcion)}
           </p>
 
-          <div className="pt-4">
-            <span className="inline-flex items-center text-[#2ECB98] font-medium text-sm uppercase tracking-wide group-hover:underline">
+          <div className="pt-3 sm:pt-4">
+            <span className="inline-flex items-center text-[#2ECB98] font-medium text-xs sm:text-sm uppercase tracking-wide group-hover:underline min-h-[44px]">
               Ver Caso de Estudio
               <svg 
                 className="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" 

@@ -9,15 +9,15 @@ type Props = {
 export default function PortfolioGrid({ proyectos }: Props) {
   if (!proyectos || proyectos.length === 0) {
     return (
-      <ArchitecturalContainer className="text-center py-20">
-        <p className="text-[#BBBBBB] text-lg">No hay proyectos para mostrar todavía.</p>
+      <ArchitecturalContainer className="text-center py-12 sm:py-20">
+        <p className="text-[#BBBBBB] text-base sm:text-lg">No hay proyectos para mostrar todavía.</p>
       </ArchitecturalContainer>
     );
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {proyectos.map((proyecto, index) => (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+      {proyectos.map((proyecto) => (
         <PortfolioCard key={proyecto._id} proyecto={proyecto} />
       ))}
     </div>

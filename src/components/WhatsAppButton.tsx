@@ -36,9 +36,10 @@ const WhatsAppButton = () => {
                     </div>
                     <button
                       onClick={() => setIsExpanded(false)}
-                      className="text-[#BBBBBB] hover:text-white transition-colors"
+                      className="text-[#BBBBBB] hover:text-white active:text-white transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center -mr-2 -mt-2"
+                      aria-label="Cerrar"
                     >
-                      <FaTimes className="w-3 h-3" />
+                      <FaTimes className="w-4 h-4" />
                     </button>
                   </div>
                   
@@ -48,7 +49,7 @@ const WhatsAppButton = () => {
                   
                   <button
                     onClick={handleWhatsAppClick}
-                    className="w-full bg-[#2ECB98] hover:bg-[#26B88A] text-black font-medium py-2.5 px-4 rounded-xl transition-all duration-300 uppercase tracking-wider text-sm"
+                    className="w-full bg-[#2ECB98] hover:bg-[#26B88A] active:bg-[#26B88A] active:scale-[0.98] text-black font-medium py-3 px-4 rounded-xl transition-all duration-300 uppercase tracking-wider text-sm min-h-[48px]"
                   >
                     Contactar
                   </button>
@@ -63,14 +64,13 @@ const WhatsAppButton = () => {
 
       <motion.button
         onClick={() => setIsExpanded(!isExpanded)}
-        onHoverStart={() => !isExpanded && setIsExpanded(true)}
         className="relative group"
-        whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
+        aria-label={isExpanded ? "Cerrar WhatsApp" : "Abrir WhatsApp"}
       >
         <div className="absolute inset-0 bg-[#2ECB98]/30 rounded-full blur-xl group-hover:bg-[#2ECB98]/40 transition-all duration-300"></div>
         
-        <div className="relative w-14 h-14 sm:w-16 sm:h-16 bg-[#111111]/80 backdrop-blur-xl border border-[#333333] rounded-full shadow-2xl overflow-hidden group-hover:border-[#2ECB98] transition-all duration-300">
+        <div className="relative w-14 h-14 sm:w-16 sm:h-16 min-w-[56px] min-h-[56px] bg-[#111111]/80 backdrop-blur-xl border border-[#333333] rounded-full shadow-2xl overflow-hidden group-hover:border-[#2ECB98] active:border-[#2ECB98] transition-all duration-300">
           <div className="relative z-10 w-full h-full flex items-center justify-center">
             <motion.div
               animate={{ 

@@ -64,7 +64,7 @@ export default function ContactSection({ section }: Props) {
 
   return (
     <SectionContainer withAura={true}>
-      <div className="max-w-7xl mx-auto pt-24">
+      <div className="max-w-7xl mx-auto pt-16 sm:pt-24 px-4 sm:px-6 lg:px-8">
         <SafeScrollAnimatedSection delay={0.1} duration={0.6}>
           <PageHeader 
             subtitle="Contacto"
@@ -73,7 +73,7 @@ export default function ContactSection({ section }: Props) {
           />
         </SafeScrollAnimatedSection>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-start">
           <SafeScrollAnimatedSection delay={0.2} duration={0.6}>
             <ArchitecturalContainer>
               <h3 className="text-xl sm:text-2xl font-bold text-white uppercase tracking-wider mb-6">
@@ -110,22 +110,22 @@ export default function ContactSection({ section }: Props) {
                   tabIndex={-1}
                   autoComplete="off"
                 />
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
                   <div className="group">
-                    <label htmlFor="name" className="block text-sm font-medium text-[#2ECB98] mb-3 uppercase tracking-wider">
+                    <label htmlFor="name" className="block text-xs sm:text-sm font-medium text-[#2ECB98] mb-2 sm:mb-3 uppercase tracking-wider">
                       Nombre
                     </label>
                     <input 
                       type="text" 
                       id="name" 
                       {...register("name", { required: "El nombre es requerido" })}
-                      className={`w-full bg-transparent border-b-2 ${errors.name ? 'border-red-500' : 'border-[#2ECB98]/30'} focus:border-[#2ECB98] focus:shadow-[0_2px_8px_rgba(46,203,152,0.3)] text-[#EAEAEA] py-3 px-4 transition-all duration-300 focus:outline-none placeholder-[#EAEAEA]/40`}
+                      className={`w-full bg-transparent border-b-2 ${errors.name ? 'border-red-500' : 'border-[#2ECB98]/30'} focus:border-[#2ECB98] focus:shadow-[0_2px_8px_rgba(46,203,152,0.3)] text-[#EAEAEA] py-3 px-3 sm:px-4 transition-all duration-300 focus:outline-none placeholder-[#EAEAEA]/40 text-base min-h-[48px]`}
                       placeholder="Tu nombre completo"
                     />
-                    {errors.name && <p className="mt-2 text-sm text-red-500">{errors.name.message}</p>}
+                    {errors.name && <p className="mt-2 text-xs sm:text-sm text-red-500">{errors.name.message}</p>}
                   </div>
                   <div className="group">
-                    <label htmlFor="email" className="block text-sm font-medium text-[#2ECB98] mb-3 uppercase tracking-wider">
+                    <label htmlFor="email" className="block text-xs sm:text-sm font-medium text-[#2ECB98] mb-2 sm:mb-3 uppercase tracking-wider">
                       Email
                     </label>
                     <input 
@@ -139,30 +139,30 @@ export default function ContactSection({ section }: Props) {
                           message: "El formato del email es inválido"
                         }
                       })}
-                      className={`w-full bg-transparent border-b-2 ${errors.email ? 'border-red-500' : 'border-[#2ECB98]/30'} focus:border-[#2ECB98] focus:shadow-[0_2px_8px_rgba(46,203,152,0.3)] text-[#EAEAEA] py-3 px-4 transition-all duration-300 focus:outline-none placeholder-[#EAEAEA]/40`}
+                      className={`w-full bg-transparent border-b-2 ${errors.email ? 'border-red-500' : 'border-[#2ECB98]/30'} focus:border-[#2ECB98] focus:shadow-[0_2px_8px_rgba(46,203,152,0.3)] text-[#EAEAEA] py-3 px-3 sm:px-4 transition-all duration-300 focus:outline-none placeholder-[#EAEAEA]/40 text-base min-h-[48px]`}
                       placeholder="tu@email.com"
                     />
-                    {errors.email && <p className="mt-2 text-sm text-red-500">{errors.email.message}</p>}
+                    {errors.email && <p className="mt-2 text-xs sm:text-sm text-red-500">{errors.email.message}</p>}
                   </div>
                 </div>
-                <div className="group mt-8">
-                  <label htmlFor="message" className="block text-sm font-medium text-[#2ECB98] mb-3 uppercase tracking-wider">
+                <div className="group mt-6 sm:mt-8">
+                  <label htmlFor="message" className="block text-xs sm:text-sm font-medium text-[#2ECB98] mb-2 sm:mb-3 uppercase tracking-wider">
                     Mensaje
                   </label>
                   <textarea 
                     id="message" 
-                    rows={6} 
+                    rows={5} 
                     {...register("message", { required: "El mensaje es requerido" })}
-                    className={`w-full bg-transparent border-2 ${errors.message ? 'border-red-500' : 'border-[#2ECB98]/30'} focus:border-[#2ECB98] focus:shadow-[0_0_16px_rgba(46,203,152,0.2)] text-[#EAEAEA] py-3 px-4 transition-all duration-300 focus:outline-none placeholder-[#EAEAEA]/40 resize-none`}
+                    className={`w-full bg-transparent border-2 ${errors.message ? 'border-red-500' : 'border-[#2ECB98]/30'} focus:border-[#2ECB98] focus:shadow-[0_0_16px_rgba(46,203,152,0.2)] text-[#EAEAEA] py-3 px-3 sm:px-4 transition-all duration-300 focus:outline-none placeholder-[#EAEAEA]/40 resize-none text-base`}
                     placeholder="Cuéntanos sobre tu proyecto..."
                   ></textarea>
-                  {errors.message && <p className="mt-2 text-sm text-red-500">{errors.message.message}</p>}
+                  {errors.message && <p className="mt-2 text-xs sm:text-sm text-red-500">{errors.message.message}</p>}
                 </div>
-                <div className="flex justify-center pt-8">
+                <div className="flex justify-center pt-6 sm:pt-8">
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className={`inline-flex items-center px-6 sm:px-8 py-3 sm:py-4 ${isSubmitting ? 'bg-[#2ECB98]/50 cursor-not-allowed' : 'btn-primary'}`}
+                    className={`inline-flex items-center justify-center w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 min-h-[52px] text-sm sm:text-base active:scale-[0.98] ${isSubmitting ? 'bg-[#2ECB98]/50 cursor-not-allowed rounded-xl text-black font-bold' : 'btn-primary'}`}
                   >
                     {isSubmitting ? (
                       <>
@@ -182,7 +182,7 @@ export default function ContactSection({ section }: Props) {
           </SafeScrollAnimatedSection>
         </div>
 
-        <div className="flex items-center justify-center mt-20">
+        <div className="flex items-center justify-center mt-12 sm:mt-20">
           <div className="w-8 h-px bg-[#2ECB98]"></div>
           <div className="mx-3 w-1 h-1 bg-[#2ECB98] transform rotate-45"></div>
           <div className="w-8 h-px bg-[#2ECB98]"></div>
