@@ -112,7 +112,7 @@ export default function TechnologiesSection({ section }: Props) {
                   className={`group flex flex-col items-center justify-center min-h-[120px] sm:min-h-[140px] text-center relative transition-all duration-300 cursor-pointer ${
                     isActive ? 'border-[#2ECB98]' : 'hover:border-[#2ECB98]'
                   }`}
-                  onClick={(e: React.MouseEvent) => {
+                  onClick={(e) => {
                     e.stopPropagation();
                     handleTechClick(tech.name);
                   }}

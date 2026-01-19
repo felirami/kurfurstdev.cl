@@ -1,13 +1,14 @@
 import React from 'react';
 import GraphicAccent from './GraphicAccent';
 
-interface ArchitecturalContainerProps {
+export interface ArchitecturalContainerProps {
   children: React.ReactNode;
   className?: string;
   hover?: boolean;
   accent?: boolean;
   accentType?: 'scanlines' | 'dots';
   accentPosition?: 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left';
+  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 export default function ArchitecturalContainer({ 
@@ -16,7 +17,8 @@ export default function ArchitecturalContainer({
   hover = true,
   accent = false,
   accentType = 'scanlines',
-  accentPosition = 'top-right'
+  accentPosition = 'top-right',
+  onClick
 }: ArchitecturalContainerProps) {
   return (
     <div 
@@ -26,6 +28,7 @@ export default function ArchitecturalContainer({
         transition-all duration-300 ease-in-out
         ${className}
       `}
+      onClick={onClick}
     >
       {children}
       {accent && (
